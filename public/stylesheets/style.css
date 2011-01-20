@@ -1,0 +1,277 @@
+/*
+color set: http://kuler.adobe.com/#themeID/1159168
+#844E03: kind of brown
+#9FA66A: kind of dark gray
+#F2EC94: kind of light gray/yellow
+#F23005: kind of strong red
+#8B0F03: kind of dark red
+*/
+
+body{
+    font-family: "Lucida Grande", Arial, sans-serif;
+    /* font: bold 29px */
+}
+
+#tab_menu{
+    border-bottom: 1px black solid;
+    margin: 0px;
+    padding: 0px;
+}
+
+#tab_menu ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#tab_menu li{
+    display: inline;
+    border-top: 1px solid black;
+    border-bottom: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin: 5px 5px 0px 5px;
+    padding: 5px 5px 0px 5px;
+}
+
+#tab_menu li a{
+    color: black;
+    text-decoration: none;
+}
+#tab_menu li a:HOVER{
+    background: #8B0F03;
+    color: white;
+}
+
+/* --------------------------------------------------*/
+/* Layout related: start */
+#layout_header{
+    height: 70px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#layout_toolbar{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#layout_side_one{
+    border: none;
+    min-height: 300px;
+    padding: 0px;
+    margin: 0px;
+
+    float: left;
+    margin-right: 2%;
+    width: 200px;
+}
+
+#layout_main_content{
+    border: none;
+    min-height: 300px;
+    padding: 0px;
+    margin: 0px;
+
+    float: left;
+    width: 68%;
+}
+
+#layout_footer{
+    clear: both;
+    border-top: 1px dotted gray;
+    font-size: 12px;
+    font-style: italic;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+}
+/* Layout related: end */
+/* --------------------------------------------------*/
+
+/* --------------------------------------------------*/
+/* Brand related: begin */
+#brand {
+        float: left;
+	padding: 0px;
+        text-align: center;
+        color: #9FA66A;
+}
+#brand h1 {
+	font: bold 29px "Lucida Grande", Arial, sans-serif;
+	position: relative;
+	margin: 0;
+	letter-spacing: -2px
+}
+#brand h1 A{
+    color: #9FA66A;
+    text-decoration: none;
+}
+#brand h2 {
+    font-size: 15px;
+    font-style: italic;
+    margin: 0px;
+    padding: 0px;
+}
+#brand span {
+	background: url(../images/gradient-glossy.png) repeat-x;
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 29px;
+}
+
+/* Brand related: end */
+/* --------------------------------------------------*/
+
+/* --------------------------------------------------*/
+/* User box: begin */
+#user_box{
+    float:right;
+    font-size: 12px;
+}
+/* User box: end */
+/* --------------------------------------------------*/
+
+div.request{
+    margin: 5px 0px 0px 0px;
+    clear: both;
+}
+
+div.request h1{
+    border: 1px solid #F23005;
+    background: #8B0F03;
+    color: #F2EC94;
+    margin: 0px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+div.request h1 small a{
+    display: block;
+    float: right;
+    text-decoration: none;
+    color: #F2EC94;
+}
+
+.request_body {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: none;
+    color: #844E03;
+    margin: 0px;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 12px;
+    min-height: 110px;
+}
+
+div.request_picture{
+    float:left;
+    padding: 0px;
+    margin: 0px;
+    margin-right: 5px;
+    width: 102px;
+}
+
+div.request_highlight{
+    float: right;
+    background: #F2EC94;
+    font-size: 12px;
+    padding: 10px;
+    margin-left: 5px;
+    width: 152px;
+    text-align: right;
+}
+
+div.request_highlight strong{
+}
+
+div.request table{
+    font-size: 10px;
+    border-top: 1px dotted gray;
+    border-bottom: 1px dotted gray;
+    border-left: none;
+    border-right: none;
+}
+/*
+
+
+
+div.request_description{
+    float:left;
+}
+
+
+
+div.request_table_details{
+}
+*/
+
+
+
+div.menu_tree{
+    /*avoid gap after li in ie6 by setting width*/
+    width: 190px;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+
+    font-size: 14px;
+}
+
+div.menu_tree A:HOVER,
+div.menu_tree A.last:HOVER{
+    text-decoration: none;
+    background: #8B0F03;
+    color: white;
+    border-bottom: 1px solid #F23005;
+}
+
+div.menu_tree li A,
+div.menu_tree li A.last{
+    text-decoration: none;
+    color: black;
+    margin-left: 0px;
+    padding-left: 0px;
+    border-bottom: 1px dotted black;
+    display: block;
+}
+div.menu_tree li A.last{
+    border-bottom: none;
+}
+
+div.menu_tree ul{
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0px;
+    font-weight: bold;
+}
+
+div.menu_tree ul li{
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 0px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+div.menu_tree ul li li{
+    border: none;
+}
+
+div.menu_tree ul ul{
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-weight: normal;
+    border: none;
+}
+
+
