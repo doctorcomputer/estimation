@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Estimating</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+  <head>
+    <title>Estimating</title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
 
-<%= yield %>
+    <div id="layout_header">
+      <div id="brand">
+        <h1><a href="#"><span></span>mi-serve</a></h1>
+        <h2>
+          <span></span>I migliori professionisti al tuo servizio
+        </h2>
+      </div>
 
-</body>
+      <div id="user_box">
+        <a href="#">pinella</a>|<a href="#">esci</a>
+        2 nuove offerte
+      </div>
+    </div>
+
+    <div id="layout_toolbar">
+      <div id="tab_menu">
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Come Funziona</a>
+          </li>
+          <li>
+            <a href="#">My Box</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <%= yield %>
+    
+  </body>
 </html>
