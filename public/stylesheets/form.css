@@ -44,7 +44,12 @@ textarea {
   overflow: auto;
 }
 
-form div {
+.field_with_errors{
+    color: red;
+}
+
+form div.required,
+form div.optional {
   clear: left;
   display: block;
   width: 354px;
