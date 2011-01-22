@@ -1,0 +1,155 @@
+<%= form_for(@user) do |f| %>
+  <fieldset>
+    <legend>1.Dati per l'accesso al sito</legend>
+    <div class="notes">
+      <h4>Information Personali</h4>
+      <p>
+        Scegli uno username e una password per accedere al sito.
+      </p>
+      <p class="last">
+        E' importante che tu fornisca un indirizzo di posta elettronica valido e funzionante
+        a cui hai accesso poichè riceverai una mail di attivazione necessaria per l'utilizzo del tuo nuovo account.
+      </p>
+    </div>
+    <div class="required">
+      <%= f.label :login, 'Login:' %>
+      <%= f.text_field :login, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :password, 'Password:' %>
+      <%= f.password_field :password, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :password_confirmation, 'Conferma Password:' %>
+      <%= f.password_field :password_confirmation, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <small>Deve corrispondere alla password che hai fornito prima.</small>
+    </div>
+
+    <div class="required">
+      <%= f.label :email, 'Email:' %>
+      <%= f.email_field :email, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%= label_tag :email_confirmation, 'Conferma Email:' %>
+      <%= email_field_tag :email_confirmation, nil, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <small>Deve corrispondere alla mail che hai fornito prima.</small>
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>2.Dati Anagrafici</legend>
+    <div class="notes">
+      <h4>Dati Anagrafici</h4>
+      <p class="last">
+        I dati personali che ci fornirai saranno
+        forniti esclusivamente all'operatore o al
+        fornitore con il quale concluderai un contratto.
+      </p>
+    </div>
+
+    <div class="required">
+      <%= f.label :first_name, 'Nome:' %>
+      <%= f.text_field :first_name, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :last_name, 'Cognome:' %>
+      <%= f.text_field :last_name, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%=  f.label :address, 'Indirizzo:' %>
+      <%= f.text_field :address, :class=>:inputText, :size=>10, :maxlength=>100 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :zip, 'CAP:' %>
+      <%= f.text_field :zip, :class=>:inputText, :size=>10, :maxlength=>5 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :city, 'Città:' %>
+      <%= f.text_field :city, :class=>:inputText, :size=>10, :maxlength=>10 %>
+    </div>
+
+  </fieldset>
+
+
+  <fieldset>
+    <legend>3.Operatore professionale.</legend>
+    <div class="notes">
+      <h4>Professionalità</h4>
+      <p class="last">
+        Se sei un operatore professionale
+        ti chiediamo alcuni dati aggiuntivi.
+      </p>
+    </div>
+
+    <div class="required">
+      <fieldset><legend>Professionale</legend>
+
+        <label for="professional_yes" class="labelRadio compact">
+          <input type="radio" name="professional" id="professional_yes" class="inputRadio" value="true" />
+          Professionale
+        </label>
+
+        <label for="professional_no" class="labelRadio compact">
+          <input type="radio" name="professional" id="professional_no" class="inputRadio" value="false" checked="checked" />
+          Non professionale
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="required">
+      <%= f.label :vat, 'Partita IVA:' %>
+      <%= f.text_field :vat, :class=>:inputText, :size=>10, :maxlength=>5 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :company_name, 'Ragione Sociale:' %>
+      <%= f.text_field :company_name, :class=>:inputText, :size=>10, :maxlength=>5 %>
+    </div>
+
+    <div class="required">
+      <%= f.label :activity, 'Attività:' %>
+      <%= f.text_field :activity, :class=>:inputText, :size=>10, :maxlength=>5 %>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>4.Informative.</legend>
+    <div class="notes">
+      <h4>Professionalità</h4>
+      <p class="last">
+        Accetta o rifiuta le informative
+      </p>
+    </div>
+
+    <div class="optional">
+      <%=  f.label :eula, 'Condizioni del servizio:' %>
+      <input type="checkbox" name="eula" id="eula" class="checkbox"/>
+    </div>
+
+    <div class="optional">
+      <%=  f.label :privacy, 'Informativa sulla privacy:' %>
+      <input type="checkbox" name="eula" id="eula" class="checkbox"/>
+    </div>
+
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+

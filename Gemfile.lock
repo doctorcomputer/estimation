@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/binarylogic/authlogic.git
+  revision: 6e2745b5a74c1dbfea0557c6d9bc96f58a24a754
+  tag: v2.1.6
+  specs:
+    authlogic (2.1.6)
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -80,6 +88,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic!
   heroku
   rails (= 3.0.3)
   sqlite3-ruby (= 1.2.5)

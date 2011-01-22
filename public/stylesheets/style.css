@@ -43,8 +43,12 @@ body{
     color: white;
 }
 
+
+
+
+
 /* --------------------------------------------------*/
-/* Layout related: start */
+/* Layout start */
 #layout_header{
     height: 70px;
     padding: 0px;
@@ -87,8 +91,13 @@ body{
     margin: 10px 0px 0px 0px;
     text-align: center;
 }
-/* Layout related: end */
+/* Layout end */
 /* --------------------------------------------------*/
+
+
+
+
+
 
 /* --------------------------------------------------*/
 /* Brand related: begin */

@@ -2,7 +2,9 @@ Estimating::Application.routes.draw do
 
 	# Home
 	root :to => "home#index"
-	get "home/index"
+
+  # User
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
