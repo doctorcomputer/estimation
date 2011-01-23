@@ -1,0 +1,73 @@
+it:
+  activerecord:
+    models:
+      user:
+        one: Utente
+        other: Utenti
+    attributes:
+      user:
+        first_name: Nome
+        last_name: Cognome
+        address: Indirizzo
+        zip: CAP
+        is_professional: Operatore professionale
+        city: Città
+        password: Password
+        login: Username
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              too_short: L'indirizzo di posta elettronica è troppo corto
+            login:
+              too_short: Il login è troppo corto
+            password:
+              too_short: La password è troppo corta
+              confirmation: La conferma non corrisponde
+            password_confirmation:
+              too_short: La conferma della password è troppo corta
+            first_name:
+              blank: Il nome è obbligatorio
+            last_name:
+              blank: Il cognome è obbligatorio
+            address:
+              blank: L'indirizzo è obbligatorio
+            zip:
+              invalid: Il CAP è composto da 5 caratteri
+            city:
+              blank: La città è obbligatoria
+            is_professional:
+              blank: Devi dichiarare se sei un professionista
+            eula:
+              accepted: Non accettando i termini del servizio non è possibile portare a termine la registrazione
+            privacy:
+              accepted: Non accettando la privacy non è possibile portare a termine la registrazione
+            vat:
+              invalid: La partita IVA deve essere composta da 11 numeri
+            company_name:
+              blank: Il nome dell'azienda è obbligatorio
+            activity:
+              blank: Il settore di attività è obbligatorio
+  authlogic:
+      error_messages:
+        login_blank: Devi fornire uno username
+        login_not_found: Login non trovato
+        login_invalid: Sono permessi solo lettere, numeri, spazi, e i caratteri .-_@.
+        consecutive_failed_logins_limit_exceeded: Hai raggiunto il massimo numero di tentativi previsti. L'account è stato disabilitato.
+        email_invalid: Non è un indirizzo di posta elettronica.
+        password_blank: Devi fornire una password.
+        password_invalid: La password non è valida.
+        not_active: Il tuo account non è attivo.
+        not_confirmed: Il tuo account non è stato confermato.
+        not_approved: Il tuo account non è approvato.
+        no_authentication_details: Non hai fornito i dati di autenticazione.
+      models:
+        user_session: UserSession
+      attributes:
+        user_session:
+          login: login
+          email: email
+          password: password
+          remember_me: remember me
+

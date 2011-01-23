@@ -16,7 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address,    :null=>false
       t.string :zip,        :null=>false
       t.string :city,       :null=>false
-      t.boolean :is_professional, :null=>false
+      t.boolean :is_professional, :null=>false, :default=>false
       t.string :vat, :null=>true
       t.string :company_name, :null=>true
       t.string :activity, :null=>true

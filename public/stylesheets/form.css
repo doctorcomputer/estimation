@@ -245,3 +245,12 @@ form div small {
   font-size: 88%;
   zoom: 1;
 }
+
+form div small.error {
+  display: block;
+  margin: 0 0 5px 142px;
+  padding: 1px 3px;
+  font-size: 88%;
+  zoom: 1;
+  color: red;
+}
