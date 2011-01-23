@@ -1,3 +1,30 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    
+    function updateView(){
+
+      var checkbox =  $j('#user_is_professional_true');
+      var isProfessional = checkbox.attr("checked");
+
+      if(isProfessional){
+        $j('#user_vat').removeAttr("disabled");
+        $j('#user_company_name').removeAttr("disabled");
+        $j('#user_activity').removeAttr("disabled");
+      }else{
+        $j('#user_vat').attr("disabled", "disabled");
+        $j('#user_company_name').attr("disabled", "disabled");
+        $j('#user_activity').attr("disabled", "disabled");
+      }
+
+    }
+
+    $j(document).ready(function(){
+        $j("#user_is_professional_true").click(updateView);
+        $j("#user_is_professional_false").click(updateView);
+    });
+  </script>
+<% end %>
+
 <%= form_for(@user) do |f| %>
   <fieldset>
     <legend>1.Dati per l'accesso al sito</legend>
@@ -92,13 +119,13 @@
     <div class="required">
       <fieldset><legend>Professionale</legend>
 
-        <label for="professional_yes" class="labelRadio compact">
-          <input type="radio" name="professional" id="professional_yes" class="inputRadio" value="true" />
+        <label for="user_is_professional_true" class="labelRadio compact">
+          <%= f.radio_button :is_professional, true, :class=>:inputRadio %>
           Professionale
         </label>
 
-        <label for="professional_no" class="labelRadio compact">
-          <input type="radio" name="professional" id="professional_no" class="inputRadio" value="false" checked="checked" />
+        <label for="user_is_professional_false" class="labelRadio compact">
+          <%= f.radio_button :is_professional, false, :class=>:inputRadio %>
           Non professionale
         </label>
 
