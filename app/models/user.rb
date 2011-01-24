@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   
   acts_as_authentic
 
-  validates_presence_of :first_name, :last_name, :address, :city, :is_professional
+  validates_presence_of :first_name, :last_name, :address, :city
   validates_format_of   :vat, :with => /\d{11}/, :if => :is_professional?
   validates_presence_of :company_name, :if => :is_professional?
   validates_presence_of :activity, :if => :is_professional?

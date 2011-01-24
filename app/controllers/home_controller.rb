@@ -4,4 +4,8 @@ class HomeController < ApplicationController
       
   end
 
+  def how_it_works
+    
+  end
+
 end

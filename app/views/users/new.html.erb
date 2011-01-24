@@ -163,6 +163,7 @@
         <%= f.label :is_professional, "Non professionale", :class=>"labelRadio compact", :value=>false %>
         <%= f.radio_button :is_professional, false, :class=>:inputRadio %>
 
+        <small class="error"><%= @user.errors[:is_professional].join(". ") %></small>
         <!--
         <label for="user_is_professional_true" class="labelRadio compact">
           <%= f.radio_button :is_professional, true, :class=>:inputRadio %>

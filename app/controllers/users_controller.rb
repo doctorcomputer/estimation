@@ -14,17 +14,19 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    if params[:user][:eula]=="1"
+      @user.last_eula_confirmation = DateTime.now
+    end
+    if params[:user][:privacy]=="1"
+      @user.last_privacy_confirmation = DateTime.now
+    end
 
-    
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.save
+      flash[:notice]= "L'utente è stato correttamente creato."
+      render :template => 'home/index'
+    else
+      flash[:error]= "Si sono verificati degli errori."
+      render :action => :new
     end
   end
 

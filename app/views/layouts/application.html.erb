@@ -26,23 +26,39 @@
       </div>
     </div>
 
-    <!--
     <div id="layout_toolbar">
       <div id="tab_menu">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#">Come Funziona</a>
+            <a href="/how_it_works">Come Funziona</a>
           </li>
+          <!--
           <li>
             <a href="#">My Box</a>
           </li>
+          -->
         </ul>
       </div>
     </div>
-    -->
+
+
+    <% if flash && flash.count > 0 %>
+      <div id="layout_flash">
+        <% if flash[:error] %>
+          <div class="error"><%= flash[:error] %></div>
+        <% end %>
+        <% if flash[:warning] %>
+          <div class="warning"><%= flash[:warning] %></div>
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+      </div>
+    <% end %>
+
 
     <%= yield %>
     

@@ -2,6 +2,7 @@ Estimating::Application.routes.draw do
 
 	# Home
 	root :to => "home#index"
+  match 'how_it_works' => 'home#how_it_works'
 
   # User
   resources :users
