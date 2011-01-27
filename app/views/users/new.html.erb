@@ -155,27 +155,17 @@
 
     <div class="required">
       <fieldset><legend>Professionale</legend>
-
-
-        <%= f.label :is_professional, "Professionale", :class=>"labelRadio compact", :value=>true %>
-        <%= f.radio_button :is_professional, true, :class=>:inputRadio %>
-
-        <%= f.label :is_professional, "Non professionale", :class=>"labelRadio compact", :value=>false %>
-        <%= f.radio_button :is_professional, false, :class=>:inputRadio %>
-
-        <small class="error"><%= @user.errors[:is_professional].join(". ") %></small>
-        <!--
-        <label for="user_is_professional_true" class="labelRadio compact">
+        
+        <label for="user_is_professional_true" class="labelRadio">
           <%= f.radio_button :is_professional, true, :class=>:inputRadio %>
           Professionale
         </label>
-
-        <label for="user_is_professional_false" class="labelRadio compact">
+        <label for="user_is_professional_false" class="labelRadio">
           <%= f.radio_button :is_professional, false, :class=>:inputRadio %>
           Non professionale
         </label>
-        -->
-
+        <small class="error"><%= @user.errors[:is_professional].join(". ") %></small>
+        
       </fieldset>
     </div>
 

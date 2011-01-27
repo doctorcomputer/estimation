@@ -45,6 +45,7 @@ textarea {
 }
 
 .field_with_errors{
+    display: inline;
     color: red;
 }
 
@@ -201,7 +202,10 @@ form div select.selectOne, form div select.selectMultiple {
   padding: 1px 3px;
 }
 
-form div input.inputCheckbox, form div input.inputRadio, input.inputCheckbox, input.inputRadio {
+form div input.inputCheckbox,
+form div input.inputRadio,
+input.inputCheckbox,
+input.inputRadio {
   display: inline;
   height: auto;
   width: auto;
@@ -253,4 +257,8 @@ form div small.error {
   font-size: 88%;
   zoom: 1;
   color: red;
+}
+
+form fieldset fieldset input.inputRadio {
+    margin: 0px;
 }

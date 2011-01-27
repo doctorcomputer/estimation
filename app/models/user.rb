@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   validates_format_of :zip, :with => /\d{5}/
   validates_acceptance_of :eula, :privacy
 
-  def after_initialize
-    self.is_professional=false
-  end
-
+#  def after_initialize
+#    self.is_professional=true
+#  end
+  
 end
