@@ -10,6 +10,7 @@ class UserSessionsController < ApplicationController
   # POST /user_sessions
   def create
     @user_session = UserSession.new(params[:user_session])
+    
     if @user_session.save
       flash[:notice] = "Successfully logged in."
       redirect_to root_url
@@ -31,6 +32,45 @@ class UserSessionsController < ApplicationController
 
   def show
     redirect_to root_url
+  end
+
+  # Call the view used to activate a new account
+  def activation
+
+  end
+
+  # Actually tries to activate the account with the provided token
+  def activate
+    token = params[:activation_token]
+
+    if token.nil? || token.strip.length == 0
+      flash.now[:error] = "Il token non è valido."
+      render :action => :activation
+      return
+    end
+
+    user = User.find_by_perishable_token token
+    if user.nil?
+      flash.now[:error] = "Il token non esiste."
+      render :action => :activation
+      return
+    end
+
+    user.is_verified=true
+    if user.save
+      flash[:notice] = "L'account è stato correttamente attivato."
+      redirect_to root_path
+    else
+      flash.now[:error] = "Si sono verificati dei problemi durante l'attivazione dell'account."
+      render :action => :activation
+    end
+
+
+#    if user
+#      flash[:notice] = "L'account è stato correttamente attivato. Puoi ora loggarti con i tuoi username e password."
+#    else
+#      flash[:error] = "Nessun account corrisponde al token di attivazione fornito."
+#    end
   end
 
 

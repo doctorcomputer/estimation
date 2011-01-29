@@ -11,8 +11,14 @@ class User < ActiveRecord::Base
   validates_format_of :zip, :with => /\d{5}/
   validates_acceptance_of :eula, :privacy
 
-#  def after_initialize
-#    self.is_professional=true
-#  end
+  #  def after_initialize
+  #    self.is_professional=true
+  #  end
+
+  def self.find_by_verified_login(login)
+    user = find_by_smart_case_login_field(login)
+    user.is_verified ? user : nil
+  end
+
   
 end

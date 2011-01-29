@@ -6,9 +6,11 @@ Estimating::Application.routes.draw do
 
   # User
   resources :users
+  resources :user_sessions
 	match 'login' => 'user_sessions#new'
 	match 'logout' => 'user_sessions#destroy'
-  resources :user_sessions
+  match 'activation' => 'user_sessions#activation'
+  match 'activate' => 'user_sessions#activate'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -22,17 +22,18 @@ ActiveRecord::Schema.define(:version => 20110121192738) do
     t.integer  "login_count"
     t.datetime "last_login_at"
     t.datetime "current_login_at"
-    t.string   "first_name",                :null => false
-    t.string   "last_name",                 :null => false
-    t.string   "address",                   :null => false
-    t.string   "zip",                       :null => false
-    t.string   "city",                      :null => false
-    t.boolean  "is_professional",           :null => false
+    t.string   "first_name",                                   :null => false
+    t.string   "last_name",                                    :null => false
+    t.string   "address",                                      :null => false
+    t.string   "zip",                                          :null => false
+    t.string   "city",                                         :null => false
+    t.boolean  "is_professional",           :default => false, :null => false
     t.string   "vat"
     t.string   "company_name"
     t.string   "activity"
-    t.datetime "last_eula_confirmation",    :null => false
-    t.datetime "last_privacy_confirmation", :null => false
+    t.boolean  "is_verified",               :default => false, :null => false
+    t.datetime "last_eula_confirmation",                       :null => false
+    t.datetime "last_privacy_confirmation",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

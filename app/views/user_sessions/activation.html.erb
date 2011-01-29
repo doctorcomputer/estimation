@@ -1,0 +1,28 @@
+<% form_tag(activate_path, :method=>:post) do |form|%>
+  <fieldset>
+    <legend>Codice di attivazione.</legend>
+    <div class="notes">
+      <h4>Conferma Nuovo Account</h4>
+      <p>
+        Immetti nel campo il codice di attivazione che hai ricevuto per posta
+        elettronica.
+      </p>
+      <p class="last">
+        Il codice di attivazione non contiene spazi.
+      </p>
+    </div>
+    <div class="required">
+      <%=label_tag :activation_token, "Codice di attivazione"%>
+      <%=text_field_tag :activation_token%>
+      <small>Recupera il codice di attivazione dalla mail di istruzioni che hai ricevuto.</small>
+    </div>
+    <div class="required">
+      <%=label_tag :activation_button, "Codice di attivazione"%>
+      <%=submit_tag "Attiva"%>
+      <small>Premi qui per attivare.</small>
+    </div>
+
+
+  </fieldset>
+
+<% end%>
