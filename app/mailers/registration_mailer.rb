@@ -2,7 +2,7 @@ class RegistrationMailer < ActionMailer::Base
 
   default :from => "info@mi-serve.com"
 
-  def registration_confirmation_email(user)
+  def registration_activation_email(user)
     @user = user
     @url  = "http://example.com/login"
     mail(:to => user.email,

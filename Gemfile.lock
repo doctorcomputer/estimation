@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/binarylogic/authlogic.git
-  revision: 6e2745b5a74c1dbfea0557c6d9bc96f58a24a754
-  tag: v2.1.6
+  revision: 66ed79515919fe13016911b10ebe734cf8718dc7
   specs:
     authlogic (2.1.6)
       activesupport

@@ -20,8 +20,10 @@ it:
           attributes:
             email:
               too_short: L'indirizzo di posta elettronica è troppo corto
+              taken: L'indirizzo di posta elettronica è già presente nei nostri archivi
             login:
               too_short: Il login è troppo corto
+              taken: Lo username è già utilizzato
             password:
               too_short: La password è troppo corta
               confirmation: La conferma non corrisponde
