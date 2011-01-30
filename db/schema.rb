@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20110121192738) do
     t.string   "vat"
     t.string   "company_name"
     t.string   "activity"
-    t.boolean  "is_verified",               :default => false, :null => false
+    t.boolean  "confirmed",                 :default => false, :null => false
     t.datetime "last_eula_confirmation",                       :null => false
     t.datetime "last_privacy_confirmation",                    :null => false
     t.datetime "created_at"

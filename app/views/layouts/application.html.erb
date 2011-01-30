@@ -24,14 +24,14 @@
         <% if current_user %>
           <%=current_user.first_name%> <%=current_user.last_name%> |
           <%=link_to "logout", logout_path%>
-        <%else%>
-          <%form_for UserSession.new do |form|%>
+        <% else%>
+          <%= form_for UserSession.new do |form| %>
             <%= form.text_field :login %>
             <%= form.password_field :password %>
             <%= form.submit "login" %>
-          <%end%>
+          <% end%>
           <%= link_to "Registrati", new_user_path %><br/>
-        <%end%>
+        <% end%>
         <!--
         <a href="#">pinella</a>|<a href="#">esci</a>
         2 nuove offerte

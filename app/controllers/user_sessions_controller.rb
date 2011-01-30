@@ -56,7 +56,7 @@ class UserSessionsController < ApplicationController
       return
     end
 
-    user.is_verified=true
+    user.confirmed=true
     if user.save
       flash[:notice] = "L'account è stato correttamente attivato."
       redirect_to root_path

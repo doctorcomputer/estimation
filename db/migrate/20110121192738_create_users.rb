@@ -21,7 +21,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :company_name, :null=>true
       t.string :activity, :null=>true
 
-      t.boolean :is_verified, :null=>false, :default=>false
+      t.boolean :confirmed, :null=>false, :default=>false
 
       t.datetime :last_eula_confirmation, :null=>false
       t.datetime :last_privacy_confirmation, :null=>false
