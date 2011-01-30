@@ -18,6 +18,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
+
     assert_difference('User.count') do
       post :create, {
         :user => {
@@ -37,6 +38,10 @@ class UsersControllerTest < ActionController::TestCase
         :email_confirmation => 'user@test.zu'
       }
     end
+
+    user = User.find_by_login('user')
+    assert_not_nil user
+    assert !user.confirmed
   end
 
   test "should show user" do
