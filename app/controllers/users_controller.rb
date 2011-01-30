@@ -14,7 +14,15 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+
     @user = User.new(params[:user])
+
+    if( params[:email_confirmation].nil? || params[:email_confirmation] != params[:user][:email])
+      flash.now[:error]= "La mail di conferma non corrisponde."
+      render :action => :new
+      return
+    end
+
     if params[:user][:eula]=="1"
       @user.last_eula_confirmation = DateTime.now
     end

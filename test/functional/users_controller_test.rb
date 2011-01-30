@@ -44,6 +44,58 @@ class UsersControllerTest < ActionController::TestCase
     assert !user.confirmed
   end
 
+  test "should not create user if email does not match" do
+
+    assert_difference('User.count', 0) do
+      post :create, {
+        :user => {
+          :login => 'user',
+          :password => 'password',
+          :password_confirmation => 'password',
+          :email => 'user@test.zu',
+          :first_name => 'first_name',
+          :last_name => 'last_name',
+          :address => 'address',
+          :zip => '99999',
+          :city => 'Metropolis',
+          :is_professional => 'false',
+          :eula => '1',
+          :privacy => '1'
+        },
+        :email_confirmation => 'wrong'
+      }
+    end
+
+    user = User.find_by_login('user')
+    assert_nil user
+  end
+
+  test "should not create user if passwords do not match" do
+
+    assert_difference('User.count', 0) do
+      post :create, {
+        :user => {
+          :login => 'user',
+          :password => 'password',
+          :password_confirmation => 'passwordwrong',
+          :email => 'user@test.zu',
+          :first_name => 'first_name',
+          :last_name => 'last_name',
+          :address => 'address',
+          :zip => '99999',
+          :city => 'Metropolis',
+          :is_professional => 'false',
+          :eula => '1',
+          :privacy => '1'
+        },
+        :email_confirmation => 'user@test.zu'
+      }
+    end
+
+    user = User.find_by_login('user')
+    assert_nil user
+  end
+
   test "should show user" do
     get :show, :id => @user.to_param
     assert_response :success
