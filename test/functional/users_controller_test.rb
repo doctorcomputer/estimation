@@ -95,7 +95,7 @@ class UsersControllerTest < ActionController::TestCase
     user = User.find_by_login('user')
     assert_nil user
   end
-
+  
   test "should show user" do
     get :show, :id => @user.to_param
     assert_response :success
