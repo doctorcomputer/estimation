@@ -5,16 +5,27 @@ class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
   end
-
-#  test "should get index" do
-#    get :index
-#    assert_response :success
-#    assert_not_nil assigns(:users)
-#  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+  
+  test "should not login a user after creation" do
+      post :create, {
+        :user => {
+          :login => 'user',
+          :password => 'password',
+          :password_confirmation => 'password',
+          :email => 'user@test.zu',
+          :first_name => 'first_name',
+          :last_name => 'last_name',
+          :address => 'address',
+          :zip => '99999',
+          :city => 'Metropolis',
+          :is_professional => 'false',
+          :eula => '1',
+          :privacy => '1'
+        },
+        :email_confirmation => 'user@test.zu'
+      }
+      current_user_session = UserSession.find
+      assert_nil current_user_session
   end
 
   test "should create user" do
@@ -42,6 +53,11 @@ class UsersControllerTest < ActionController::TestCase
     user = User.find_by_login('user')
     assert_not_nil user
     assert !user.confirmed
+  end
+
+  test "should get new" do
+    get :new
+    assert_response :success
   end
 
   test "should not create user if email does not match" do
@@ -117,5 +133,11 @@ class UsersControllerTest < ActionController::TestCase
 #    end
 #
 #    assert_redirected_to users_path
+#  end
+
+#  test "should get index" do
+#    get :index
+#    assert_response :success
+#    assert_not_nil assigns(:users)
 #  end
 end

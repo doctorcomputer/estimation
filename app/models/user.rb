@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
-  acts_as_authentic
+  acts_as_authentic do |conf|
+    conf.maintain_sessions= false
+  end
 
   attr_accessor :eula, :privacy
   
