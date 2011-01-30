@@ -28,7 +28,7 @@ class UsersControllerTest < ActionController::TestCase
       assert_nil current_user_session
   end
 
-  test "should create user" do
+  test "should create a new user" do
 
     assert_difference('User.count') do
       post :create, {
@@ -53,6 +53,9 @@ class UsersControllerTest < ActionController::TestCase
     user = User.find_by_login('user')
     assert_not_nil user
     assert !user.confirmed
+
+    assert !ActionMailer::Base.deliveries.empty?
+    
   end
 
   test "should get new" do

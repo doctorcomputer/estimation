@@ -9,4 +9,11 @@ class RegistrationMailer < ActionMailer::Base
          :subject => "Per favore conferma l'iscrizione")
   end
 
+  def registration_verification_email(user)
+    @user = user
+    @url  = "http://example.com/login"
+    mail(:to => user.email,
+         :subject => "Registrazione confermata")
+  end
+
 end

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      RegistrationMailer.registration_activation_email(@user).deliver
+      RegistrationMailer.registration_verification_email(@user).deliver
       flash.now[:notice]= "Riceverai una mail di attivazione."
       render :template => 'home/index'
     else

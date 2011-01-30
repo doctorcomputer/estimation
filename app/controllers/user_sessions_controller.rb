@@ -58,6 +58,7 @@ class UserSessionsController < ApplicationController
 
     user.confirmed=true
     if user.save
+      RegistrationMailer.registration_activation_email(user).deliver
       flash[:notice] = "L'account è stato correttamente attivato."
       redirect_to root_path
     else
