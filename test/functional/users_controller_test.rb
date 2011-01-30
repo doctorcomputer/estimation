@@ -55,6 +55,10 @@ class UsersControllerTest < ActionController::TestCase
     assert !user.confirmed
 
     assert !ActionMailer::Base.deliveries.empty?
+    email = ActionMailer::Base.deliveries[0]
+    assert_match /#{user.first_name}/, email.encoded
+    assert_match /#{user.last_name}/, email.encoded
+    assert_match /#{user.perishable_token}/, email.encoded
     
   end
 
