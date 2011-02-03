@@ -1,5 +1,7 @@
 Estimating::Application.routes.draw do
 
+  resources :requests
+
 	# Home
 	root :to => "home#index"
   match 'how_it_works' => 'home#how_it_works'
