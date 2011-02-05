@@ -84,9 +84,9 @@
 			Richieste
                         <ul>
                             <li><%= link_to "nuova", new_request_path %></li>
-                            <li><a class="middle" href="#">in preparazione(<%=  @draft_requests_number %>)</a></li>
-                            <li><a class="middle" href="#">attive (<%=  @active_requests_number %>)</a></li>
-                            <li><a class="last" href="#">scadute (<%=  @expired_requests_number %>)</a></li>
+                            <li><%= link_to "in preparazione (#{@draft_requests_number})", requests_path, :class=>:middle %></li>
+                            <li><%= link_to "attive (#{@active_requests_number})", requests_path, :class=>:middle %></li>
+                            <li><%= link_to "scadute (#{@expired_requests_number})", requests_path, :class=>:last %></li>
                         </ul>
 
                     </li>

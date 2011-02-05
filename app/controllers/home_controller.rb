@@ -13,5 +13,5 @@ class HomeController < ApplicationController
       render :action => :index
     end
   end
-
+  
 end

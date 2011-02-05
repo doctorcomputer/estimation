@@ -4,6 +4,11 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
+  def show
+    @request = Request.find(params[:id])
+    render :action => :new
+  end
+
   def create
 
     @request = Request.new(params[:request])
@@ -24,6 +29,10 @@ class RequestsController < ApplicationController
       flash.now[:error]= "Si sono verificati degli errori."
       render :action => :new
     end
+  end
+
+  def index
+    @requests = Request.where(:status => :draft)
   end
 
 end
