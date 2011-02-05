@@ -1,0 +1,54 @@
+<% content_for :head do %>
+  <%= javascript_include_tag ['jquery.ui.datepicker-it'] %>
+  <script type="text/javascript">
+    
+    $j(document).ready(function(){
+      $j( "#request_expiration" ).datepicker({
+        dateFormat: 'dd/mm/yy',
+        defaultDate: '<%=@request.expiration.strftime("%d/%m/%Y")%>',
+        changeMonth: true,
+        changeYear: true
+      })
+    });
+  </script>
+<% end %>
+
+<%= form_for(@request) do |f| %>
+
+  <fieldset>
+    <legend>Offerta</legend>
+    <div class="notes">
+      <h4>Descrivi le tue necessità</h4>
+      <p class="last">
+        Descrivi le tue necessità in questa scheda
+      </p>
+    </div>
+    <div class="required">
+      <%= f.label :title, 'Titolo:' %>
+      <%= f.text_field :title, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <small class="error"><%= @request.errors[:title].join(". ") %></small>
+      <small>Il titolo permette di identificare la tua richiesta</small>
+    </div>
+
+    <div class="required">
+      <%= f.label :description, 'Descrizione:' %>
+      <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
+      <small class="error"><%= @request.errors[:description].join(". ") %></small>
+      <small>Dettaglia la tua richiesta. Più dettagli includerai più sarà
+      semplice per gli operatori presentarti delle offerte in linea con la tua richieste.</small>
+    </div>
+
+    <div class="required">
+      <%= f.label :expiration, 'Data di scadenza:' %>
+      <%= f.text_field :expiration, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <small class="error"><%= @request.errors[:expiration_date].join(". ") %></small>
+      <small>Data entro la quale vorresti ricevere le offerte.</small>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "crea" %>
+    </div>
+
+  </fieldset>
+
+<% end %>

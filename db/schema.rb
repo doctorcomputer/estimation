@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110121192738) do
+ActiveRecord::Schema.define(:version => 20110203221951) do
+
+  create_table "requests", :force => true do |t|
+    t.string   "status",                 :default => "draft", :null => false
+    t.string   "title"
+    t.text     "description"
+    t.datetime "expiration"
+    t.datetime "condition_confirmation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"

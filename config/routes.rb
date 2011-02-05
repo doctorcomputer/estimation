@@ -5,6 +5,7 @@ Estimating::Application.routes.draw do
 	# Home
 	root :to => "home#index"
   match 'how_it_works' => 'home#how_it_works'
+  match 'personal_index' => 'home#personal_index'
 
   # User
   resources :users
@@ -13,6 +14,9 @@ Estimating::Application.routes.draw do
 	match 'logout' => 'user_sessions#destroy'
   match 'activation' => 'user_sessions#activation'
   match 'activate' => 'user_sessions#activate'
+
+  # Request
+  resource :requests
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
