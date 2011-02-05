@@ -3,7 +3,7 @@
   <script type="text/javascript">
     
     $j(document).ready(function(){
-      $j( "#request_expiration" ).datepicker({
+      $j( "#expiration_date" ).datepicker({
         dateFormat: 'dd/mm/yy',
         defaultDate: '<%=@request.expiration.strftime("%d/%m/%Y")%>',
         changeMonth: true,
@@ -39,8 +39,8 @@
     </div>
 
     <div class="required">
-      <%= f.label :expiration, 'Data di scadenza:' %>
-      <%= f.text_field :expiration, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <%= f.label :expiration_date, 'Data di scadenza:' %>
+      <%= text_field_tag :expiration_date, @request.expiration.strftime("%d/%m/%Y"), :class=>:inputText, :size=>10, :maxlength=>100 %>
       <small class="error"><%= @request.errors[:expiration_date].join(". ") %></small>
       <small>Data entro la quale vorresti ricevere le offerte.</small>
     </div>
