@@ -2,6 +2,7 @@ class CreateRequests < ActiveRecord::Migration
 
   def self.up
     create_table :requests do |t|
+      t.references :user, :null => false
       #active:    request is open to bids
       #expired:   request is close because of expiration date
       #draft:     not already saved

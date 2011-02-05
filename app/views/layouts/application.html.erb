@@ -79,12 +79,14 @@
                 <ul>
                     <li>
 
+
+
 			Richieste
                         <ul>
                             <li><%= link_to "nuova", new_request_path %></li>
-                            <li><a class="middle" href="#">in preparazione (2)</a></li>
-                            <li><a class="middle" href="#">attive (2)</a></li>
-                            <li><a class="last" href="#">scadute (2)</a></li>
+                            <li><a class="middle" href="#">in preparazione(<%=  @draft_requests_number %>)</a></li>
+                            <li><a class="middle" href="#">attive (<%=  @active_requests_number %>)</a></li>
+                            <li><a class="last" href="#">scadute (<%=  @expired_requests_number %>)</a></li>
                         </ul>
 
                     </li>

@@ -53,6 +53,14 @@ it:
               blank: Il nome dell'azienda è obbligatorio
             activity:
               blank: Il settore di attività è obbligatorio
+        request:
+          attributes:
+            title:
+              blank: Il titolo non può essere nullo
+            description:
+              blank: La descrizione non può essere nulla
+            expiration:
+              blank: La data non rispetta il formato corretto o è assente
   authlogic:
       error_messages:
         login_blank: Devi fornire uno username
