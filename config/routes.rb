@@ -16,6 +16,7 @@ Estimating::Application.routes.draw do
   match 'activate' => 'user_sessions#activate'
 
   # Request
+  match 'search_requests' => 'requests#search'
   resource :requests
 
   # The priority is based upon order of creation:

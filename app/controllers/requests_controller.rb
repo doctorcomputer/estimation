@@ -1,5 +1,13 @@
 class RequestsController < ApplicationController
 
+  def search
+    
+  end
+
+  def search_old
+    #@requests.where('description like :term and user_id not in :user_id')
+  end
+
   def new
     @request = Request.new
   end

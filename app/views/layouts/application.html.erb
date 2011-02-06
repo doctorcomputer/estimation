@@ -83,7 +83,7 @@
 
 			Richieste
                         <ul>
-                            <li><%= link_to "nuova", new_request_path %></li>
+                            <li><%= link_to "nuova", new_request_path, :class=>:first %></li>
                             <li><%= link_to "in preparazione (#{@draft_requests_number})", requests_path(:status => :draft), :class=>:middle %></li>
                             <li><%= link_to "attive (#{@active_requests_number})", requests_path(:status => :active), :class=>:middle %></li>
                             <li><%= link_to "scadute (#{@expired_requests_number})", requests_path(:status => :expired), :class=>:last %></li>
@@ -93,7 +93,8 @@
                     <li>
                         Offerte
                         <ul>
-                            <li><a class="first" href="#">attive (2)</a></li>
+                            <li><%= link_to "Cerca richiste", '/search_requests', :class=>:first %></li>
+                            <li><a class="middle" href="#">attive (2)</a></li>
                             <li><a class="last" href="#">scadute (2)</a></li>
                         </ul>
                     </li>
