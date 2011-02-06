@@ -2,10 +2,8 @@
   <%= javascript_include_tag ['jquery.ui.datepicker-it'] %>
   <script type="text/javascript">
 
-    function submitWithAction(action){
-      theForm = document.form['new_request'];
-      theForm['action']=action;
-      theForm.submit();
+    function submitWithStoreAction(action){
+      document.getElementById('store_action').value=action;
     }
     
     $j(document).ready(function(){
@@ -19,15 +17,19 @@
       })
 
       // set up the two submit buttons
-      $j("#btn_save").click(submitWithAction('save'));
-      $j("#btn_publish").click(submitWithAction('publish'));
+      $j("#btn_save").click(function(){
+        submitWithStoreAction('save');
+      });
+      $j("#btn_publish").click(function(){
+        submitWithStoreAction('publish');
+      });
     });
   </script>
 <% end %>
 
 <%= form_for(@request) do |f| %>
 
-  <%=hidden_field_tag 'action'%>
+  <%=hidden_field_tag 'store_action'%>
 
   <fieldset>
     <legend>Offerta</legend>

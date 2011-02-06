@@ -6,6 +6,18 @@ class Request < ActiveRecord::Base
 
   after_initialize :ensure_default_values
 
+  def is_draft
+    self.status == :draft.to_s
+  end
+
+  def is_active
+    (self.status == :active.to_s) && (DateTime.now < self.expiration)
+  end
+
+  def is_expired
+    (self.status == :active.to_s) && (DateTime.now >= self.expiration)
+  end
+
   def self.find_drafts(user)
     Request.where('user_id = :user_id AND status = :status', :user_id => user.id, :status => :draft)
   end

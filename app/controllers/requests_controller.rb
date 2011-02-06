@@ -6,17 +6,23 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    render :action => :new
+    if @request.is_draft
+      render :action => :new
+    else
+      render :action => :show_locked
+    end
   end
 
   def create
 
     @request = Request.new(params[:request])
     @request.user = current_user
-    if(params[:action]==:save)
+    if params[:store_action] == :save.to_s
       @request.status = :draft
-    else
+    elsif params[:store_action] == :publish.to_s
       @request.status = :active
+    else
+      raise "Unknown value '#{params[:store_action]}' for parameter #{:store_action}"
     end
     begin
       unless params[:expiration_date].nil?
