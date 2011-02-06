@@ -1,0 +1,24 @@
+<%= form_for(@request) do |f| %>
+
+  <fieldset>
+    <legend>Offerta</legend>
+    <div class="required">
+      <%= f.label :title, 'Titolo:' %>
+      <%= f.text_field :title, :class=>:inputText, :size=>10, :maxlength=>100, :disabled=>true %>
+    </div>
+
+    <div class="required">
+      <%= f.label :description, 'Descrizione:' %>
+      <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21, :disabled=>true %>
+      <small class="error"><%= @request.errors[:description].join(". ") %></small>
+    </div>
+
+    <div class="required">
+      <%= f.label :expiration_date, 'Data di scadenza:' %>
+      <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100, :disabled=>true %>
+      <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
+    </div>
+
+  </fieldset>
+
+<% end %>
