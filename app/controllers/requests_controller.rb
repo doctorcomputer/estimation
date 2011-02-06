@@ -13,6 +13,11 @@ class RequestsController < ApplicationController
 
     @request = Request.new(params[:request])
     @request.user = current_user
+    if(params[:action]==:save)
+      @request.status = :draft
+    else
+      @request.status = :active
+    end
     begin
       unless params[:expiration_date].nil?
         @request.expiration= Date.strptime(params[:expiration_date], "%d/%m/%Y")
@@ -20,7 +25,6 @@ class RequestsController < ApplicationController
     rescue
       @request.expiration= nil
     end
-    @request.status = :draft
 
     if @request.save
       flash[:notice]= "La tua richiesta è stata memorizzata. Ricordati di attivarla."

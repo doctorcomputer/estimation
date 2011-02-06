@@ -1,19 +1,33 @@
 <% content_for :head do %>
   <%= javascript_include_tag ['jquery.ui.datepicker-it'] %>
   <script type="text/javascript">
+
+    function submitWithAction(action){
+      theForm = document.form['new_request'];
+      theForm['action']=action;
+      theForm.submit();
+    }
     
     $j(document).ready(function(){
+
+      // set up date picker
       $j( "#expiration_date" ).datepicker({
         dateFormat: 'dd/mm/yy',
         defaultDate: '<%=@request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : ''%>',
         changeMonth: true,
         changeYear: true
       })
+
+      // set up the two submit buttons
+      $j("#btn_save").click(submitWithAction('save'));
+      $j("#btn_publish").click(submitWithAction('publish'));
     });
   </script>
 <% end %>
 
 <%= form_for(@request) do |f| %>
+
+  <%=hidden_field_tag 'action'%>
 
   <fieldset>
     <legend>Offerta</legend>
@@ -44,9 +58,13 @@
       <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
       <small>Data entro la quale vorresti ricevere le offerte.</small>
     </div>
+    
 
     <div class="actions">
-      <%= f.submit "crea" %>
+      <button id="btn_save" value="Salva">Salva</button>
+      <button id="btn_publish" value="Pubblica">Pubblica</button>
+      <%= f.submit "salva" %>
+      <%= f.submit "pubblica" %>
     </div>
 
   </fieldset>
