@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
 
   def statistics
     unless current_user.nil?
-      @draft_requests_number = Request.where(:status => :draft).count
-      @expired_requests_number = Request.where(:status => :expired).count
-      @active_requests_number = Request.where(:status => :active).count
+#      @draft_requests_number = Request.where(:status => :draft).count
+#      @expired_requests_number = Request.where(:status => :expired).count
+#      @active_requests_number = Request.where(:status => :active).count
+      @draft_requests_number = Request.find_drafts(current_user).count
+      @expired_requests_number = Request.find_expired(current_user).count
+      @active_requests_number = Request.find_active(current_user).count
     else
       @draft_requests_number = 0
       @expired_requests_number = 0

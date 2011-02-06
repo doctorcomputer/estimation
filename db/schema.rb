@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110203221951) do
 
   create_table "requests", :force => true do |t|
+    t.integer  "user_id",                                     :null => false
     t.string   "status",                 :default => "draft", :null => false
     t.string   "title"
     t.text     "description"

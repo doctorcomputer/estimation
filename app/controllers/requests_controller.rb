@@ -36,7 +36,15 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.where(:status => :draft)
+    if params[:status] == :draft.to_s
+      @requests = Request.where(:status => :draft)
+    elsif params[:status] == :active.to_s
+      @requests = Request.where('status=:status AND :now<expiration' , :status => :active, :now => DateTime.now)
+    elsif params[:status] == :expired.to_s
+      @requests = Request.where('status=:status AND :now>=expiration' , :status => :active, :now => DateTime.now)
+    else
+      raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
+    end
   end
 
 end
