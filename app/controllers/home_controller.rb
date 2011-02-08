@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def index
+    @requests = Request.find_active
   end
 
   def how_it_works    

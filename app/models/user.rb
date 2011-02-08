@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
     conf.maintain_sessions= false
   end
 
+  has_many :proposals
+
   attr_accessor :eula, :privacy
   
   validates_presence_of :first_name, :last_name, :address, :city

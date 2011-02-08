@@ -1,72 +1,48 @@
-<h1>Cos'è mi-servi ?</h1>
-<p>
-  <img style="float: left;" src="../images/plumber.jpg"/>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a lectus felis.
-  Nunc imperdiet lacinia velit. Nunc id augue nisl. Praesent in lacus velit.
-  Pellentesque congue elementum urna.
-  Fusce nunc neque, ultrices nec consectetur eget, rhoncus a urna.
-  Etiam commodo, libero in elementum suscipit, magna sapien mattis elit, sit amet
-  fermentum neque massa in quam. Aenean lobortis tincidunt scelerisque.
-  Nulla dignissim tempor justo nec imperdiet.
-</p>
-<p>
-  <img style="float: right;" src="../images/feedback.jpg"/>
-  Proin est leo, ultricies ac porta vitae, gravida ac nulla.
-  Mauris interdum vulputate consequat. Mauris mattis sapien et ligula sagittis
-  pellentesque nec sit amet quam. Quisque eget facilisis turpis.
-  Phasellus feugiat tellus nisi. Proin convallis dapibus mi,
-  id malesuada sem gravida vel. Proin id neque lacus.
-  Duis dictum, odio id gravida ornare, metus urna tincidunt quam, vel tempor nibh enim vitae justo.
-  Sed egestas leo auctor augue hendrerit porttitor.
-</p>
-<h2>Cerca un operatore</h2>
-<p>
-  Vestibulum luctus accumsan iaculis.
-  Donec sit amet orci ac urna mattis sollicitudin.
-  Etiam sodales velit in tellus tristique sit amet tincidunt velit faucibus.
-  In vel metus metus. Aenean id quam dolor.
-  Sed sed mollis neque. Nulla id tellus volutpat nibh volutpat sodales
-  quis nec lacus.
-</p>
-<p>
-  Vivamus tellus velit, aliquam eu posuere ut, consectetur a ipsum.
-  Ut et augue odio.
-  Cras ante mauris, blandit ac condimentum quis, euismod ut massa.
-  Mauris a est fermentum turpis aliquam sagittis.
-  Sed non magna metus, at interdum lacus.
-  Duis nec leo libero, adipiscing fermentum magna. Sed et neque neque.
-  Quisque cursus aliquam risus nec feugiat.
-  Curabitur sem ipsum, porttitor non hendrerit at, sagittis quis quam.
-  Donec lacinia felis vel urna pellentesque in pulvinar libero porttitor.
-</p>
-<p>
-  Proin est leo, ultricies ac porta vitae, gravida ac nulla.
-  Mauris interdum vulputate consequat. Mauris mattis sapien et ligula sagittis
-  pellentesque nec sit amet quam. Quisque eget facilisis turpis.
-  Phasellus feugiat tellus nisi. Proin convallis dapibus mi,
-  id malesuada sem gravida vel. Proin id neque lacus.
-  Duis dictum, odio id gravida ornare, metus urna tincidunt quam, vel tempor nibh enim vitae justo.
-  Sed egestas leo auctor augue hendrerit porttitor.
-</p>
-<h2>Offriti come fornitore</h2>
-<p>
-  Vestibulum luctus accumsan iaculis.
-  Donec sit amet orci ac urna mattis sollicitudin.
-  Etiam sodales velit in tellus tristique sit amet tincidunt velit faucibus.
-  In vel metus metus. Aenean id quam dolor.
-  Sed sed mollis neque. Nulla id tellus volutpat nibh volutpat sodales
-  quis nec lacus.
-</p>
-<p>
-  Vivamus tellus velit, aliquam eu posuere ut, consectetur a ipsum.
-  Ut et augue odio.
-  Cras ante mauris, blandit ac condimentum quis, euismod ut massa.
-  Mauris a est fermentum turpis aliquam sagittis.
-  Sed non magna metus, at interdum lacus.
-  Duis nec leo libero, adipiscing fermentum magna. Sed et neque neque.
-  Quisque cursus aliquam risus nec feugiat.
-  Curabitur sem ipsum, porttitor non hendrerit at, sagittis quis quam.
-  Donec lacinia felis vel urna pellentesque in pulvinar libero porttitor.
-</p>
+<%unless @requests.nil?%>
+  <%@requests.each do |request|%>
+    <div class="request">
+      <h1>
+        <%= request.title %>
+        <small>
+          <%= link_to 'dettagli', request_path(request)%>
+          <%= link_to 'fai una proposta', '#'%>
+        </small>
+      </h1>
+      <div class="request_body">
+
+        <div class="request_picture">
+          <img src="apartment.jpg" alt=""/>
+        </div>
+
+        <div class="request_highlight">
+          Proposte: <strong>12</strong><br/>
+          la pi&ugrave; economica: <strong>1200&nbsp;&euro;</strong><br/>
+          la pi&ugrave; consigliata: <strong>1350&nbsp;&euro;</strong><br/>
+        </div>
+
+        <%= request.description %>
 
 
+        <table>
+          <tr>
+            <th>Data di creazione</th>
+            <th>Data di scadenza</th>
+            <th>Proposte</th>
+
+          </tr>
+          <tr>
+            <td><%= request.updated_at %>  2 giorni fa</td>
+            <td><%= request.expiration %> mancano 2 ore</td>
+            <td>12 (4 nuove)</td>
+          </tr>
+        </table>
+
+      </div>
+
+
+
+
+    </div>
+
+  <%end%>
+<%end%>

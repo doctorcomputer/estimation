@@ -17,6 +17,7 @@ class RequestsController < ApplicationController
     if @request.is_draft
       render :action => :new
     else
+      @proposal = Proposal.new
       render :action => :show_locked
     end
   end

@@ -19,6 +19,8 @@ Estimating::Application.routes.draw do
   match 'search_requests' => 'requests#search'
   resource :requests
 
+  resource :proposals
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

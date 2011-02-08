@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  proposer: 
+  request: 
+  description: MyText
+  amount: 1
+
+two:
+  proposer: 
+  request: 
+  description: MyText
+  amount: 1
