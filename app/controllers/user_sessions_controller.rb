@@ -13,7 +13,11 @@ class UserSessionsController < ApplicationController
     
     if @user_session.save
       flash[:notice] = "Successfully logged in."
-      redirect_to root_url
+      if visited_request!=nil
+        redirect_to request_detail_path(visited_request)
+      else
+        redirect_to root_url
+      end
     else
       #render :action => 'new'
       flash[:error] = "Unable to login"
@@ -26,6 +30,7 @@ class UserSessionsController < ApplicationController
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
+    visited_request= nil
     flash[:notice] = "Successfully logged out."
     redirect_to root_url
   end

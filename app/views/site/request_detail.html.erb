@@ -23,7 +23,8 @@
 
 <% end %>
 
-<%= form_for(@proposal) do |f| %>
+
+<%= form_for @proposal, :url => proposal_submission_path do |f| %>
   <%= hidden_field :request, 'id' %>
   <fieldset>
     <legend>Proposta</legend>
@@ -44,8 +45,11 @@
   </fieldset>
 <% end %>
 
-<%@request.proposals.each do |proposal|%>
-  <%= proposal.description %>
-  <%= proposal.amount %>
-  <br/>
-<%end%>
+<ul>
+  <%@request.proposals.each do |proposal|%>
+    <li>
+      <%= proposal.description %>
+      <%= proposal.amount %> &euro;
+    </li>
+  <%end%>
+</ul>

@@ -1,11 +1,14 @@
 Estimating::Application.routes.draw do
 
-  resources :requests
-
 	# Home
-	root :to => "home#index"
-  match 'how_it_works' => 'home#how_it_works'
-  match 'personal_index' => 'home#personal_index'
+	root :to => "site#index"
+  match 'how_it_works' => 'site#how_it_works'
+  match 'personal_index' => 'site#personal_index'
+  match 'request_detail/:id' => 'site#request_detail', :as => :request_detail
+  match 'proposal_submission' => 'site#proposal_submission', :as => :proposal_submission
+
+  # Requests
+  resources :requests
 
   # User
   resources :users

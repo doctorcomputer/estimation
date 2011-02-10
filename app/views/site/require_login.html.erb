@@ -1,0 +1,13 @@
+Devi essere loggato
+<div>
+  <%= link_to "Registrati", new_user_path %>
+</div>
+<div>
+  Accedi con il tuo account
+  <%= form_for UserSession.new do |form| %>
+    <%= form.text_field :login %>
+    <%= form.password_field :password %>
+    <%= form.submit "login" %>
+  <% end%>
+
+</div>

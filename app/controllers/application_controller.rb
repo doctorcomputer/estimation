@@ -1,13 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :current_user_session
+  helper_method :current_user, :current_user_session, :visited_request, :set_visited_request
   before_filter :statistics
 
   def statistics
     unless current_user.nil?
-#      @draft_requests_number = Request.where(:status => :draft).count
-#      @expired_requests_number = Request.where(:status => :expired).count
-#      @active_requests_number = Request.where(:status => :active).count
       @draft_requests_number = Request.find_drafts(current_user).count
       @expired_requests_number = Request.find_expired(current_user).count
       @active_requests_number = Request.find_active(current_user).count
@@ -26,4 +23,21 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user = current_user_session && current_user_session.record
   end
+
+  def visited_request
+    puts "*gets******************#{cookies[:request_id]}"
+    unless cookies[:request_id].nil?
+      return Request.find(cookies[:request_id])
+    else
+      return nil
+    end
+  end
+
+  def set_visited_request request
+    unless request.nil?
+      puts ".puts....................#{request.id}"
+      cookies[:request_id] = request.id
+    end
+  end
+
 end
