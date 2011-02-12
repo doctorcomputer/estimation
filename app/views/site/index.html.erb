@@ -1,5 +1,5 @@
 <%unless @requests.nil?%>
   <%@requests.each do |request|%>
-    <%= render :partial => 'request', :object => request %>
+    <%= render :partial => 'shared/request', :object => request %>
   <%end%>
 <%end%>

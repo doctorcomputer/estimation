@@ -1,47 +1,5 @@
 <%unless @requests.nil?%>
   <%@requests.each do |request|%>
-    <div class="request">
-      <h1>
-        <%= request.title %>
-        <small>
-          <%= link_to 'dettagli', request_path(request)%>
-        </small>
-      </h1>
-      <div class="request_body">
-
-        <div class="request_picture">
-          <img src="apartment.jpg" alt=""/>
-        </div>
-
-        <div class="request_highlight">
-          Proposte: <strong>12</strong><br/>
-          la pi&ugrave; economica: <strong>1200&nbsp;&euro;</strong><br/>
-          la pi&ugrave; consigliata: <strong>1350&nbsp;&euro;</strong><br/>
-        </div>
-
-        <%= request.description %>
-
-
-        <table>
-          <tr>
-            <th>Data di creazione</th>
-            <th>Data di scadenza</th>
-            <th>Proposte</th>
-
-          </tr>
-          <tr>
-            <td><%= request.updated_at %>  2 giorni fa</td>
-            <td><%= request.expiration %> mancano 2 ore</td>
-            <td>12 (4 nuove)</td>
-          </tr>
-        </table>
-
-      </div>
-
-
-
-
-    </div>
-
+    <%= render :partial => 'shared/request', :object => request %>
   <%end%>
 <%end%>

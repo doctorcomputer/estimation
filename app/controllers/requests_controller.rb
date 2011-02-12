@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
       render :action => :new
     else
       @proposal = Proposal.new
-      render :action => :show_locked
+      render :action => :new
     end
   end
 
@@ -43,7 +43,7 @@ class RequestsController < ApplicationController
 
     if @request.save
       flash[:notice]= "La tua richiesta è stata memorizzata. Ricordati di attivarla."
-      redirect_to :controller => :home,  :action => :personal_index
+      redirect_to :action => :personal_index
     else
       flash.now[:error]= "Si sono verificati degli errori."
       render :action => :new
