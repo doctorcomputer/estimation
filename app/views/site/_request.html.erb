@@ -1,0 +1,45 @@
+<div class="request">
+  <h1>
+    <%= request.title %>
+    <small>
+      <%= link_to 'dettagli', request_detail_path(request)%>
+    </small>
+  </h1>
+  <div class="request_body">
+
+    <div class="request_picture">
+      <img src="apartment.jpg" alt=""/>
+    </div>
+
+    <div class="request_highlight">
+      <% if request.proposals.count > 0 %>
+        Proposte: <strong><%= request.proposals.count %></strong><br/>
+        <% best_one = request.best_proposal %>
+        <% unless best_one.nil? %>
+          La preferita: <strong><%= best_one.amount %>&nbsp;&euro; di <%= best_one.user.login %></strong><br/>
+        <% else %>
+          <%= request.user.login %> non ha ancora scelto la migliore proposta. <%= link_to 'Invia la tua proposta', proposal_new_path(request) %>
+        <% end %>
+      <% else %>
+        Non ci sono ancora proposte. <%= link_to 'Invia la tua proposta', proposal_new_path(request) %>
+      <% end %>
+    </div>
+    <%= request.description %>
+    
+    <table>
+      <tr>
+        <th>Data di creazione</th>
+        <th>Data di scadenza</th>
+        <th>Proposte</th>
+
+      </tr>
+      <tr>
+        <td><%= request.updated_at.strftime("%d/%m/%Y") %></td>
+        <td><%= request.expiration.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= request.proposals.count %></td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

@@ -62,4 +62,12 @@ class RequestsController < ApplicationController
     end
   end
 
+  def personal_index
+    if(current_user!=nil)
+      @user = current_user
+    else
+      render :action => :index
+    end
+  end
+
 end

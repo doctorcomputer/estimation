@@ -1,3 +1,17 @@
+<p>
+  Benvenuto <%= current_user.login %>,
+  <br/>
+  stai per sottomettere un'offerta relativa alla seguente richiesta:
+  <br/>
+  <%= @request.title %>
+</p>
+<p>
+  Ti ricordiamo che sottomettendo un'offerta ti impegni a portarla a termine
+  nei modi, nei tempi, al costo e alle condizioni da te descritte nel caso
+  la tua offerta risulti come la migliore al termine del periodo di valutazione, come
+  specificato dalle condizioni d'utilizzo del sito.
+</p>
+
 <%= form_for @proposal, :url => proposal_submission_path do |f| %>
   <%= hidden_field :request, 'id' %>
   <fieldset>

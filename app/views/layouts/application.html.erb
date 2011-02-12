@@ -15,10 +15,7 @@
 
     <div id="layout_header">
       <div id="brand">
-        <%= image_tag 'logo.jpg' %>
-        <!--
-        <h1><a href="/"><span></span>mi-serve</a></h1>
-        -->
+        <%= link_to image_tag('logo.jpg'), root_path %>
         <h2>
           <span></span>I migliori professionisti al tuo servizio
         </h2>
@@ -40,6 +37,20 @@
       </div>
     </div>
 
+    <% if flash && flash.count > 0 %>
+      <div id="layout_flash">
+        <% if flash[:error] %>
+          <div class="error"><%= flash[:error] %></div>
+        <% end %>
+        <% if flash[:warning] %>
+          <div class="warning"><%= flash[:warning] %></div>
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+      </div>
+    <% end %>
+
     <div id="layout_toolbar">
       <div id="tab_menu">
         <ul>
@@ -57,55 +68,9 @@
         </ul>
       </div>
 
-    <% if flash && flash.count > 0 %>
-      <div id="layout_flash">
-        <% if flash[:error] %>
-          <div class="error"><%= flash[:error] %></div>
-        <% end %>
-        <% if flash[:warning] %>
-          <div class="warning"><%= flash[:warning] %></div>
-        <% end %>
-        <% if flash[:notice] %>
-          <div class="notice"><%= flash[:notice] %></div>
-        <% end %>
-      </div>
-    <% end %>
-
     </div>
 
-    <% if current_user %>
-        <div id="layout_side_one">
-            <div class="menu_tree">
-                <ul>
-                    <li>
-
-
-
-			Richieste
-                        <ul>
-                            <li><%= link_to "nuova", new_request_path, :class=>:first %></li>
-                            <li><%= link_to "in preparazione (#{@draft_requests_number})", requests_path(:status => :draft), :class=>:middle %></li>
-                            <li><%= link_to "attive (#{@active_requests_number})", requests_path(:status => :active), :class=>:middle %></li>
-                            <li><%= link_to "scadute (#{@expired_requests_number})", requests_path(:status => :expired), :class=>:last %></li>
-                        </ul>
-
-                    </li>
-                    <li>
-                        Offerte
-                        <ul>
-                            <li><%= link_to "Cerca richiste", '/search_requests', :class=>:first %></li>
-                            <li><a class="middle" href="#">attive (2)</a></li>
-                            <li><a class="last" href="#">scadute (2)</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="menu_tree">
-            </div>
-        </div>
-    <% end %>
-
+    <%= yield(:layout_side_one) if content_for?(:layout_side_one) %>
 
     <div id="layout_main_content">
       <%= yield %>
