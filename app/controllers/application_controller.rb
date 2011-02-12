@@ -40,4 +40,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_tag user
+    unless user.nil?
+      return user.login
+    else
+      return ""
+    end
+  end
+
 end

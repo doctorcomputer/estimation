@@ -23,33 +23,23 @@
 
 <% end %>
 
+<%= link_to "Nuova proposta", proposal_new_path(@request) %>
 
-<%= form_for @proposal, :url => proposal_submission_path do |f| %>
-  <%= hidden_field :request, 'id' %>
-  <fieldset>
-    <legend>Proposta</legend>
-    <div class="required">
-      <%= f.label :description, 'Descrizione:' %>
-      <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
-      <small class="error"><%= @proposal.errors[:description].join(". ") %></small>
-    </div>
-
-    <div class="required">
-      <%= f.text_field :amount, :class=>:inputText, :size=>10, :maxlength=>100 %>
-      <%= f.label :amount, 'Ammontare:' %>
-      <small class="error"><%= @proposal.errors[:amount].join(". ") %></small>
-    </div>
-
-    <%= submit_tag "invia" %>
-
-  </fieldset>
+<% best_proposal = @request.best_proposal %>
+<% unless best_proposal.nil? %>
+  <div>
+     <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
+     <br/>
+     <%= best_proposal.user.login %>
+  </div>
 <% end %>
 
 <ul>
-  <%@request.proposals.each do |proposal|%>
+  <%@request.unloved_proposals.each do |proposal|%>
     <li>
       <%= proposal.description %>
       <%= proposal.amount %> &euro;
+      <%= proposal.user.login %>
     </li>
   <%end%>
 </ul>

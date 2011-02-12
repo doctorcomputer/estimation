@@ -43,6 +43,19 @@ class Request < ActiveRecord::Base
     end
   end
 
+  def best_proposal
+    proposals = Proposal.where('request_id = :request_id AND is_best = :is_best', {:request_id => self.id, :is_best => true})
+    if proposals.nil? || proposals.count == 0
+      return nil
+    else
+      return proposals[0]
+    end
+  end
+
+  def unloved_proposals
+    Proposal.where('request_id = :request_id AND is_best = :is_best', {:request_id => self.id, :is_best => false})
+  end
+
   protected
 
   def ensure_default_values

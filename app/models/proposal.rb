@@ -4,4 +4,5 @@ class Proposal < ActiveRecord::Base
   belongs_to :request  # foreign key: request_id
 
   validates_presence_of :description, :amount
+  
 end

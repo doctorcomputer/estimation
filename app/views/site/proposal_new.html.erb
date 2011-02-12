@@ -1,0 +1,21 @@
+<%= form_for @proposal, :url => proposal_submission_path do |f| %>
+  <%= hidden_field :request, 'id' %>
+  <fieldset>
+    <legend>Proposta</legend>
+    <div class="required">
+      <%= f.label :description, 'Descrizione:' %>
+      <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
+      <small class="error"><%= @proposal.errors[:description].join(". ") %></small>
+    </div>
+
+    <div class="required">
+      <%= f.text_field :amount, :class=>:inputText, :size=>10, :maxlength=>100 %>
+      <%= f.label :amount, 'Ammontare:' %>
+      <small class="error"><%= @proposal.errors[:amount].join(". ") %></small>
+    </div>
+
+    <%= submit_tag "invia" %>
+
+  </fieldset>
+<% end %>
+
