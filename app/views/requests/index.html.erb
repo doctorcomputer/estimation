@@ -1,6 +1,6 @@
 <%unless @requests.nil? || @requests.count == 0  %>
   <%@requests.each do |request|%>
-    <%= render :partial => 'shared/request', :object => request %>
+    <%= render :partial => 'shared/personal_request', :object => request %>
   <%end%>
 <%else%>
   Non ci sono elementi in questo elenco

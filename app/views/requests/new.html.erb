@@ -69,7 +69,67 @@
 
   </fieldset>
 
-  <%= form_tag do |f| %>
+<% end %>
+
+<%# box to chose the favourite proposal if request is active %>
+<% all_proposals = @request.proposals %>
+<% best = @request.best_proposal %>
+
+<% if @request.is_active %>
+
+  <div id="best">
+    <% unless best.nil? %>
+      <%= best.description %> <%= best.amount %>&nbsp;&euro; di <%= best.user.login %>
+    <% else %>
+      Non hai ancora indicato quali tra le offerte ricevute preferisci
+    <% end %>
+  </div>
+
+  <% unless all_proposals.nil? || all_proposals.count==0
+    there_is_a_best_proposal = false%>
+    <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
+      <%= hidden_field_tag 'request_id', @request.id %>
+      <% all_proposals.each do |proposal|
+        there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+        <%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+        <%= proposal.description %> <%= proposal.amount %>&nbsp;&euro; di <%= proposal.user.login %><br/>
+      <%end%>
+      <%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>Nessuna
+      <input type="submit" value="scegli la nuova offerta preferita"/>
+    <% end %>
   <% end %>
 
+<% end %>
+
+<% if @request.is_expired %>
+  <div id="best">
+    <% unless best.nil? %>
+      <%= best.description %> <%= best.amount %>&nbsp;&euro; di <%= best.user.login %>
+    <% else %>
+      <% all_proposals.each do |proposal|
+        there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+        <%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+        <%= proposal.description %> <%= proposal.amount %>&nbsp;&euro; di <%= proposal.user.login %><br/>
+      <%end%>
+      <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
+    <% end %>
+  </div>
+
+  <% unless best.nil? %>
+    <% best_proposer = best.user %>
+    <div id="contact">
+      Ecco i dati per contattare l'offerente
+      <table>
+        <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
+        <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
+        <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
+        <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
+        <% if best_proposer.is_professional %>
+          <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
+          <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
+          <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
 <% end %>

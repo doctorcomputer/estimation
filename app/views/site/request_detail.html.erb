@@ -1,22 +1,43 @@
-<%= render :partial => 'shared/request', :object => @request %>
+<%= render :partial => 'shared/site_request', :object => @request %>
 
-<%= link_to "Nuova proposta", proposal_new_path(@request) %>
+<%# box for placing a proposal %>
+<div>
+  <% if @request.user != current_user %>
+    <%= link_to "Nuova proposta", proposal_new_path(@request) %>
+  <% else %>
+    Questa è una tua offerta
+  <% end %>
+</div>
 
+
+<%# box for current best proposal %>
 <% best_proposal = @request.best_proposal %>
-<% unless best_proposal.nil? %>
-  <div>
-     <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
-     <br/>
-     <%= best_proposal.user.login %>
-  </div>
-<% end %>
+<div>
+  <% unless best_proposal.nil? %>
+    <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
+    <br/>
+    <%= best_proposal.user.login %>
+  <% else %>
+    <%=  @request.user.login %> non ha ancora selezionato alcuna proposta come migliore.
+    Vuoi essere tu il primo ?
+  <% end %>
+</div>
 
-<ul>
-  <%@request.unloved_proposals.each do |proposal|%>
-    <li>
-      <%= proposal.description %>
-      <%= proposal.amount %> &euro;
-      <%= proposal.user.login %>
-    </li>
-  <%end%>
-</ul>
+<%# box for unloved proposals %>
+<% unloved_proposals = @request.unloved_proposals %>
+<div>
+  Queste sono le altre proposte relative a quet'offerta
+  <% unless unloved_proposals.nil? || unloved_proposals.count == 0 %>
+    <ul>
+      <%  unloved_proposals.each do |proposal| %>
+        <li>
+          <%= proposal.description %>
+          <%= proposal.amount %> &euro;
+          <%= proposal.user.login %>
+        </li>
+      <%end%>
+    </ul>
+  <% else %>
+    Non ci sono altre proposte
+  <% end %>
+</div>

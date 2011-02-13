@@ -43,7 +43,34 @@ class RequestsController < ApplicationController
 
     if @request.save
       flash[:notice]= "La tua richiesta è stata memorizzata. Ricordati di attivarla."
-      redirect_to :action => :personal_index
+      redirect_to :action => :new
+    else
+      flash.now[:error]= "Si sono verificati degli errori."
+      render :action => :new
+    end
+  end
+
+  def update
+    @request = Request.find(params[:id])
+    @request.user = current_user
+    if params[:store_action] == :save.to_s
+      @request.status = :draft
+    elsif params[:store_action] == :publish.to_s
+      @request.status = :active
+    else
+      raise "Unknown value '#{params[:store_action]}' for parameter #{:store_action}"
+    end
+    begin
+      unless params[:expiration_date].nil?
+        @request.expiration= Date.strptime(params[:expiration_date], "%d/%m/%Y")
+      end
+    rescue
+      @request.expiration= nil
+    end
+
+    if @request.update_attributes(params[:request])
+      flash[:notice]= "La tua richiesta è stata aggiornata."
+      redirect_to :action => :new
     else
       flash.now[:error]= "Si sono verificati degli errori."
       render :action => :new
@@ -68,6 +95,20 @@ class RequestsController < ApplicationController
     else
       render :action => :index
     end
+  end
+
+  def set_best_proposal
+    @request = Request.find(params[:request_id])
+    best_id = params[:proposal_id]
+    @request.proposals.each do |proposal|
+      current_status = proposal.is_best
+      next_status = (best_id.nil? || best_id.blank?) ? false : (best_id.to_s == proposal.id.to_s)
+      if current_status != next_status
+        proposal.is_best = next_status
+        proposal.save
+      end
+    end
+    render :action => :new
   end
 
 end

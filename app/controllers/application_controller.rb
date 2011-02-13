@@ -30,7 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
   def visited_request
-    puts "*gets******************#{cookies[:request_id]}"
     unless cookies[:request_id].nil?
       return Request.find(cookies[:request_id])
     else
@@ -40,7 +39,6 @@ class ApplicationController < ActionController::Base
 
   def set_visited_request request
     unless request.nil?
-      puts ".puts....................#{request.id}"
       cookies[:request_id] = request.id
     end
   end

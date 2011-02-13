@@ -11,6 +11,7 @@ Estimating::Application.routes.draw do
   resources :requests
   match 'personal_index' => 'requests#personal_index'
   match 'search_requests' => 'requests#search'
+  match 'set_best_proposal' => 'requests#set_best_proposal', :as => :set_best_proposal, :via => :post
 
   # Personal proposals
   resources :proposals
