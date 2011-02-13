@@ -8,10 +8,15 @@ class ApplicationController < ActionController::Base
       @draft_requests_number = Request.find_drafts(current_user).count
       @expired_requests_number = Request.find_expired(current_user).count
       @active_requests_number = Request.find_active(current_user).count
+      @active_proposals_number = Proposal.count_active(current_user)
+      @expired_proposals_number = Proposal.count_expired(current_user)
+      @best_proposals_number = Proposal.count_best(current_user)
     else
       @draft_requests_number = 0
       @expired_requests_number = 0
       @active_requests_number = 0
+      @active_proposals_number = 0
+      @expired_proposals_number = 0
     end
   end
 

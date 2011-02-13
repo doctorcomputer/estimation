@@ -51,7 +51,7 @@
       <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
       <small class="error"><%= @request.errors[:description].join(". ") %></small>
       <small>Dettaglia la tua richiesta. Più dettagli includerai più sarà
-      semplice per gli operatori presentarti delle offerte in linea con la tua richieste.</small>
+        semplice per gli operatori presentarti delle offerte in linea con la tua richieste.</small>
     </div>
 
     <div class="required">
@@ -60,7 +60,7 @@
       <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
       <small>Data entro la quale vorresti ricevere le offerte.</small>
     </div>
-    
+
 
     <div class="actions">
       <button id="btn_save" value="Salva">Salva</button>
@@ -69,7 +69,7 @@
 
   </fieldset>
 
-<%= form_tag %>
-<% end %>
+  <%= form_tag do |f| %>
+  <% end %>
 
 <% end %>

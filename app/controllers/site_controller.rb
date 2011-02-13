@@ -12,11 +12,14 @@ class SiteController < ApplicationController
     set_visited_request(@request)
   end
 
+  #proposal_new/:id
   def proposal_new
-    @request = Request.find params[:id]
-    @proposal = Proposal.new
-    @proposal.request = @request
-    set_visited_request(@request)
+    request = Request.find(params[:id])
+    if ensure_login(request)
+      @request = Request.find params[:id]
+      @proposal = Proposal.new
+      @proposal.request = @request
+    end
   end
 
   def proposal_submission
@@ -37,6 +40,20 @@ class SiteController < ApplicationController
       end
     else
       render :require_login
+    end
+  end
+
+  private
+
+  def ensure_login(request=nil)
+    unless request.nil?
+      set_visited_request(@request)
+    end
+    if current_user.nil?
+      render :require_login
+      return false
+    else
+      return true
     end
   end
   

@@ -7,11 +7,16 @@ Estimating::Application.routes.draw do
   match 'proposal_submission' => 'site#proposal_submission', :as => :proposal_submission
   match 'proposal_new/:id' => 'site#proposal_new', :as => :proposal_new
 
-  # Requests
+  # Personal requests
   resources :requests
   match 'personal_index' => 'requests#personal_index'
+  match 'search_requests' => 'requests#search'
 
-  # User
+  # Personal proposals
+  resources :proposals
+
+
+  # User and login related
   resources :users
   resources :user_sessions
 	match 'login' => 'user_sessions#new'
@@ -19,11 +24,9 @@ Estimating::Application.routes.draw do
   match 'activation' => 'user_sessions#activation'
   match 'activate' => 'user_sessions#activate'
 
-  # Request
-  match 'search_requests' => 'requests#search'
-  resource :requests
 
-  resource :proposals
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

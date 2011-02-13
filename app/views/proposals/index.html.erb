@@ -1,0 +1,38 @@
+<%unless @proposals.nil? || @proposals.count == 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Richiesta</th>
+        <th>Scadenza</th>
+        <th>La tua offerta</th>
+        <th>Migliore</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@proposals.each do |proposal|%>
+        <tr>
+          <td>
+            <%= link_to proposal.request.title, request_detail_path(proposal.request) %><br/>
+            di <%= proposal.request.user.login %>
+          </td>
+          <td>
+            <%= proposal.request.expiration.strftime("%d/%m/%Y %H:%M") %>
+          </td>
+          <td>
+            <%= proposal.description %><br/>
+            <%= proposal.amount %> &euro;
+          </td>
+          <td>
+            <%if proposal.is_best%>
+              <strong>SI</strong>
+            <%else%>
+              NO
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<%else%>
+  Non ci sono elementi in questo elenco
+<%end%>

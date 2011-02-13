@@ -1,5 +1,7 @@
-<%unless @requests.nil?%>
+<%unless @requests.nil? || @requests.count == 0  %>
   <%@requests.each do |request|%>
     <%= render :partial => 'shared/request', :object => request %>
   <%end%>
+<%else%>
+  Non ci sono elementi in questo elenco
 <%end%>
