@@ -192,6 +192,12 @@ div.request h1{
     font-size: 15px;
 }
 
+div.request h1 a{
+    display: inline;
+    text-decoration: none;
+    color: #F2EC94;
+}
+
 div.request h1 small a{
     display: block;
     float: right;
@@ -317,4 +323,29 @@ div.menu_tree ul ul{
     border: none;
 }
 
+div.box{
+    margin: 5px 0px 0px 0px;
+    clear: both;
+}
 
+div.box h1{
+    border: 1px solid #00E000;
+    background: #006600;
+    color: #F2EC94;
+    margin: 0px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+div.box div.body {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: none;
+    color: #844E03;
+    margin: 0px;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 12px;
+}

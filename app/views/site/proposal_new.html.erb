@@ -3,7 +3,7 @@
   <br/>
   stai per sottomettere un'offerta relativa alla seguente richiesta:
   <br/>
-  <%= @request.title %>
+  <%= render :partial => 'shared/site_request', :object => @request %>
 </p>
 <p>
   Ti ricordiamo che sottomettendo un'offerta ti impegni a portarla a termine

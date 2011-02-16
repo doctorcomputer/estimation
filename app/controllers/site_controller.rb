@@ -32,8 +32,8 @@ class SiteController < ApplicationController
         raise "Requst with id #{params[:request][:id]} not found"
       end
       @proposal = Proposal.new(params[:proposal])
-      @proposal.request_id = @request.id
-      @proposal.user_id = current_user
+      @proposal.request = @request
+      @proposal.user = current_user
       if @proposal.save
         flash.now[:notice]='La tua offerta è stata registrata con successo. Puoi ora tenerla sotto controllo nella tua area personale'
         render :request_detail

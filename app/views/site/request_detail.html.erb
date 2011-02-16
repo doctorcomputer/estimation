@@ -1,43 +1,58 @@
 <%= render :partial => 'shared/site_request', :object => @request %>
 
 <%# box for placing a proposal %>
-<div>
-  <% if @request.user != current_user %>
-    <%= link_to "Nuova proposta", proposal_new_path(@request) %>
-  <% else %>
-    Questa è una tua offerta
-  <% end %>
+<div class="box">
+  <h1>Sottoponi una proposta</h1>
+  <div class="body">
+    <% if @request.user != current_user %>
+      <%= link_to "Nuova proposta", proposal_new_path(@request) %>
+    <% else %>
+      Questa è una tua richiesta! Non puoi fare offerte.
+    <% end %>
+  </div>
 </div>
 
+
+<%
+best_proposal = @request.best_proposal
+unloved_proposals = @request.unloved_proposals
+there_are_proposals = (@request.proposals.count >= 1)
+%>
 
 <%# box for current best proposal %>
-<% best_proposal = @request.best_proposal %>
-<div>
-  <% unless best_proposal.nil? %>
-    <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
-    <br/>
-    <%= best_proposal.user.login %>
-  <% else %>
-    <%=  @request.user.login %> non ha ancora selezionato alcuna proposta come migliore.
-    Vuoi essere tu il primo ?
-  <% end %>
-</div>
+<%if there_are_proposals%>
+  <div class="box">
+    <h1>Miglior proposta</h1>
+    <div class="body">
+      <% unless best_proposal.nil? %>
+        <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
+        di <%= best_proposal.user.login %>
+      <% else %>
+        <%=  @request.user.login %> non ha ancora selezionato alcuna proposta come migliore.
+      <% end %>
+    </div>
+  </div>
+<%end%>
 
 <%# box for unloved proposals %>
-<% unloved_proposals = @request.unloved_proposals %>
-<div>
-  Queste sono le altre proposte relative a quet'offerta
-  <% unless unloved_proposals.nil? || unloved_proposals.count == 0 %>
-    <ul>
-      <%  unloved_proposals.each do |proposal| %>
-        <li>
-          <%= proposal.description %>
-          <%= proposal.amount %> &euro;
-          <%= proposal.user.login %>
-        </li>
-      <%end%>
-    </ul>
-  <% else %>
-    Non ci sono altre proposte
-  <% end %>
+<div class="box">
+  <h1>Proposte correnti</h1>
+  <div class="body">
+    <%if unloved_proposals.count >= 1%>
+      Queste sono le altre proposte relative a quet'offerta
+      <%unless (unloved_proposals.nil? || unloved_proposals.count == 0) %>
+        <ul>
+          <% unloved_proposals.each do |proposal| %>
+            <li>
+              <%= proposal.description %>
+              <%= proposal.amount %> &euro;
+              <%= proposal.user.login %>
+            </li>
+          <% end%>
+        </ul>
+      <% end %>
+    <% else %>
+      Non ci sono altre proposte
+    <%end%>
+  </div>
 </div>
