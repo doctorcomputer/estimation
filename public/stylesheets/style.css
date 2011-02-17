@@ -9,6 +9,8 @@ color set: http://kuler.adobe.com/#themeID/1159168
 
 body{
     font-family: "Lucida Grande", Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
     /* font: bold 29px */
 }
 
@@ -18,7 +20,7 @@ img{
 }
 
 #tab_menu{
-    border-bottom: 1px black solid;
+    border-bottom: 0px black solid;
     margin: 0px;
     padding: 0px;
 }
@@ -34,17 +36,22 @@ img{
     border-top: 1px solid black;
     border-bottom: none;
     border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-right: 3px solid black;
     margin: 5px 5px 0px 5px;
+    /*
     padding: 5px 5px 0px 5px;
+    */
+    padding: 0px 0px 0px 0px;
+    background: white;
 }
 
 #tab_menu li a{
-    color: black;
+    color: #9A0028;
     text-decoration: none;
+    margin: 4px 4px 0px 4px;
 }
 #tab_menu li a:HOVER{
-    background: #8B0F03;
+    background: #5B8BC6;
     color: white;
 }
 
@@ -84,14 +91,18 @@ img{
 }
 
 #layout_header{
-    height: 120px;
+    height: 70px;
     padding: 0px;
     margin: 0px;
+    /* background: #E66919; */
+    background-image:url('../images/stripes.png');
 }
 
 #layout_toolbar{
-    padding: 0px;
+    padding: 10px 0px 0px 0px;
     margin: 0px;
+    border: 0px;
+    background: #E66919;
 }
 
 
@@ -107,13 +118,17 @@ img{
 }
 
 #layout_main_content{
-    border: none;
+    border: 0px solid;
     min-height: 300px;
     padding: 0px;
-    margin: 0px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 
     float: left;
     width: 68%;
+    
+
 }
 
 #layout_footer{
@@ -172,7 +187,16 @@ img{
 /* User box: begin */
 #user_box{
     float:right;
-    font-size: 12px;
+    font-size: 10px;
+    background: #5B8BC6;
+    margin: 5px;
+    padding: 5px;
+    border: 2px #9A0028 dotted;
+    color: black;
+}
+
+#user_box input{
+    border: 0px;
 }
 /* User box: end */
 /* --------------------------------------------------*/

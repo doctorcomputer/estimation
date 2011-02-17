@@ -16,40 +16,21 @@
     <div id="layout_header">
       <div id="brand">
         <%= link_to image_tag('logo.png'), root_path %>
-        <h2>
-          <span></span>I migliori professionisti al tuo servizio
-        </h2>
       </div>
 
       <div id="user_box">
-
         <% if current_user %>
-          <%=current_user.first_name%> <%=current_user.last_name%> |
-          <%=link_to "logout", logout_path%>
+          Bentornato <%=current_user.first_name%> <%=current_user.last_name%> ! |
+          <%=link_to "Esci", logout_path%>
         <% else%>
           <%= form_for UserSession.new do |form| %>
-            <%= form.text_field :login %>
-            <%= form.password_field :password %>
-            <%= form.submit "login" %>
+            <%= form.label :login, 'username' %> <%= form.text_field :login, :size=>10 %>
+            <%= form.label :password, 'password' %> <%= form.password_field :password, :size=>10 %>
+            <%= form.submit "Loggati" %> o <%= link_to "Registrati", new_user_path %><br/>
           <% end%>
-          <%= link_to "Registrati", new_user_path %><br/>
         <% end%>
       </div>
     </div>
-
-    <% if flash && flash.count > 0 %>
-      <div id="layout_flash">
-        <% if flash[:error] %>
-          <div class="error"><%= flash[:error] %></div>
-        <% end %>
-        <% if flash[:warning] %>
-          <div class="warning"><%= flash[:warning] %></div>
-        <% end %>
-        <% if flash[:notice] %>
-          <div class="notice"><%= flash[:notice] %></div>
-        <% end %>
-      </div>
-    <% end %>
 
     <div id="layout_toolbar">
       <div id="tab_menu">
@@ -69,6 +50,20 @@
       </div>
 
     </div>
+
+    <% if flash && flash.count > 0 %>
+      <div id="layout_flash">
+        <% if flash[:error] %>
+          <div class="error"><%= flash[:error] %></div>
+        <% end %>
+        <% if flash[:warning] %>
+          <div class="warning"><%= flash[:warning] %></div>
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+      </div>
+    <% end %>
 
     <%= yield(:layout_side_one) if content_for?(:layout_side_one) %>
 

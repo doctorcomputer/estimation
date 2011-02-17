@@ -27,7 +27,7 @@
   </script>
 <% end %>
 
-<%= form_for(@request) do |f| %>
+<%= form_for(@request, :html=>{:class => :pretty}) do |f| %>
 
   <%=hidden_field_tag 'store_action'%>
 
@@ -36,7 +36,8 @@
     <div class="notes">
       <h4>Descrivi le tue necessità</h4>
       <p class="last">
-        Descrivi le tue necessità in questa scheda
+        Dettaglia la tua richiesta. Più dettagli includerai più sarà
+        semplice per gli operatori presentarti delle offerte in linea con la tua richieste.
       </p>
     </div>
     <div class="required">
@@ -50,23 +51,40 @@
       <%= f.label :description, 'Descrizione:' %>
       <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
       <small class="error"><%= @request.errors[:description].join(". ") %></small>
-      <small>Dettaglia la tua richiesta. Più dettagli includerai più sarà
-        semplice per gli operatori presentarti delle offerte in linea con la tua richieste.</small>
     </div>
 
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Data</legend>
+    <div class="notes">
+      <h4>Data finale</h4>
+      <p class="last">
+        Data entro la quale vorresti ricevere le offerte per scegliere la migliore.
+      </p>
+    </div>
     <div class="required">
       <%= f.label :expiration_date, 'Data di scadenza:' %>
       <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100 %>
       <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
       <small>Data entro la quale vorresti ricevere le offerte.</small>
     </div>
+  </fieldset>
 
-
-    <div class="actions">
+  <fieldset>
+    <legend>Data</legend>
+    <div class="notes">
+      <h4>Pubblica o salva</h4>
+      <p class="last">
+        Dettaglia la tua richiesta. Più dettagli includerai più sarà
+        semplice per gli operatori presentarti delle offerte in linea con la tua richieste.
+      </p>
+    </div>
+    <div class="required">
       <button id="btn_save" value="Salva">Salva</button>
       <button id="btn_publish" value="Pubblica">Pubblica</button>
     </div>
-
   </fieldset>
 
 <% end %>
