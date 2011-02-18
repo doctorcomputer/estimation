@@ -1,0 +1,162 @@
+div.request img {
+    margin: 0;
+}
+
+div.requests a {
+    color: #5B8BC6;
+    text-decoration: none;
+}
+
+div.requests a:hover {
+    text-decoration: underline;
+}
+
+div.requests{
+    display: table;
+}
+
+div.request{
+    margin: 0px 0px 0px 0px;
+    display: table-row;
+}
+
+div.request div {
+    display: table-cell;
+    vertical-align: top;
+    border-bottom: 1px dotted;
+    padding: 5px;
+}
+
+div.request div.proposals {
+    color: gray;
+    font-size: 10px;
+    border-color: black;
+}
+
+div.request div.proposals strong {
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+}
+
+div.request div.proposals a {
+    font-weight: lighter;
+}
+
+div.request div.times {
+    color: #E66919;
+    font-size: 10px;
+    border-color: black;
+}
+
+div.request div.times strong{
+    display: block;
+}
+
+div.request h1 {
+    font-size: 12px;
+    font-weight: lighter;
+    margin: 1px;
+    padding: 0;
+}
+
+div.request h2 {
+    font-size: 10px;
+    font-weight: lighter;
+    margin: 1px;
+    padding: 0;
+}
+
+div.request div.picture{
+    width: 100px;
+}
+div.request div.details{
+    width: 200px;
+}
+div.request div.proposals{
+    width: 150px;
+}
+div.request div.times{
+    width: 100px;
+}
+
+
+/*
+div.request h1{
+    border: 1px solid #F23005;
+    background: #8B0F03;
+    color: #F2EC94;
+    margin: 0px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+div.request h1 a{
+    display: inline;
+    text-decoration: none;
+    color: #F2EC94;
+}
+
+div.request h1 small a{
+    display: block;
+    float: right;
+    text-decoration: none;
+    color: #F2EC94;
+}
+
+.request_body {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: none;
+    color: #844E03;
+    margin: 0px;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 12px;
+    min-height: 110px;
+}
+
+div.request_picture{
+    float:left;
+    padding: 0px;
+    margin: 0px;
+    margin-right: 5px;
+    width: 102px;
+}
+
+div.request_highlight{
+    float: right;
+    background: #F2EC94;
+    font-size: 12px;
+    padding: 10px;
+    margin-left: 5px;
+    width: 152px;
+    text-align: right;
+}
+
+div.request_highlight strong{
+}
+
+div.request table{
+    font-size: 10px;
+    border-top: 1px dotted gray;
+    border-bottom: 1px dotted gray;
+    border-left: none;
+    border-right: none;
+}
+*/
+/*
+
+
+
+div.request_description{
+    float:left;
+}
+
+
+
+div.request_table_details{
+}
+*/

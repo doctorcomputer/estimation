@@ -1,0 +1,52 @@
+
+
+<div class="request">
+  <h1>
+    <%= link_to site_request.title, request_detail_path(site_request) %>
+    <small>
+      <%= (current_user == site_request.user) ? "è una tua richiesta" : "di #{site_request.user.login}" %>
+    </small>
+  </h1>
+  <div class="request_body">
+
+    <div class="request_picture">
+      <img src="apartment.jpg" alt=""/>
+    </div>
+
+    <div class="request_highlight">
+
+      <% if site_request.proposals.count > 0 %>
+
+        Proposte: <strong><%= site_request.proposals.count %></strong><br/>
+
+        <% best_one = site_request.best_proposal %>
+        <% unless best_one.nil? %>
+          La preferita: <strong><%= best_one.amount %>&nbsp;&euro; di <%= best_one.user.login %></strong><br/>
+        <% end %>
+
+      <% else %>
+        Non ci sono ancora proposte.<br/>
+      <% end %>
+      <% unless current_user == site_request.user %>
+        <%= link_to 'Invia la tua proposta', proposal_new_path(site_request) %>
+      <% end %>
+    </div>
+    <%= site_request.description %>
+
+    <table>
+      <tr>
+        <th>Data di creazione</th>
+        <th>Data di scadenza</th>
+        <th>Proposte</th>
+
+      </tr>
+      <tr>
+        <td><%= site_request.updated_at.strftime("%d/%m/%Y") %></td>
+        <td><%= site_request.expiration.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= site_request.proposals.count %></td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

@@ -8,7 +8,8 @@ color set: http://kuler.adobe.com/#themeID/1159168
 */
 
 body{
-    font-family: "Lucida Grande", Arial, sans-serif;
+    /* font-family: "Lucida Grande", Arial, sans-serif; */
+    font-family: Arial,Helvetica,sans-serif;
     margin: 0px;
     padding: 0px;
     /* font: bold 29px */
@@ -201,88 +202,6 @@ img{
 /* User box: end */
 /* --------------------------------------------------*/
 
-div.request{
-    margin: 5px 0px 0px 0px;
-    clear: both;
-}
-
-div.request h1{
-    border: 1px solid #F23005;
-    background: #8B0F03;
-    color: #F2EC94;
-    margin: 0px;
-    padding: 5px;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-div.request h1 a{
-    display: inline;
-    text-decoration: none;
-    color: #F2EC94;
-}
-
-div.request h1 small a{
-    display: block;
-    float: right;
-    text-decoration: none;
-    color: #F2EC94;
-}
-
-.request_body {
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    border-bottom: 1px solid gray;
-    background: none;
-    color: #844E03;
-    margin: 0px;
-    padding: 5px;
-    font-weight: normal;
-    font-size: 12px;
-    min-height: 110px;
-}
-
-div.request_picture{
-    float:left;
-    padding: 0px;
-    margin: 0px;
-    margin-right: 5px;
-    width: 102px;
-}
-
-div.request_highlight{
-    float: right;
-    background: #F2EC94;
-    font-size: 12px;
-    padding: 10px;
-    margin-left: 5px;
-    width: 152px;
-    text-align: right;
-}
-
-div.request_highlight strong{
-}
-
-div.request table{
-    font-size: 10px;
-    border-top: 1px dotted gray;
-    border-bottom: 1px dotted gray;
-    border-left: none;
-    border-right: none;
-}
-/*
-
-
-
-div.request_description{
-    float:left;
-}
-
-
-
-div.request_table_details{
-}
-*/
 
 
 
