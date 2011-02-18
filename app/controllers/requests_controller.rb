@@ -79,11 +79,11 @@ class RequestsController < ApplicationController
 
   def index
     if params[:status] == :draft.to_s
-      @requests = Request.find_draft(current_user)
+      @requests = Request.find_drafts current_user
     elsif params[:status] == :active.to_s
-      @requests = Request.find_active(current_user)
+      @requests = Request.find_active current_user
     elsif params[:status] == :expired.to_s
-      @requests = Request.find_expired(current_user)
+      @requests = Request.find_expired current_user
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
     end
