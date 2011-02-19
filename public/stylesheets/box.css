@@ -1,0 +1,31 @@
+
+div.index_box {
+    border: 1px solid #5B8BC6;
+    margin-bottom: 15px;
+}
+
+div.index_box h1 {
+    background: #5B8BC6;
+    color: white;
+    margin: 0;
+    padding: 8px;
+    font-size: 20px;
+}
+div.index_box p {
+    margin: 0;
+    padding: 0;
+}
+div.index_box p.button {
+    text-align: right;
+    font-weight: bold;
+}
+div.index_box button {
+    background: #9A0028;
+    color: white;
+    border: 0;
+    font-size: 20px;
+}
+
+div.search_form {
+    font-size: 12px;
+}

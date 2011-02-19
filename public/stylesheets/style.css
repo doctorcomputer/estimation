@@ -266,6 +266,8 @@ div.menu_tree ul ul{
     border: none;
 }
 
+/* Generic highlighted box */
+
 div.box{
     margin: 5px 0px 0px 0px;
     clear: both;

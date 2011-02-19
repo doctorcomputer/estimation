@@ -1,8 +1,11 @@
 Estimating::Application.routes.draw do
 
-	# Home
-	root :to => "site#index"
-  match 'how_it_works' => 'site#how_it_works'
+	# Static pages
+	root :to => "static#index"
+  match 'how_it_works' => 'static#how_it_works'
+
+  # Public site workflow
+  match 'index' => 'site#index', :as => :index
   match 'request_detail/:id' => 'site#request_detail', :as => :request_detail
   match 'proposal_submission' => 'site#proposal_submission', :as => :proposal_submission
   match 'proposal_new/:id' => 'site#proposal_new', :as => :proposal_new
@@ -15,7 +18,6 @@ Estimating::Application.routes.draw do
 
   # Personal proposals
   resources :proposals
-
 
   # User and login related
   resources :users
