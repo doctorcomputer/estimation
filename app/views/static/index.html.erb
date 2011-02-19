@@ -21,23 +21,16 @@
 <% end %>
 
 <div id="search_form">
-  <input type="text" value="" size="30" />
-  <select>
-    <option>Tutte le categorie</option>
-    <option>Casa</option>
-    <option>-Imbiancatura</option>
-    <option>-Ristrutturazione</option>
-    <option>-Progettazione</option>
-    <option>-Chiavi in mano</option>
-    <option>-Traslochi</option>
-    <option>Servizi immobiliari</option>
-    <option>-Intermediazione</option>
-    <option>Servizi giuridici</option>
-    <option>Servizi alla persona</option>
-    <option> Trattamenti benessere</option>
-  </select>
-  <input type="button" value="cerca"/>
-  <%= link_to 'clicca qui', index_path %>
+  <%
+  @search = Struct.new("Search", :query).new("") if @search.nil?
+  Category.root
+  OptionsVisitor.new
+  %>
+  <%=form_tag do |f| %>
+    <%= search_field_tag :query %>
+    <%= select_tag :category, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value') %>
+    <%= link_to 'clicca qui', index_path %>
+  <%end%>
 </div>
 
 <div class="index_box">

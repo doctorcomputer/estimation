@@ -1,0 +1,18 @@
+it:
+  category:
+    root:
+      title: "Tutte le categore"
+      house:
+        title: "Casa"
+        design:
+          title: "Design e progettazione"
+        renovations:
+          title: "Ristrutturazione"
+        maintenance:
+          title: "Manutenzione"
+      plants:
+        title: "Manutenzione impianti"
+        electrical:
+          title: "Elettricista"
+        plumbing:
+          title: "Idraulico"

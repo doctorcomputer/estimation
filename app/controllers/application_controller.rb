@@ -1,3 +1,5 @@
+require 'category'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :current_user_session, :visited_request, :set_visited_request

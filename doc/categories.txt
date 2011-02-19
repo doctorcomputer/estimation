@@ -1,0 +1,49 @@
+house
+    design
+    renovations
+        bath
+    maintenance
+        painting
+        masonrywork
+        electricity
+        alarms
+        network
+        other
+    plants
+        electrical
+        plumbing
+        heating
+        air_conditioning
+    condo_management
+    other
+money
+    administration
+    fiscal
+    finance
+family
+    baby_sitting
+    nursing
+    lawyer
+wellness
+    treatment
+    hair
+    body
+special_event
+    catering
+    party
+    wedding_planning
+    other
+education
+    tutoring
+    other
+fashion
+    shopping_tutor
+    tailor
+    shoemaking
+    other
+hobby
+    musical_instruments
+    lutist
+kids
+    baby_sitting
+    tutoring
