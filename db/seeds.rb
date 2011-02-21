@@ -58,6 +58,7 @@ request1 = Request.create(:user => user1,
       #expired:   request is close because of expiration date
       #draft:     not already saved
       :status=>:active,
+      :category_id => 'root.house',
       :title=>'imbiancatura cameretta',
       :description=>'Vorrei imbiancare la cameretta del bambino a prezzi modifici. La camera misura 4 x 4 metri ed è alta 2,80.',
       :expiration=>DateTime.now + 100,
@@ -65,6 +66,7 @@ request1 = Request.create(:user => user1,
 
 request2 = Request.create(:user => user3,
       :status=>:active,
+      :category_id => 'root.plants',
       :title=>'baby sitting per il mese di marzo',
       :description=>'Devrò andare fuori città molto spesso nel prossimo mese e sto cercando una baby sitter.',
       :expiration=>DateTime.now + 100,

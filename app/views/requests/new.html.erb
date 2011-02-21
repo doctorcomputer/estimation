@@ -53,9 +53,16 @@
       <small class="error"><%= @request.errors[:description].join(". ") %></small>
     </div>
 
+    <div class="required">
+      <%= label_tag :category_id, "Categoria:" %>
+      <%= collection_select(:request, :category_id, Category.root.accept(OptionsVisitor.new).options, 'id', 'value', {:prompt=>true}, {:class=>:selectOne} ) %>
+      <small class="error"><%= @request.errors[:category_id].join(". ") %></small>
+      <small>La categoria aiuta gli operatori a selezionare le richieste nel loro settore.</small>
+    </div>
 
   </fieldset>
 
+ 
   <fieldset>
     <legend>Data</legend>
     <div class="notes">
@@ -72,21 +79,42 @@
     </div>
   </fieldset>
 
+
+
+  <fieldset>
+    <legend>Bozza</legend>
+    <div class="notes">
+      <h4>Bozza</h4>
+      <p class="last">
+        Premendo "Salva Bozza" la tua richiesta viene salvata nella tua area privata
+        e non sarà visibile sino a quando non deciderai di pubblicarla.
+      </p>
+    </div>
+    <div class="optional">
+      <%= f.label :btn_save, 'Salva bozza:' %>
+      <button id="btn_save" value="Salva">Salva Bozza</button>
+    </div>
+  </fieldset>
+
   <fieldset>
     <legend>Pubblicazione</legend>
     <div class="notes">
-      <h4>Pubblica o salva</h4>
-      <p>
-        Salva la tua richiesta per continuare a lavorarci.
-      </p>
+      <h4>Pubblicazione</h4>
       <p class="last">
         Quando hai apportato tutte le modifiche puoi pubblicare la tua
-        richiesta per renderla visibile agli operatori.
+        richiesta per renderla visibile agli operatori premendo "Pubblica".
+        Attenzione, da questo momento in poi non potrai più ne rimuovere ne modificare
+        la tua richiesta.
       </p>
     </div>
-    <div class="required">
-      <button id="btn_save" value="Salva">Salva</button>
+    <div class="optional">
+      <%= label_tag :btn_save, "Pubblica:" %>
       <button id="btn_publish" value="Pubblica">Pubblica</button>
+    </div>
+    <div class="optional">
+      <%= f.label :eula, 'Condizioni:' %>
+      <%= check_box_tag :eula, false, :class=>:checkBox %>
+      <small>Devi accettare le condizioni di pubblicazione</small>
     </div>
   </fieldset>
 

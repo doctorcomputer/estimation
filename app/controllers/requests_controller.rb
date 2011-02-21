@@ -24,6 +24,7 @@ class RequestsController < ApplicationController
 
   def create
 
+    # set all values
     @request = Request.new(params[:request])
     @request.user = current_user
     if params[:store_action] == :save.to_s
@@ -39,6 +40,13 @@ class RequestsController < ApplicationController
       end
     rescue
       @request.expiration= nil
+    end
+
+    # if eula is not checked for publication, show it
+    if(params[:eula]=false && params[:store_action] == :publish.to_s)
+      flash.now[:error]= "Non puoi pubblicare la richiesta se non accetti le condizioni d'uso."
+      redirect_to :action => :new
+      return
     end
 
     if @request.save

@@ -7,9 +7,10 @@ class CreateRequests < ActiveRecord::Migration
     create_table :requests do |t|
       t.references :user, :null => false
       t.string :status, :default=>:draft, :null=>false
-      t.string :title
+      t.string :title, :null=>false
+      t.string :category_id, :null=>false
       t.text :description
-      t.datetime :expiration
+      t.datetime :expiration, :null=>false
       t.datetime :condition_confirmation
       t.timestamps
     end

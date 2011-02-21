@@ -3,9 +3,11 @@ class Request < ActiveRecord::Base
 	belongs_to :user	# foreign key: user_id
   has_many :proposals
 
-  validates_presence_of :title, :description, :expiration
+  validates_presence_of :title, :description, :expiration, :category_id
 
   after_initialize :ensure_default_values
+
+  attr_accessor :eula
 
   def is_draft
     self.status == :draft.to_s

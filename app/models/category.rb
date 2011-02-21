@@ -130,13 +130,15 @@ class OptionsVisitor
 
   attr_accessor :options
 
-  def initialize
+  def initialize(include_root=false)
     @options = Array.new
+    @include_root = include_root
   end
 
   def visit(category)
-    #value = ("-" * category.depth) + category.key
-    @options.push Option.new(category.id, ("-" * category.depth) + I18n.t("category." + category.unique_key + ".title"))
+    if( !category.is_root || (category.is_root && @include_root) )
+      @options.push Option.new(category.unique_key, ("-" * category.depth) + I18n.t("category." + category.unique_key + ".title"))
+    end
     return self;
   end
 end

@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(:version => 20110208204006) do
   create_table "requests", :force => true do |t|
     t.integer  "user_id",                                     :null => false
     t.string   "status",                 :default => "draft", :null => false
-    t.string   "title"
+    t.string   "title",                                       :null => false
+    t.string   "category_id",                                 :null => false
     t.text     "description"
-    t.datetime "expiration"
-    t.datetime "condition_confirmation"
+    t.datetime "expiration",                                  :null => false
+    t.datetime "condition_confirmation",                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
