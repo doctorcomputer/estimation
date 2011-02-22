@@ -1,7 +1,18 @@
 class SiteController < ApplicationController
 
+#  def index
+#    @search = Struct.new("Search", :query, :category_key).new("","")
+#    @requests = Request.find_active
+#  end
+
   def index
-    @requests = Request.find_active
+    @search = Struct.new("Search", :query, :category_key).new(params[:query],params[:category_key])
+    if @search.query.blank?
+      @requests = Request.find_active().where('category_id like :category_id', :category_id => @search.category_key)
+    else
+      @requests = Request.find_active().where("category_id like :category_id", :category_id => @search.category_key).where("title like ?", '%' + @search.query + '%')
+    end
+    render :index
   end
 
   def how_it_works    

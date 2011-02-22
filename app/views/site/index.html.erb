@@ -1,5 +1,9 @@
-<%unless @requests.nil?%>
+<%= render :partial => 'shared/search_bar', :object => @search %>
+
+<%if !@requests.nil? && @requests.count>0 %>
   <%@requests.each do |request|%>
     <%= render :partial => 'shared/site_request', :object => request %>
   <%end%>
+<%else%>
+  Non ci sono risultati per questa ricerca
 <%end%>

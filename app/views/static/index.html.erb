@@ -20,18 +20,7 @@
   </script>
 <% end %>
 
-<div id="search_form">
-  <%
-  @search = Struct.new("Search", :query).new("") if @search.nil?
-  Category.root
-  OptionsVisitor.new
-  %>
-  <%=form_tag do |f| %>
-    <%= search_field_tag :query %>
-    <%= select_tag :category, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value') %>
-    <%= link_to 'clicca qui', index_path %>
-  <%end%>
-</div>
+<%= render :partial => 'shared/search_bar', :object => @search %>
 
 <div class="index_box">
   <h1>Benvenuto su miServe</h1>

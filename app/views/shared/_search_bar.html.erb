@@ -1,0 +1,8 @@
+<div id="search_form">
+  <%=form_tag(url_for :controller=>:site, :action=>:index)  do |f| %>
+    <%= search_field_tag :query, search_bar.query %>
+    <%= select_tag :category_key.to_s, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value', search_bar.category_key) %>
+    <%# select :search_bar, :category_key.to_s, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value') %>
+    <%= submit_tag "cerca"%>
+  <%end%>
+</div>
