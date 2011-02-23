@@ -3,6 +3,10 @@ class Request < ActiveRecord::Base
 	belongs_to :user	# foreign key: user_id
   has_many :proposals
 
+  # Pagination
+  cattr_reader :per_page
+  @@per_page = 10
+
   validates_presence_of :title, :description, :expiration, :category_id
 
   after_initialize :ensure_default_values

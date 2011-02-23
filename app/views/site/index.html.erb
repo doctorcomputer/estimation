@@ -1,9 +1,19 @@
 <%= render :partial => 'shared/search_bar', :object => @search %>
 
+
 <%if !@requests.nil? && @requests.count>0 %>
+  <div id="top_pagination">
+    <%= my_page_entries_info @requests %>
+  </div>
+
   <%@requests.each do |request|%>
     <%= render :partial => 'shared/site_request', :object => request %>
   <%end%>
+
+  <div id="bottom_pagination">
+    <%= will_paginate @requests, :previous_label => '&laquo;', :next_label => '&raquo;', :container => false %>
+  </div>
+
 <%else%>
   Non ci sono risultati per questa ricerca
 <%end%>

@@ -294,3 +294,28 @@ div.box div.body {
     font-weight: normal;
     font-size: 12px;
 }
+
+#top_pagination {
+    text-align: right;
+    font-size: 10px;
+}
+
+#bottom_pagination {
+    text-align: center;
+    font-size: 14px;
+}
+
+#bottom_pagination em{
+    font-weight: bold;
+    color: #9A0028;
+}
+
+#bottom_pagination A {
+    text-decoration: none;
+    color: black;
+}
+
+#bottom_pagination A:hover {
+    color: #5B8BC6;
+    text-decoration: underline;
+}

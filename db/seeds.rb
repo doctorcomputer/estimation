@@ -53,34 +53,75 @@ user3 = User.create(:login => 'louis',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-request1 = Request.create(:user => user1,
-      #active:    request is open to bids
-      #expired:   request is close because of expiration date
-      #draft:     not already saved
-      :status=>:active,
-      :category_id => 'root.house',
-      :title=>'imbiancatura cameretta',
-      :description=>'Vorrei imbiancare la cameretta del bambino a prezzi modifici. La camera misura 4 x 4 metri ed è alta 2,80.',
-      :expiration=>DateTime.now + 100,
-      :condition_confirmation=>DateTime.now)
+user4 = User.create(:login => 'demo1',
+  :password => 'demo1',
+  :password_confirmation => 'demo1',
+  :email => 'demo1@demo.demo',
+  :first_name => 'Demolino',
+  :last_name => 'Raimondi',
+  :address => 'via Dindolo, 17',
+  :zip => '13529',
+  :city => 'Roma',
+  :is_professional => false,
+  :login_count => 1,
+  :last_eula_confirmation => DateTime.now,
+  :last_privacy_confirmation => DateTime.now,
+  :confirmed => true)
 
-request2 = Request.create(:user => user3,
-      :status=>:active,
-      :category_id => 'root.plants',
-      :title=>'baby sitting per il mese di marzo',
-      :description=>'Devrò andare fuori città molto spesso nel prossimo mese e sto cercando una baby sitter.',
-      :expiration=>DateTime.now + 100,
-      :condition_confirmation=>DateTime.now)
+user5 = User.create(:login => 'demo2',
+  :password => 'demo2',
+  :password_confirmation => 'demo2',
+  :email => 'demo2@demo.demo',
+  :first_name => 'Damiano',
+  :last_name => 'Damigiana',
+  :address => 'via brocca, 117',
+  :zip => '01020',
+  :city => 'Tremoli',
+  :is_professional => false,
+  :login_count => 1,
+  :last_eula_confirmation => DateTime.now,
+  :last_privacy_confirmation => DateTime.now,
+  :confirmed => true)
 
-Proposal.create(:request => request1,
-      :user => user2,
-      :description => 'Io posso farlo abbastanza velocemente',
-      :amount => '4000 eur',
-      :is_best => false)
+20.times do |i|
 
-Proposal.create(:user => user3,
-      :request => request1,
-      :description => 'Io posso farlo più velocemente',
-      :amount => '3000 eur',
-      :is_best => true)
+  request1 = Request.create(:user => user1,
+        #active:    request is open to bids
+        #expired:   request is close because of expiration date
+        #draft:     not already saved
+        :status=>:active,
+        :category_id => 'root.house',
+        :title=>"imbiancatura cameretta n. #{i}",
+        :description=>'Vorrei imbiancare la cameretta del bambino a prezzi modifici. La camera misura 4 x 4 metri ed è alta 2,80.',
+        :expiration=>DateTime.now + i,
+        :condition_confirmation=>DateTime.now)
+
+  Proposal.create(:request => request1,
+        :user => user2,
+        :description => 'Io posso farlo abbastanza velocemente',
+        :amount => '4000 eur',
+        :is_best => false)
+      
+  Proposal.create(:user => user3,
+        :request => request1,
+        :description => 'Io posso farlo più velocemente',
+        :amount => '3000 eur',
+        :is_best => true)
+
+end
+
+20.times do |i|
+
+  request2 = Request.create(:user => user3,
+        :status=>:active,
+        :category_id => 'root.plants',
+        :title=>'baby sitting per il mese di marzo',
+        :description=>'Devrò andare fuori città molto spesso nel prossimo mese e sto cercando una baby sitter.',
+        :expiration=>DateTime.now + 100,
+        :condition_confirmation=>DateTime.now)
+      
+      
+end
+
+
 

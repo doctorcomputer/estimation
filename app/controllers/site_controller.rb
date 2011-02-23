@@ -7,11 +7,26 @@ class SiteController < ApplicationController
 
   def index
     @search = Struct.new("Search", :query, :category_key).new(params[:query],params[:category_key])
+#    if @search.query.blank?
+#      @requests = Request.find_active().where('category_id like :category_id', :category_id => @search.category_key)
+#    else
+#      @requests = Request.find_active().where("category_id like :category_id", :category_id => @search.category_key).where("title like ?", '%' + @search.query + '%')
+#    end
+#    @request = @requests.paginate( :page => params[:page], :per_page => 10 )
+
     if @search.query.blank?
-      @requests = Request.find_active().where('category_id like :category_id', :category_id => @search.category_key)
+      @requests = Request \
+        .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
+        .where('category_id like :category_id', :category_id => @search.category_key) \
+        .paginate( :page => params[:page], :per_page => 5 )
     else
-      @requests = Request.find_active().where("category_id like :category_id", :category_id => @search.category_key).where("title like ?", '%' + @search.query + '%')
+      @requests = Request \
+        .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
+        .where("category_id like :category_id", :category_id => @search.category_key) \
+        .where("title like ?", '%' + @search.query + '%') \
+        .paginate( :page => params[:page], :per_page => 5 )
     end
+
     render :index
   end
 

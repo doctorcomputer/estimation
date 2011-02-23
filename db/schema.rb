@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20110208204006) do
     t.string   "category_id",                                 :null => false
     t.text     "description"
     t.datetime "expiration",                                  :null => false
-    t.datetime "condition_confirmation",                      :null => false
+    t.datetime "condition_confirmation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
