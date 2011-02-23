@@ -1,0 +1,20 @@
+#search_form {
+    margin: 5px;
+    background: white;
+    width: auto;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #D7B117;
+}
+
+#search_form input,
+#search_form select{
+    font-size: 10px;
+    border: 1px solid gray;
+    background: white;
+}
+
+#search_form #search_button{
+    background: #A0D300;
+    border: 1px solid #90C300;
+    color: white;
+}
