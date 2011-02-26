@@ -62,6 +62,8 @@ it:
             expiration:
               blank: La data non rispetta il formato corretto o è assente
               in_the_past: La data di scadenza non può essere nel passato
+            eula:
+              should_be_checked_for_publication: Devi accettare le condizioni di pubblicazione
   authlogic:
       error_messages:
         login_blank: Devi fornire uno username

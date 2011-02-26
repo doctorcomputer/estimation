@@ -18,13 +18,13 @@ class SiteController < ApplicationController
       @requests = Request \
         .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
         .where('category_id like :category_id', :category_id => @search.category_key) \
-        .paginate( :page => params[:page], :per_page => 5 )
+        .paginate( :page => params[:page], :per_page => 10 )
     else
       @requests = Request \
         .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
         .where("category_id like :category_id", :category_id => @search.category_key) \
         .where("title like ?", '%' + @search.query + '%') \
-        .paginate( :page => params[:page], :per_page => 5 )
+        .paginate( :page => params[:page], :per_page => 10 )
     end
 
     render :index

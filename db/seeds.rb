@@ -85,6 +85,18 @@ user5 = User.create(:login => 'demo2',
 
 20.times do |i|
 
+  #some drafts
+  request1 = Request.create(:user => user1,
+        #active:    request is open to bids
+        #expired:   request is close because of expiration date
+        #draft:     not already saved
+        :status=>:draft,
+        :category_id => 'root.house',
+        :title=>"bozza n. #{i}",
+        :description=>'Vorrei abbozzare un abbozzo di bozza.',
+        :expiration=>DateTime.now + i,
+        :condition_confirmation=>DateTime.now)
+
   request1 = Request.create(:user => user1,
         #active:    request is open to bids
         #expired:   request is close because of expiration date

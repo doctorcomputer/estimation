@@ -33,7 +33,10 @@ class RequestsController < ApplicationController
     # set the expiration date
     begin
       unless params[:expiration_date].blank?
-        @request.expiration= Date.strptime(params[:expiration_date], "%d/%m/%Y")
+        puts "******#{params[:expiration_date]}"
+        puts "****** exp before #{@request.expiration}"
+        @request.expiration= DateTime.strptime(params[:expiration_date], "%d/%m/%Y")
+        puts "****** exp after #{@request.expiration}"
       end
     rescue
       @request.expiration= nil
@@ -49,18 +52,22 @@ class RequestsController < ApplicationController
     end
 
     # if eula is not checked for publication, show it
-    if(params[:eula]=false && params[:store_action] == :publish.to_s)
-      flash.now[:error]= "Non puoi pubblicare la richiesta se non accetti le condizioni d'uso."
-      redirect_to :action => :new
+    @request.valid? #this is to trigger validation
+    if(params[:store_action] == :publish.to_s && params[:eula]!=:accepted.to_s )
+      @request.errors[:eula]= I18n.t('activerecord.errors.models.request.attributes.eula.should_be_checked_for_publication')
+      flash.now[:error]= "Si sono verificati degli errori."
+      render :action => :new
       return
     end
 
     if @request.save
-      flash[:notice]= "La tua richiesta è stata memorizzata. Ricordati di attivarla."
-      redirect_to :action => :new
+      flash.now[:notice]= "La tua richiesta è stata memorizzata. Ricordati di attivarla."
+      render :action => :new
+      return
     else
       flash.now[:error]= "Si sono verificati degli errori."
       render :action => :new
+      return
     end
   end
 
@@ -91,17 +98,35 @@ class RequestsController < ApplicationController
     end
   end
 
+
+
+
+
   def index
     if params[:status] == :draft.to_s
-      @requests = Request.find_drafts current_user
+      #@requests = Request.find_drafts current_user
+      @requests = Request \
+        .where('user_id = :user_id AND status = :status', :user_id => current_user.id, :status => :draft) \
+        .paginate( :page => params[:page], :per_page => 10 )
     elsif params[:status] == :active.to_s
-      @requests = Request.find_active current_user
+      @requests = Request \
+        .where('user_id = :user_id AND status=:status AND :now<expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
+        .paginate( :page => params[:page], :per_page => 10 )
     elsif params[:status] == :expired.to_s
-      @requests = Request.find_expired current_user
+      @requests = Request \
+        .where('status=:status AND :now>=expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
+        .paginate( :page => params[:page], :per_page => 10 )
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
     end
   end
+
+
+
+
+
+
+  
 
   def personal_index
     if(current_user!=nil)

@@ -1,3 +1,35 @@
+<div class="requests">
+  <div class="request">
+    <div class="picture">
+      <%= image_tag 'apartment.jpg' %>
+    </div>
+    <div class="details">
+      <h1>
+        <%= link_to personal_request.title, request_path(personal_request)%>
+      </h1>
+      <h2><%= (current_user == personal_request.user) ? "è una tua richiesta" : "di #{personal_request.user.login}" %></h2>
+    </div>
+    <div class="proposals">
+      <%= personal_request.proposals.count %> proposte<br/>
+
+      <% best_one = personal_request.best_proposal %>
+      <% unless best_one.nil? %>
+        <strong><%= best_one.amount %>&nbsp;&euro; la preferita</strong><br/>
+      <% end %>
+
+      <% unless current_user == personal_request.user %>
+        <%= link_to 'Invia la tua proposta', proposal_new_path(personal_request) %>
+      <% end %>
+
+    </div>
+    <div class="times">
+      <strong><%=  distance_of_time_in_words Date.new, personal_request.expiration%></strong>
+      <%= personal_request.expiration.strftime("%d/%m/%Y %H:%M") %>
+    </div>
+  </div>
+</div>
+
+<!--
 <div class="request">
   <h1>
     <%= personal_request.title %>
@@ -33,3 +65,4 @@
   </div>
 
 </div>
+-->

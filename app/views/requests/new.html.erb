@@ -29,6 +29,8 @@
 
 <div id="layout_side_main">
 
+
+
   <%= form_for(@request, :html=>{:class => :pretty}) do |f| %>
 
     <%=hidden_field_tag 'store_action'%>
@@ -75,24 +77,13 @@
 
 
     <fieldset>
-      <legend>Bozza</legend>
-      <div class="notes">
-        <h4>Bozza</h4>
-        <p class="last">
-          Premendo "Salva Bozza" la tua richiesta viene salvata nella tua area privata
-          e non sarà visibile sino a quando non deciderai di pubblicarla.
-        </p>
-      </div>
-      <div class="optional">
-        <%= f.label :btn_save, 'Salva bozza:' %>
-        <button id="btn_save" value="Salva">Salva Bozza</button>
-      </div>
-    </fieldset>
-
-    <fieldset>
       <legend>Pubblicazione</legend>
       <div class="notes">
         <h4>Pubblicazione</h4>
+        <p>
+          Premendo "Salva Bozza" la tua richiesta viene salvata nella tua area privata
+          e non sarà visibile sino a quando non deciderai di pubblicarla.
+        </p>
         <p class="last">
           Quando hai apportato tutte le modifiche puoi pubblicare la tua
           richiesta per renderla visibile agli operatori premendo "Pubblica".
@@ -101,17 +92,27 @@
         </p>
       </div>
       <div class="optional">
-        <%= label_tag :btn_save, "Pubblica:" %>
-        <button id="btn_publish" value="Pubblica">Pubblica</button>
+        <%= f.label :btn_save, 'Salva come bozza:' %>
+        <button id="btn_save" value="Salva">Salva Come Bozza</button>
+        <small>Salvando la richiesta come bozza, questa non sarà pubblicata sul sito e potrai modificarla ulteriormente.</small>
       </div>
       <div class="optional">
-        <%= f.label :eula, 'Condizioni:' %>
-        <%= check_box_tag :eula, 'accepted', false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
+        <%= label_tag :btn_save, "Pubblica:" %>
+        <button id="btn_publish" value="Pubblica">Pubblica</button>
+        <small>Quando pubblichi una richiesta questa viene resa disponibile sul sito a tutti gli operatori.</small>
+      </div>
+      <div class="optional">
+        <label>&nbsp;</label>
+        <%# f.label :eula, 'Condizioni:' %>
+        <%= check_box_tag :eula, :accepted, false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
+        <small class="error"><%= @request.errors[:eula].join(". ") %></small>
         <small>Le condizioni di pubblicazione sono specificate nelle <%= link_to "condizioni d'uso", {:controller=>:static, :action=>:terms_of_service}, :target=>'_blank' %></small>
       </div>
     </fieldset>
 
   <% end %>
+
+
 
 <%# box to chose the favourite proposal if request is active %>
   <% all_proposals = @request.proposals %>

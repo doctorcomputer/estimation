@@ -64,16 +64,14 @@ class Request < ActiveRecord::Base
   end
 
   def expiration_date_cannot_be_in_the_past
-    puts "checking date"
     errors.add(:expiration, I18n.t('activerecord.errors.models.request.attributes.expiration.in_the_past')) if !expiration.blank? and expiration< Date.today
   end
 
   protected
 
   def ensure_default_values
-    if self.expiration.nil?
-      self.expiration = DateTime.now + 15
-    end
+    self.expiration = DateTime.now + 15 if self.expiration.nil?
+    self.status = :draft if self.status.blank?
   end
 
 end

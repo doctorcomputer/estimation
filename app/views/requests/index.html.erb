@@ -1,7 +1,19 @@
-<%unless @requests.nil? || @requests.count == 0  %>
-  <%@requests.each do |request|%>
-    <%= render :partial => 'shared/personal_request', :object => request %>
+<div id="layout_side_main">
+
+  <div id="top_pagination">
+    <%= my_page_entries_info @requests %>
+  </div>
+
+  <%unless @requests.nil? || @requests.count == 0  %>
+    <%@requests.each do |request|%>
+      <%= render :partial => 'shared/personal_request', :object => request %>
+    <%end%>
+  <%else%>
+    Non ci sono elementi in questo elenco
   <%end%>
-<%else%>
-  Non ci sono elementi in questo elenco
-<%end%>
+
+  <div id="bottom_pagination">
+    <%= will_paginate @requests, :previous_label => '&laquo;', :next_label => '&raquo;', :container => false %>
+  </div>
+    
+</div>
