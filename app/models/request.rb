@@ -8,6 +8,7 @@ class Request < ActiveRecord::Base
   @@per_page = 10
 
   validates_presence_of :title, :description, :expiration, :category_id
+  validate :expiration_date_cannot_be_in_the_past
 
   after_initialize :ensure_default_values
 
@@ -60,6 +61,11 @@ class Request < ActiveRecord::Base
 
   def unloved_proposals
     Proposal.where('request_id = :request_id AND is_best = :is_best', {:request_id => self.id, :is_best => false})
+  end
+
+  def expiration_date_cannot_be_in_the_past
+    puts "checking date"
+    errors.add(:expiration, I18n.t('activerecord.errors.models.request.attributes.expiration.in_the_past')) if !expiration.blank? and expiration< Date.today
   end
 
   protected

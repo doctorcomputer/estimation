@@ -26,20 +26,26 @@ class RequestsController < ApplicationController
 
     # set all values
     @request = Request.new(params[:request])
+
+    # set the owner to the current logged user
     @request.user = current_user
+
+    # set the expiration date
+    begin
+      unless params[:expiration_date].blank?
+        @request.expiration= Date.strptime(params[:expiration_date], "%d/%m/%Y")
+      end
+    rescue
+      @request.expiration= nil
+    end
+
+    # set the new status
     if params[:store_action] == :save.to_s
       @request.status = :draft
     elsif params[:store_action] == :publish.to_s
       @request.status = :active
     else
       raise "Unknown value '#{params[:store_action]}' for parameter #{:store_action}"
-    end
-    begin
-      unless params[:expiration_date].nil?
-        @request.expiration= Date.strptime(params[:expiration_date], "%d/%m/%Y")
-      end
-    rescue
-      @request.expiration= nil
     end
 
     # if eula is not checked for publication, show it

@@ -34,11 +34,11 @@
     <%=hidden_field_tag 'store_action'%>
 
     <fieldset>
-      <legend>Offerta</legend>
+      <legend>Dettagli della richiesta</legend>
       <div class="notes">
         <h4>Descrivi le tue necessità</h4>
         <p class="last">
-          Dettaglia la tua richiesta. Più dettagli includerai più sarà
+          Più dettagli includerai più sarà
           semplice per gli operatori presentarti delle offerte in linea con la tua richieste.
         </p>
       </div>
@@ -53,6 +53,15 @@
         <%= f.label :description, 'Descrizione:' %>
         <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
         <small class="error"><%= @request.errors[:description].join(". ") %></small>
+        <small>Descrivi il servizio di cui necessiti ed ogni ulteriore informazione che pensi
+          possa essere utile ad un operatore per proporti un'offerta.</small>
+      </div>
+
+      <div class="required">
+        <%= f.label :expiration_date, 'Data di scadenza:' %>
+        <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100 %>
+        <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
+        <small>Data entro la quale vorresti essere messo in contatto con gli operatori.</small>
       </div>
 
       <div class="required">
@@ -63,24 +72,6 @@
       </div>
 
     </fieldset>
-
-
-    <fieldset>
-      <legend>Data</legend>
-      <div class="notes">
-        <h4>Data finale</h4>
-        <p class="last">
-          Data entro la quale vorresti ricevere le offerte per scegliere la migliore.
-        </p>
-      </div>
-      <div class="required">
-        <%= f.label :expiration_date, 'Data di scadenza:' %>
-        <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100 %>
-        <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
-        <small>Data entro la quale vorresti ricevere le offerte.</small>
-      </div>
-    </fieldset>
-
 
 
     <fieldset>
@@ -115,8 +106,8 @@
       </div>
       <div class="optional">
         <%= f.label :eula, 'Condizioni:' %>
-        <%= check_box_tag :eula, false, :class=>:checkBox %>
-        <small>Devi accettare le condizioni di pubblicazione</small>
+        <%= check_box_tag :eula, 'accepted', false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
+        <small>Le condizioni di pubblicazione sono specificate nelle <%= link_to "condizioni d'uso", {:controller=>:static, :action=>:terms_of_service}, :target=>'_blank' %></small>
       </div>
     </fieldset>
 

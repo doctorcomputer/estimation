@@ -61,6 +61,7 @@ it:
               blank: La descrizione non può essere nulla
             expiration:
               blank: La data non rispetta il formato corretto o è assente
+              in_the_past: La data di scadenza non può essere nel passato
   authlogic:
       error_messages:
         login_blank: Devi fornire uno username

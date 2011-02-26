@@ -8,4 +8,12 @@ class StaticController < ApplicationController
     
   end
 
+  def terms_of_service
+    
+  end
+
+  def privacy_note
+    
+  end
+
 end

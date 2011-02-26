@@ -3,6 +3,7 @@ Estimating::Application.routes.draw do
 	# Static pages
 	root :to => "static#index"
   match 'how_it_works' => 'static#how_it_works'
+  match 'info/:action' => 'static'
 
   # Public site workflow
   match 'index' => 'site#index', :as => :index
