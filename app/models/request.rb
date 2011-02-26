@@ -26,6 +26,10 @@ class Request < ActiveRecord::Base
     (self.status == :active.to_s) && (DateTime.now >= self.expiration)
   end
 
+  def can_be_modified?
+    return !(self.is_active || self.is_expired)
+  end
+
   def self.find_drafts(user=nil)
     if user.nil?
       Request.where('status = :status', :status => :draft)

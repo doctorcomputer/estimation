@@ -29,7 +29,7 @@
 
 <div id="layout_side_main">
 
-
+  <% if @request.can_be_modified? %>
 
   <%= form_for(@request, :html=>{:class => :pretty}) do |f| %>
 
@@ -110,6 +110,10 @@
       </div>
     </fieldset>
 
+  <% end %>
+
+  <% else %>
+    <%= render :partial => 'shared/personal_request', :object => @request %>
   <% end %>
 
 

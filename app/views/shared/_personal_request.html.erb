@@ -23,7 +23,7 @@
 
     </div>
     <div class="times">
-      <strong><%=  distance_of_time_in_words Date.new, personal_request.expiration%></strong>
+      <strong><%= distance_of_time_in_words DateTime.now, personal_request.expiration%></strong>
       <%= personal_request.expiration.strftime("%d/%m/%Y %H:%M") %>
     </div>
   </div>

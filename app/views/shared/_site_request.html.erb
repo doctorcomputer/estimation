@@ -21,7 +21,7 @@
         
     </div>
     <div class="times">
-      <strong><%=  distance_of_time_in_words Date.new, site_request.expiration%></strong>
+      <strong><%=  distance_of_time_in_words DateTime.now, site_request.expiration%></strong>
       <%= site_request.expiration.strftime("%d/%m/%Y %H:%M") %>
     </div>
   </div>
