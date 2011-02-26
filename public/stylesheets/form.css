@@ -59,7 +59,6 @@ form.pretty div.optional {
     width: 470px;
     margin: 5px 0 0 0;
     padding: 1px 3px;
-    border: 1px red solid;
 }
 
 form.pretty fieldset div.notes {
