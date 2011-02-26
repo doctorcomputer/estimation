@@ -1,0 +1,26 @@
+<div class="box">
+  <h1>
+    Miglior offerta<br/>
+    <small>Alla scadenza della richiesta chi ha proposto questa offerta verrà messo in contatto con il richiedente.</small>
+  </h1>
+  <div class="body">
+    <% unless best_proposal.nil? %>
+      <table>
+        <tr>
+          <td>Operatore</td>
+          <td><%= best_proposal.user.login %></td>
+        </tr>
+        <tr>
+          <td>Preventivo</td>
+          <td><%= best_proposal.amount %> &euro;</td>
+        </tr>
+        <tr>
+          <td>Descrizione</td>
+          <td><%= best_proposal.description %></td>
+        </tr>
+      </table>
+    <% else %>
+      Per questa richiesta non è ancora stata selezionata alcuna proposta come migliore.
+    <% end %>
+  </div>
+</div>

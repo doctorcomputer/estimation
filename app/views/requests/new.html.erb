@@ -124,13 +124,7 @@
 
   <% if @request.is_active %>
 
-    <div id="best">
-      <% unless best.nil? %>
-        <%= best.description %> <%= best.amount %>&nbsp;&euro; di <%= best.user.login %>
-      <% else %>
-        Non hai ancora indicato quali tra le offerte ricevute preferisci
-      <% end %>
-    </div>
+    <%= render :partial => 'shared/best_proposal', :object => best %>
 
     <% unless all_proposals.nil? || all_proposals.count==0
       there_is_a_best_proposal = false%>

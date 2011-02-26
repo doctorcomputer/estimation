@@ -21,17 +21,7 @@ there_are_proposals = (@request.proposals.count >= 1)
 
 <%# box for current best proposal %>
 <%if there_are_proposals%>
-  <div class="box">
-    <h1>Miglior proposta</h1>
-    <div class="body">
-      <% unless best_proposal.nil? %>
-        <%= best_proposal.description %> <%= best_proposal.amount %> &euro;
-        di <%= best_proposal.user.login %>
-      <% else %>
-        <%=  @request.user.login %> non ha ancora selezionato alcuna proposta come migliore.
-      <% end %>
-    </div>
-  </div>
+  <%= render :partial => 'shared/best_proposal', :object => best_proposal %>
 <%end%>
 
 <%# box for unloved proposals %>
