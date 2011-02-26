@@ -2,18 +2,20 @@ form.pretty {
     margin: 0;
     padding: 0;
     font-size: 100%;
+    /*
     min-width: 560px;
     max-width: 620px;
-    width: 590px;
+    */
+    width: 690px;
 }
 
 form.pretty fieldset {
     clear: both;
-    font-size: 100%;
+    font-size: 12px;
     border-color: #D7B517;
     border-width: 5px 0 0 5px;
     border-style: solid none none outset;
-    padding: 10px;
+    padding: 4px;
     margin: 0 0 0 0;
 }
 
@@ -49,19 +51,20 @@ form.pretty .field_with_errors{
     color: red;
 }
 
+/* -------------------------------------------------- */
 form.pretty div.required,
 form.pretty div.optional {
     clear: left;
     display: block;
-    width: 354px;
-    zoom: 1;
+    width: 470px;
     margin: 5px 0 0 0;
     padding: 1px 3px;
+    border: 1px red solid;
 }
 
 form.pretty fieldset div.notes {
     float: right;
-    width: 158px;
+    width: 170px;
     height: auto;
     margin: 0px 0px 10px 10px;
     padding: 5px;
@@ -72,10 +75,10 @@ form.pretty fieldset div.notes {
 }
 
 form.pretty fieldset div.notes h4 {
-    /* background-image: url(/images/icon_info.gif); */
+    background-image: url(/images/icon_info.gif);
     background-repeat: no-repeat;
     background-position: top left;
-    padding: 3px 0 3px 27px;
+    padding: 3px 0 3px 20px;
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: #EFDD19;
@@ -132,7 +135,6 @@ form.pretty div label.labelCheckbox, form.pretty div label.labelRadio {
     float: none;
     display: block;
     width: 200px;
-    zoom: 1;
     padding: 0;
     margin: 0 0 5px 142px;
     text-align: left;
@@ -182,13 +184,13 @@ form.pretty div.error p.error {
 }
 
 form.pretty div select, form.pretty div textarea {
-    width: 200px;
+    width: 300px;
     padding: 1px 3px;
     margin: 0 0 0 0;
 }
 
 form.pretty div input.inputText, form.pretty div input.inputPassword {
-    width: 200px;
+    width: 300px;
     padding: 1px 3px;
     margin: 0 0 0 0;
 }
@@ -198,7 +200,7 @@ form.pretty div input.inputFile {
 }
 
 form.pretty div select.selectOne, form.pretty div select.selectMultiple {
-    width: 211px;
+    width: 311px;
     padding: 1px 3px;
 }
 

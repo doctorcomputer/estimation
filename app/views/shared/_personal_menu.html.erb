@@ -3,7 +3,7 @@
     <div class="menu_tree">
       <ul>
         <li>
-          Richieste
+          Le tue richieste
           <ul>
             <li><%= link_to "nuova", new_request_path, :class=>:first %></li>
             <li><%= link_to "in preparazione (#{@draft_requests_number})", requests_path(:status => :draft), :class=>:middle %></li>
@@ -12,7 +12,7 @@
           </ul>
         </li>
         <li>
-          Offerte
+          Le tue offerte
           <ul>
             <li><%= link_to "attive (#{@active_proposals_number})", proposals_path(:status => :active), :class=>:first %></li>
             <li><%= link_to "migliori (#{@best_proposals_number})", proposals_path(:status => :best), :class=>:middle %></li>
