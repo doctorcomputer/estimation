@@ -1,11 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
-user1 = User.create(:login => 'albert',
+users = Array.new
+
+users.push User.create(:login => 'albert',
   :password => 'albert',
   :password_confirmation => 'albert',
   :email => 'relativity@demo.demo',
@@ -20,7 +15,7 @@ user1 = User.create(:login => 'albert',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-user2 = User.create(:login => 'enrico',
+users.push User.create(:login => 'enrico',
   :password => 'enrico',
   :password_confirmation => 'enrico',
   :email => 'manhattan@demo.demo',
@@ -38,7 +33,7 @@ user2 = User.create(:login => 'enrico',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-user3 = User.create(:login => 'louis',
+users.push User.create(:login => 'louis',
   :password => 'louis',
   :password_confirmation => 'louis',
   :email => 'milk@demo.demo',
@@ -53,7 +48,7 @@ user3 = User.create(:login => 'louis',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-user4 = User.create(:login => 'demo1',
+users.push User.create(:login => 'demo1',
   :password => 'demo1',
   :password_confirmation => 'demo1',
   :email => 'demo1@demo.demo',
@@ -68,7 +63,7 @@ user4 = User.create(:login => 'demo1',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-user5 = User.create(:login => 'demo2',
+users.push User.create(:login => 'demo2',
   :password => 'demo2',
   :password_confirmation => 'demo2',
   :email => 'demo2@demo.demo',
@@ -83,42 +78,56 @@ user5 = User.create(:login => 'demo2',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-20.times do |i|
+activities = ['imbiancare', 'ristrutturare', 'demolire', 'trovare qualcuno che possa prendersi cura di']
+objects = ['casa mia', 'la cameretta dei bambini', 'Pasqualina, la nonna di 108 anni', 'Gino il mio cagnolino', "l'impianto elettrico"]
+ways = ['abbastanza velocemente', 'con calma', 'con qualità sopraffina']
+operators = ['Io posso farlo velocemente', "E' la mia specialità lo faccio in tre giorni"]
+100.times do |i|
+
+  the_user = users[i % users.length]
+
 
   #some drafts
-  request1 = Request.create(:user => user1,
+  request1 = Request.create(:user => the_user,
         #active:    request is open to bids
         #expired:   request is close because of expiration date
         #draft:     not already saved
         :status=>:draft,
         :category_id => 'root.house',
-        :title=>"bozza n. #{i}",
-        :description=>'Vorrei abbozzare un abbozzo di bozza.',
+        :title=>"#{activities[(i+3) % activities.length]} n. #{i}",
+        :description=>"Vorrei #{activities[(i+3) % activities.length]} di #{objects[i % objects.length]} #{ways[(i+2) % ways.length]}.",
         :expiration=>DateTime.now + i,
         :condition_confirmation=>DateTime.now)
 
-  request1 = Request.create(:user => user1,
+  request1 = Request.create(:user => the_user,
         #active:    request is open to bids
         #expired:   request is close because of expiration date
         #draft:     not already saved
         :status=>:active,
         :category_id => 'root.house',
-        :title=>"imbiancatura cameretta n. #{i}",
-        :description=>'Vorrei imbiancare la cameretta del bambino a prezzi modifici. La camera misura 4 x 4 metri ed è alta 2,80.',
+        :title=>"#{activities[(i) % activities.length]} n. #{i}",
+        :description=>"Vorrei #{activities[(i) % activities.length]} di #{objects[i % objects.length]} #{ways[(i) % ways.length]}.",
         :expiration=>DateTime.now + i,
         :condition_confirmation=>DateTime.now)
 
-  Proposal.create(:request => request1,
-        :user => user2,
-        :description => 'Io posso farlo abbastanza velocemente',
-        :amount => '4000 eur',
-        :is_best => false)
-      
-  Proposal.create(:user => user3,
-        :request => request1,
-        :description => 'Io posso farlo più velocemente',
-        :amount => '3000 eur',
-        :is_best => true)
+  (i % 11).times do |j|
+
+    offerer = users[ (i+j) % users.length]
+    Proposal.create(:request => request1,
+          :user => offerer,
+          :description => "#{operators[(i) % operators.length]} n. #{j}",
+          :amount => "#{(2+i*j)*700} eur",
+          :is_best => false)
+
+    offerer = users[ (i+1) % users.length ]
+    Proposal.create(:user => offerer,
+      :request => request1,
+      :description => 'Io posso farlo più velocemente',
+      :amount => "#{(i+3)*150} eur",
+      :is_best => false)
+        
+  end
+
 
 end
 

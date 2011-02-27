@@ -1,7 +1,13 @@
 <div class="box">
   <h1>
     Miglior offerta<br/>
-    <small>Alla scadenza della richiesta chi ha proposto questa offerta verrà messo in contatto con il richiedente.</small>
+    <small>
+      <%if best_proposal.request.is_active %>
+        Alla scadenza della richiesta chi ha proposto questa offerta verrà messo in contatto con il richiedente.
+      <%else%>
+        Questa è la proposta che si è aggiudicata l'erogazione del servizio secondo le condizioni descritte.
+      <%end%>
+    </small>
   </h1>
   <div class="body">
     <% unless best_proposal.nil? %>

@@ -23,46 +23,14 @@
 
     </div>
     <div class="times">
-      <strong><%= distance_of_time_in_words DateTime.now, personal_request.expiration%></strong>
+      <strong>
+        <% if personal_request.is_expired %>
+          <%= "scaduta da #{distance_of_time_in_words DateTime.now, personal_request.expiration}" %>
+        <% else %>
+          <%= "scade tra #{distance_of_time_in_words DateTime.now, personal_request.expiration}" %>
+        <% end %>
+      </strong>
       <%= personal_request.expiration.strftime("%d/%m/%Y %H:%M") %>
     </div>
   </div>
 </div>
-
-<!--
-<div class="request">
-  <h1>
-    <%= personal_request.title %>
-    <small>
-      <%= link_to '[edit]', request_path(personal_request)%>
-    </small>
-  </h1>
-  <div class="request_body">
-
-    <div class="request_picture">
-      <img src="apartment.jpg" alt=""/>
-    </div>
-
-    <div class="request_highlight">
-        Proposte: <strong><%= personal_request.proposals.count %></strong><br/>
-    </div>
-    <%= personal_request.description %>
-
-    <table>
-      <tr>
-        <th>Data di creazione</th>
-        <th>Data di scadenza</th>
-        <th>Proposte</th>
-
-      </tr>
-      <tr>
-        <td><%= personal_request.updated_at.strftime("%d/%m/%Y") %></td>
-        <td><%= personal_request.expiration.strftime("%d/%m/%Y %H:%M") %></td>
-        <td><%= personal_request.proposals.count %></td>
-      </tr>
-    </table>
-
-  </div>
-
-</div>
--->

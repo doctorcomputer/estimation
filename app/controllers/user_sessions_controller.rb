@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     
     if @user_session.save
-      flash[:notice] = "Successfully logged in."
+      flash[:notice] = "Bentornato #{current_user}!"
       if visited_request!=nil
         redirect_to request_detail_path(visited_request)
       else
@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
       end
     else
       #render :action => 'new'
-      flash[:error] = "Unable to login"
+      flash[:error] = "Dati di logi errati."
       redirect_to root_url
     end
   end
@@ -31,7 +31,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.find
     @user_session.destroy
     visited_request= nil
-    flash[:notice] = "Successfully logged out."
+    flash[:notice] = "Sei uscito dal tuo account personale."
     redirect_to root_url
   end
 

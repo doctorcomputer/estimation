@@ -33,10 +33,7 @@ class RequestsController < ApplicationController
     # set the expiration date
     begin
       unless params[:expiration_date].blank?
-        puts "******#{params[:expiration_date]}"
-        puts "****** exp before #{@request.expiration}"
         @request.expiration= DateTime.strptime(params[:expiration_date], "%d/%m/%Y")
-        puts "****** exp after #{@request.expiration}"
       end
     rescue
       @request.expiration= nil
@@ -103,19 +100,20 @@ class RequestsController < ApplicationController
 
 
   def index
+    per_page = 5
     if params[:status] == :draft.to_s
       #@requests = Request.find_drafts current_user
       @requests = Request \
         .where('user_id = :user_id AND status = :status', :user_id => current_user.id, :status => :draft) \
-        .paginate( :page => params[:page], :per_page => 10 )
+        .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :active.to_s
       @requests = Request \
         .where('user_id = :user_id AND status=:status AND :now<expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
-        .paginate( :page => params[:page], :per_page => 10 )
+        .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :expired.to_s
       @requests = Request \
         .where('status=:status AND :now>=expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
-        .paginate( :page => params[:page], :per_page => 10 )
+        .paginate( :page => params[:page], :per_page => per_page )
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
     end
@@ -139,12 +137,16 @@ class RequestsController < ApplicationController
   def set_best_proposal
     @request = Request.find(params[:request_id])
     best_id = params[:proposal_id]
+    flash.now[:notice] = "Per la tua richiesta nessuna proposta è indicata come migliore."
     @request.proposals.each do |proposal|
       current_status = proposal.is_best
       next_status = (best_id.nil? || best_id.blank?) ? false : (best_id.to_s == proposal.id.to_s)
       if current_status != next_status
         proposal.is_best = next_status
         proposal.save
+        if proposal.is_best 
+          flash.now[:notice] = "La proposta di #{proposal.user.login} è ora la proposta migliore."
+        end
       end
     end
     render :action => :new

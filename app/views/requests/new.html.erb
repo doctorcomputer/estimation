@@ -31,86 +31,86 @@
 
   <% if @request.can_be_modified? %>
 
-  <%= form_for(@request, :html=>{:class => :pretty}) do |f| %>
+    <%= form_for(@request, :html=>{:class => :pretty}) do |f| %>
 
-    <%=hidden_field_tag 'store_action'%>
+      <%=hidden_field_tag 'store_action'%>
 
-    <fieldset>
-      <legend>Dettagli della richiesta</legend>
-      <div class="notes">
-        <h4>Descrivi le tue necessità</h4>
-        <p class="last">
-          Più dettagli includerai più sarà
-          semplice per gli operatori presentarti delle offerte in linea con la tua richieste.
-        </p>
-      </div>
-      <div class="required">
-        <%= f.label :title, 'Titolo:' %>
-        <%= f.text_field :title, :class=>:inputText, :size=>10, :maxlength=>100 %>
-        <small class="error"><%= @request.errors[:title].join(". ") %></small>
-        <small>Il titolo permette di identificare la tua richiesta</small>
-      </div>
+      <fieldset>
+        <legend>Dettagli della richiesta</legend>
+        <div class="notes">
+          <h4>Descrivi le tue necessità</h4>
+          <p class="last">
+            Più dettagli includerai più sarà
+            semplice per gli operatori presentarti delle offerte in linea con la tua richieste.
+          </p>
+        </div>
+        <div class="required">
+          <%= f.label :title, 'Titolo:' %>
+          <%= f.text_field :title, :class=>:inputText, :size=>10, :maxlength=>100 %>
+          <small class="error"><%= @request.errors[:title].join(". ") %></small>
+          <small>Il titolo permette di identificare la tua richiesta</small>
+        </div>
 
-      <div class="required">
-        <%= f.label :description, 'Descrizione:' %>
-        <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
-        <small class="error"><%= @request.errors[:description].join(". ") %></small>
-        <small>Descrivi il servizio di cui necessiti ed ogni ulteriore informazione che pensi
-          possa essere utile ad un operatore per proporti un'offerta.</small>
-      </div>
+        <div class="required">
+          <%= f.label :description, 'Descrizione:' %>
+          <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
+          <small class="error"><%= @request.errors[:description].join(". ") %></small>
+          <small>Descrivi il servizio di cui necessiti ed ogni ulteriore informazione che pensi
+            possa essere utile ad un operatore per proporti un'offerta.</small>
+        </div>
 
-      <div class="required">
-        <%= f.label :expiration_date, 'Data di scadenza:' %>
-        <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100 %>
-        <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
-        <small>Data entro la quale vorresti essere messo in contatto con gli operatori.</small>
-      </div>
+        <div class="required">
+          <%= f.label :expiration_date, 'Data di scadenza:' %>
+          <%= text_field_tag :expiration_date, @request.expiration!=nil ? @request.expiration.strftime("%d/%m/%Y") : '', :class=>:inputText, :size=>10, :maxlength=>100 %>
+          <small class="error"><%= @request.errors[:expiration].join(". ") %></small>
+          <small>Data entro la quale vorresti essere messo in contatto con gli operatori.</small>
+        </div>
 
-      <div class="required">
-        <%= label_tag :category_id, "Categoria:" %>
-        <%= collection_select(:request, :category_id, Category.root.accept(OptionsVisitor.new).options, 'id', 'value', {:prompt=>true}, {:class=>:selectOne} ) %>
-        <small class="error"><%= @request.errors[:category_id].join(". ") %></small>
-        <small>La categoria aiuta gli operatori a selezionare le richieste nel loro settore.</small>
-      </div>
+        <div class="required">
+          <%= label_tag :category_id, "Categoria:" %>
+          <%= collection_select(:request, :category_id, Category.root.accept(OptionsVisitor.new).options, 'id', 'value', {:prompt=>true}, {:class=>:selectOne} ) %>
+          <small class="error"><%= @request.errors[:category_id].join(". ") %></small>
+          <small>La categoria aiuta gli operatori a selezionare le richieste nel loro settore.</small>
+        </div>
 
-    </fieldset>
+      </fieldset>
 
 
-    <fieldset>
-      <legend>Pubblicazione</legend>
-      <div class="notes">
-        <h4>Pubblicazione</h4>
-        <p>
-          Premendo "Salva Bozza" la tua richiesta viene salvata nella tua area privata
-          e non sarà visibile sino a quando non deciderai di pubblicarla.
-        </p>
-        <p class="last">
-          Quando hai apportato tutte le modifiche puoi pubblicare la tua
-          richiesta per renderla visibile agli operatori premendo "Pubblica".
-          Attenzione, da questo momento in poi non potrai più ne rimuovere ne modificare
-          la tua richiesta.
-        </p>
-      </div>
-      <div class="optional">
-        <%= f.label :btn_save, 'Salva come bozza:' %>
-        <button id="btn_save" value="Salva">Salva Come Bozza</button>
-        <small>Salvando la richiesta come bozza, questa non sarà pubblicata sul sito e potrai modificarla ulteriormente.</small>
-      </div>
-      <div class="optional">
-        <%= label_tag :btn_save, "Pubblica:" %>
-        <button id="btn_publish" value="Pubblica">Pubblica</button>
-        <small>Quando pubblichi una richiesta questa viene resa disponibile sul sito a tutti gli operatori.</small>
-      </div>
-      <div class="optional">
-        <label>&nbsp;</label>
-        <%# f.label :eula, 'Condizioni:' %>
-        <%= check_box_tag :eula, :accepted, false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
-        <small class="error"><%= @request.errors[:eula].join(". ") %></small>
-        <small>Le condizioni di pubblicazione sono specificate nelle <%= link_to "condizioni d'uso", {:controller=>:static, :action=>:terms_of_service}, :target=>'_blank' %></small>
-      </div>
-    </fieldset>
+      <fieldset>
+        <legend>Pubblicazione</legend>
+        <div class="notes">
+          <h4>Pubblicazione</h4>
+          <p>
+            Premendo "Salva Bozza" la tua richiesta viene salvata nella tua area privata
+            e non sarà visibile sino a quando non deciderai di pubblicarla.
+          </p>
+          <p class="last">
+            Quando hai apportato tutte le modifiche puoi pubblicare la tua
+            richiesta per renderla visibile agli operatori premendo "Pubblica".
+            Attenzione, da questo momento in poi non potrai più ne rimuovere ne modificare
+            la tua richiesta.
+          </p>
+        </div>
+        <div class="optional">
+          <%= f.label :btn_save, 'Salva come bozza:' %>
+          <button id="btn_save" value="Salva">Salva Come Bozza</button>
+          <small>Salvando la richiesta come bozza, questa non sarà pubblicata sul sito e potrai modificarla ulteriormente.</small>
+        </div>
+        <div class="optional">
+          <%= label_tag :btn_save, "Pubblica:" %>
+          <button id="btn_publish" value="Pubblica">Pubblica</button>
+          <small>Quando pubblichi una richiesta questa viene resa disponibile sul sito a tutti gli operatori.</small>
+        </div>
+        <div class="optional">
+          <label>&nbsp;</label>
+    <%# f.label :eula, 'Condizioni:' %>
+          <%= check_box_tag :eula, :accepted, false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
+          <small class="error"><%= @request.errors[:eula].join(". ") %></small>
+          <small>Le condizioni di pubblicazione sono specificate nelle <%= link_to "condizioni d'uso", {:controller=>:static, :action=>:terms_of_service}, :target=>'_blank' %></small>
+        </div>
+      </fieldset>
 
-  <% end %>
+    <% end %>
 
   <% else %>
     <%= render :partial => 'shared/personal_request', :object => @request %>
@@ -126,18 +126,55 @@
 
     <%= render :partial => 'shared/best_proposal', :object => best %>
 
+
+
+
     <% unless all_proposals.nil? || all_proposals.count==0
       there_is_a_best_proposal = false%>
-      <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
-        <%= hidden_field_tag 'request_id', @request.id %>
-        <% all_proposals.each do |proposal|
-          there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
-          <%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
-          <%= proposal.description %> <%= proposal.amount %>&nbsp;&euro; di <%= proposal.user.login %><br/>
-        <%end%>
-        <%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>Nessuna
-        <input type="submit" value="scegli la nuova offerta preferita"/>
-      <% end %>
+      <div class="box">
+        <h1>
+          Elenco offerte ricevute<br/>
+          <small>
+            Quando ricevi una nuova offerta che ti sembra più vantaggiosa puoi indicarla come tale in modo da sollecitare la concorrenza
+            tra gli operatori.
+          </small>
+        </h1>
+        <div class="body">
+          <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
+            <%= hidden_field_tag 'request_id', @request.id %>
+            <% all_proposals.each do |proposal|
+              there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+
+              <table>
+                <tr>
+                  <td colspan="2"><%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+                    Scegli questa come offerta milgiore</td>
+                </tr>
+                <tr>
+                  <td>Operatore</td>
+                  <td><%= proposal.user.login %></td>
+                </tr>
+                <tr>
+                  <td>Preventivo</td>
+                  <td><%= proposal.amount %> &euro;</td>
+                </tr>
+                <tr>
+                  <td>Descrizione</td>
+                  <td><%= proposal.description %></td>
+                </tr>
+              </table>
+            <%end%>
+
+            <table>
+              <tr>
+                <td colspan="2"><%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>
+                  Non mi piace nessuna offerta.</td>
+              </tr>
+            </table>
+            <input type="submit" value="scegli la nuova offerta preferita"/>
+          <% end %>
+        </div>
+      </div>
     <% end %>
 
   <% end %>
@@ -145,32 +182,78 @@
   <% if @request.is_expired %>
     <div id="best">
       <% unless best.nil? %>
-        <%= best.description %> <%= best.amount %>&nbsp;&euro; di <%= best.user.login %>
+        <%= render :partial => 'shared/best_proposal', :object => best %>
       <% else %>
-        <% all_proposals.each do |proposal|
-          there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
-          <%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
-          <%= proposal.description %> <%= proposal.amount %>&nbsp;&euro; di <%= proposal.user.login %><br/>
-        <%end%>
-        <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
+        <div class="box">
+          <h1>
+            Elenco offerte ricevute<br/>
+            <small>
+              Quando ricevi una nuova offerta che ti sembra più vantaggiosa puoi indicarla come tale in modo da sollecitare la concorrenza
+              tra gli operatori.
+            </small>
+          </h1>
+          <div class="body">
+            <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
+              <%= hidden_field_tag 'request_id', @request.id %>
+              <% all_proposals.each do |proposal|
+                there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+
+                <table>
+                  <tr>
+                    <td colspan="2"><%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+                      Scegli questa come offerta milgiore</td>
+                  </tr>
+                  <tr>
+                    <td>Operatore</td>
+                    <td><%= proposal.user.login %></td>
+                  </tr>
+                  <tr>
+                    <td>Preventivo</td>
+                    <td><%= proposal.amount %> &euro;</td>
+                  </tr>
+                  <tr>
+                    <td>Descrizione</td>
+                    <td><%= proposal.description %></td>
+                  </tr>
+                </table>
+              <%end%>
+
+              <table>
+                <tr>
+                  <td colspan="2"><%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>
+                    Non mi piace nessuna offerta.</td>
+                </tr>
+              </table>
+              <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
+            <% end %>
+          </div>
+        </div>
+
       <% end %>
     </div>
 
     <% unless best.nil? %>
       <% best_proposer = best.user %>
-      <div id="contact">
-        Ecco i dati per contattare l'offerente
-        <table>
-          <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
-          <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
-          <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
-          <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
-          <% if best_proposer.is_professional %>
-            <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
-            <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
-            <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
-          <% end %>
-        </table>
+      <div class="box">
+        <h1>
+          Dati per contattare l'offerente<br/>
+          <small>
+            Qui di seguito sono riportati i dati dell'operatore che si è aggiudicato l'erogazione del servizio da te richiesto.
+          </small>
+        </h1>
+        <div class="body">
+          <table>
+            <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
+            <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
+            <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
+            <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
+            <% if best_proposer.is_professional %>
+              <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
+              <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
+              <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
+            <% end %>
+          </table>
+        </div>
       </div>
     <% end %>
   <% end %>
