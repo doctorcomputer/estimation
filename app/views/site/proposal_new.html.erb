@@ -16,19 +16,38 @@
   <%= hidden_field :request, 'id' %>
   <fieldset>
     <legend>Proposta</legend>
+        <div class="notes">
+          <h4>Proposta</h4>
+          <p>
+            Utilizza questa scheda per sottoporre la tua offerta. Le regole
+            del sito prescrivono che tu garantisca l'esecuzione del lavoro
+            secondo quanto da te descritto.
+          </p>
+          <p class="last">
+            Inserisci inoltre il preventivo in modo che il richiedente possa
+            valutare appieno la tua proposta.
+          </p>
+        </div>
     <div class="required">
       <%= f.label :description, 'Descrizione:' %>
       <%= f.text_area :description, :class=>:inputTextarea, :rows=>10, :cols=>21 %>
       <small class="error"><%= @proposal.errors[:description].join(". ") %></small>
+      <small>Descrivi qui i termini della tua offerta.</small>
     </div>
 
     <div class="required">
+      <%= f.label :amount, 'Ammontare in €:' %>
       <%= f.text_field :amount, :class=>:inputText, :size=>10, :maxlength=>100 %>
-      <%= f.label :amount, 'Ammontare:' %>
       <small class="error"><%= @proposal.errors[:amount].join(". ") %></small>
+      <small>Inserisci il preventivo per la tua offerta in euro.</small>
     </div>
 
-    <%= submit_tag "invia" %>
+    <div class="optional">
+      <%= f.label :btn_submit, 'Invia proposta' %>
+      <%= submit_tag "Invia la tua proposta", :id=>:btn_submit %>
+      <small>Premi qui per inviare la tua proposta.</small>
+    </div>
+
 
   </fieldset>
 <% end %>

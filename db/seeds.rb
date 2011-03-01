@@ -82,23 +82,27 @@ activities = ['imbiancare', 'ristrutturare', 'demolire', 'trovare qualcuno che p
 objects = ['casa mia', 'la cameretta dei bambini', 'Pasqualina, la nonna di 108 anni', 'Gino il mio cagnolino', "l'impianto elettrico"]
 ways = ['abbastanza velocemente', 'con calma', 'con qualità sopraffina']
 operators = ['Io posso farlo velocemente', "E' la mia specialità lo faccio in tre giorni"]
-100.times do |i|
+
+number_of_requests = 100
+
+number_of_requests.times do |i|
 
   the_user = users[i % users.length]
 
 
-  #some drafts
+  # create a draft Request for the user
   request1 = Request.create(:user => the_user,
         #active:    request is open to bids
         #expired:   request is close because of expiration date
         #draft:     not already saved
-        :status=>:draft,
+        :status => :draft,
         :category_id => 'root.house',
         :title=>"#{activities[(i+3) % activities.length]} n. #{i}",
         :description=>"Vorrei #{activities[(i+3) % activities.length]} di #{objects[i % objects.length]} #{ways[(i+2) % ways.length]}.",
         :expiration=>DateTime.now + i,
         :condition_confirmation=>DateTime.now)
 
+  # create an active Request for the user
   request1 = Request.create(:user => the_user,
         #active:    request is open to bids
         #expired:   request is close because of expiration date
@@ -130,19 +134,5 @@ operators = ['Io posso farlo velocemente', "E' la mia specialità lo faccio in t
 
 
 end
-
-20.times do |i|
-
-  request2 = Request.create(:user => user3,
-        :status=>:active,
-        :category_id => 'root.plants',
-        :title=>'baby sitting per il mese di marzo',
-        :description=>'Devrò andare fuori città molto spesso nel prossimo mese e sto cercando una baby sitter.',
-        :expiration=>DateTime.now + 100,
-        :condition_confirmation=>DateTime.now)
-      
-      
-end
-
 
 

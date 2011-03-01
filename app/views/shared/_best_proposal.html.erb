@@ -2,7 +2,7 @@
   <h1>
     Miglior offerta<br/>
     <small>
-      <%if best_proposal.request.is_active %>
+      <%if !best_proposal.nil? and best_proposal.request.is_active %>
         Alla scadenza della richiesta chi ha proposto questa offerta verrà messo in contatto con il richiedente.
       <%else%>
         Questa è la proposta che si è aggiudicata l'erogazione del servizio secondo le condizioni descritte.
