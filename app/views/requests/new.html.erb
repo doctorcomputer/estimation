@@ -117,18 +117,19 @@
   <% end %>
 
 
+<% all_proposals = @request.proposals %>
+<% best = @request.best_proposal %>
+
+<%# box to show the current best proposal %>
+<%= render :partial => 'shared/best_proposal', :object => best %>
+
+
+
 
 <%# box to chose the favourite proposal if request is active %>
-  <% all_proposals = @request.proposals %>
-  <% best = @request.best_proposal %>
+
 
   <% if @request.is_active %>
-
-    <%= render :partial => 'shared/best_proposal', :object => best %>
-
-
-
-
     <% unless all_proposals.nil? || all_proposals.count==0
       there_is_a_best_proposal = false%>
       <div class="box">
@@ -179,7 +180,9 @@
 
   <% end %>
 
-  <% if @request.is_expired %>
+
+
+  <% if @request.is_expired and !all_proposals.nil? and all_proposals.length >= 1%>
     <div id="best">
       <% unless best.nil? %>
         <%= render :partial => 'shared/best_proposal', :object => best %>
@@ -225,7 +228,7 @@
                 </tr>
               </table>
               <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
-            <% end %>
+            <% end #form%>
           </div>
         </div>
 
@@ -257,5 +260,16 @@
       </div>
     <% end %>
   <% end %>
+
+
+<% if @request.is_expired and ( all_proposals.nil? or all_proposals.empty? )%>
+      <div class="box">
+        <h1>Elenco offerte ricevute</h1>
+        <div class="body">
+          Ci dispiace, ma nessun operatore ha fatto una proposta per
+          la tua richiesta entro i termini di validità.
+        </div>
+      </div>
+<% end %>
 
 </div>

@@ -112,7 +112,7 @@ class RequestsController < ApplicationController
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :expired.to_s
       @requests = Request \
-        .where('status=:status AND :now>=expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
+        .where('user_id = :user_id AND status=:status AND :now>=expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
         .paginate( :page => params[:page], :per_page => per_page )
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
