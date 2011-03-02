@@ -1,81 +1,78 @@
-div.request img {
+div.proposal img {
     margin: 0;
 }
 
-div.requests a {
+div.proposals a {
     color: #5B8BC6;
     text-decoration: none;
 }
 
-div.requests a:hover {
+div.proposals a:hover {
     text-decoration: underline;
 }
 
-div.requests{
+div.proposals{
     display: table;
 }
 
-div.request{
+div.proposal{
     margin: 0px 0px 0px 0px;
     display: table-row;
 }
 
-div.request div {
+div.proposal div {
     display: table-cell;
     vertical-align: top;
     border-bottom: 1px dotted;
     padding: 5px;
 }
 
-div.request div.proposals {
-    color: gray;
+div.proposal div.description {
+    color: black;
     font-size: 10px;
     border-color: black;
 }
 
-div.request div.proposals strong {
+div.proposal div.description strong {
     font-weight: bold;
     font-size: 12px;
     color: black;
 }
 
-div.request div.proposals a {
+div.proposal div.description a {
     font-weight: lighter;
 }
 
-div.request div.times {
+div.proposal div.times {
     color: #E66919;
     font-size: 10px;
     border-color: black;
 }
 
-div.request div.times strong{
+div.proposal div.times strong{
     display: block;
 }
 
-div.request h1 {
+div.proposal h1 {
     font-size: 12px;
     font-weight: lighter;
     margin: 1px;
     padding: 0;
 }
 
-div.request h2 {
+div.proposal h2 {
     font-size: 10px;
     font-weight: lighter;
     margin: 1px;
     padding: 0;
 }
 
-div.request div.picture{
-    width: 100px;
-}
-div.request div.details{
+div.proposal div.details{
     width: 200px;
 }
-div.request div.proposals{
+div.proposal div.proposals{
     width: 150px;
 }
-div.request div.times{
+div.proposal div.times{
     width: 100px;
 }

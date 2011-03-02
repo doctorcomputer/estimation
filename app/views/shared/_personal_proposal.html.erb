@@ -1,0 +1,23 @@
+<div class="proposal">
+  <div class="details">
+    <h1>
+      <%= link_to "Offerta alla richiesta #{personal_proposal.request.title}", request_path(personal_proposal.request) %>
+    </h1>
+    <h2><%= (current_user == personal_proposal.user) ? "è una tua offerta" : "offerta di #{personal_proposal.user.login}" %></h2>
+  </div>
+
+  <div class="description">
+    <%= personal_proposal.description %><br/>
+    <%= personal_proposal.amount %> &euro;
+  </div>
+  <div class="times">
+    <strong>
+      <% if personal_proposal.request.is_expired %>
+        <%= "scaduta da #{distance_of_time_in_words DateTime.now, personal_proposal.request.expiration}" %>
+      <% else %>
+        <%= "scade tra #{distance_of_time_in_words DateTime.now, personal_proposal.request.expiration}" %>
+      <% end %>
+    </strong>
+    <%= personal_proposal.request.expiration.strftime("%d/%m/%Y %H:%M") %>
+  </div>
+</div>
