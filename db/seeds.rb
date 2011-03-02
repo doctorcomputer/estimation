@@ -78,61 +78,111 @@ users.push User.create(:login => 'demo2',
   :last_privacy_confirmation => DateTime.now,
   :confirmed => true)
 
-activities = ['imbiancare', 'ristrutturare', 'demolire', 'trovare qualcuno che possa prendersi cura di']
+activities = ['imbiancare', 'ristrutturare', 'demolire', 'trovare qualcuno che possa accudire']
 objects = ['casa mia', 'la cameretta dei bambini', 'Pasqualina, la nonna di 108 anni', 'Gino il mio cagnolino', "l'impianto elettrico"]
 ways = ['abbastanza velocemente', 'con calma', 'con qualità sopraffina']
-operators = ['Io posso farlo velocemente', "E' la mia specialità lo faccio in tre giorni"]
+operators = ['Io posso farlo velocemente', "E' la mia specialità lo faccio in tre giorni", "Non ho idea di come ma ci posso provare"]
 
-number_of_requests = 100
+number_of_requests = 33
 
-number_of_requests.times do |i|
+# create some draft requests for the users
+number_of_requests.times do |index_request|
+  puts "Create draft request #{index_request}/#{number_of_requests}"
+  the_user = users[index_request % users.length]
 
-  the_user = users[i % users.length]
-
-
-  # create a draft Request for the user
   request1 = Request.create(:user => the_user,
-        #active:    request is open to bids
-        #expired:   request is close because of expiration date
-        #draft:     not already saved
-        :status => :draft,
-        :category_id => 'root.house',
-        :title=>"#{activities[(i+3) % activities.length]} n. #{i}",
-        :description=>"Vorrei #{activities[(i+3) % activities.length]} di #{objects[i % objects.length]} #{ways[(i+2) % ways.length]}.",
-        :expiration=>DateTime.now + i,
-        :condition_confirmation=>DateTime.now)
-
-  # create an active Request for the user
-  request1 = Request.create(:user => the_user,
-        #active:    request is open to bids
-        #expired:   request is close because of expiration date
-        #draft:     not already saved
-        :status=>:active,
-        :category_id => 'root.house',
-        :title=>"#{activities[(i) % activities.length]} n. #{i}",
-        :description=>"Vorrei #{activities[(i) % activities.length]} di #{objects[i % objects.length]} #{ways[(i) % ways.length]}.",
-        :expiration=>DateTime.now + i,
-        :condition_confirmation=>DateTime.now)
-
-  (i % 11).times do |j|
-
-    offerer = users[ (i+j) % users.length]
-    Proposal.create(:request => request1,
-          :user => offerer,
-          :description => "#{operators[(i) % operators.length]} n. #{j}",
-          :amount => "#{(2+i*j)*700} eur",
-          :is_best => false)
-
-    offerer = users[ (i+1) % users.length ]
-    Proposal.create(:user => offerer,
-      :request => request1,
-      :description => 'Io posso farlo più velocemente',
-      :amount => "#{(i+3)*150} eur",
-      :is_best => false)
-        
-  end
-
+    #active:    request is open to bids
+    #expired:   request is close because of expiration date
+    #draft:     not already saved
+    :status => :draft,
+    :category_id => 'root.house',
+    :title=>"#{activities[(index_request+3) % activities.length]} n. #{index_request}",
+    :description=>"Vorrei #{activities[(index_request+3) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request+2) % ways.length]}.",
+    :expiration=>DateTime.now + index_request,
+    :condition_confirmation=>DateTime.now)
 
 end
 
 
+
+# create some active Request for the user with a best offer
+number_of_requests.times do |index_request|
+  puts "Create active request #{index_request}/#{number_of_requests}"
+
+  the_user = users[index_request % users.length]
+
+  # create an active Request for the user
+  request1 = Request.create(:user => the_user,
+    #active:    request is open to bids
+    #expired:   request is close because of expiration date
+    #draft:     not already saved
+    :status=>:active,
+    :category_id => 'root.house',
+    :title=>"#{activities[(index_request) % activities.length]} n. #{index_request}",
+    :description=>"Vorrei #{activities[(index_request) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request) % ways.length]}.",
+    :expiration=>DateTime.now + index_request,
+    :condition_confirmation=>DateTime.now)
+
+
+  number_of_proposals = index_request % 3
+  (number_of_proposals).times do |j|
+
+    last_proposal = users[ (index_request+j) % users.length]
+    Proposal.create(:request => request1,
+      :user => last_proposal,
+      :description => "#{operators[(index_request) % operators.length]} n. #{j}",
+      :amount => "#{(2+index_request*j)*700} eur",
+      :is_best => false)
+
+    last_proposal = users[ (index_request+1) % users.length ]
+    Proposal.create(:user => last_proposal,
+      :request => request1,
+      :description => 'Io posso farlo più velocemente',
+      :amount => "#{(index_request+3)*150} eur",
+      :is_best => (number_of_proposals-3 == j))
+
+  end
+
+end
+
+# create some active Request for the user with a best offer
+number_of_requests.times do |index_request|
+  puts "Create expired request #{index_request}/#{number_of_requests}"
+
+  the_user = users[index_request % users.length]
+
+  # create an active Request for the user
+  request1 = Request.new(:user => the_user,
+    #active:    request is open to bids
+    #expired:   request is close because of expiration date
+    #draft:     not already saved
+    :status=>:active,
+    :category_id => 'root.house',
+    :title=>"#{activities[(index_request) % activities.length]} n. #{index_request}",
+    :description=>"Vorrei #{activities[(index_request) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request) % ways.length]}.",
+    :expiration=>DateTime.now - index_request,
+    :condition_confirmation=>DateTime.now)
+  request1.save(:validate => false)
+
+  number_of_proposals = index_request % 3
+  number_of_proposals.times do |j|
+
+
+      operator_user = users[ (index_request+j) % users.length]
+      Proposal.create(
+        :user => operator_user,
+        :request => request1,
+        :description => "#{operators[(index_request) % operators.length]} n. #{j}",
+        :amount => "#{(2+index_request*j)*700} eur",
+        :is_best => false)
+
+      operator_user = users[ (index_request+1) % users.length ]
+      Proposal.create(
+        :user => operator_user,
+        :request => request1,
+        :description => 'Io posso farlo più velocemente',
+        :amount => "#{(index_request+3)*150} eur",
+        :is_best => (number_of_proposals-2 == j))
+
+  end
+end

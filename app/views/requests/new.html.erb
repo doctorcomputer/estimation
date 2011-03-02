@@ -117,11 +117,13 @@
   <% end %>
 
 
-<% all_proposals = @request.proposals %>
-<% best = @request.best_proposal %>
+  <% all_proposals = @request.proposals %>
+  <% best = @request.best_proposal %>
 
 <%# box to show the current best proposal %>
-<%= render :partial => 'shared/best_proposal', :object => best %>
+<% unless @request.is_draft %>
+  <%= render :partial => 'shared/best_proposal', :object => best %>
+<% end %>
 
 
 
@@ -183,93 +185,89 @@
 
 
   <% if @request.is_expired and !all_proposals.nil? and all_proposals.length >= 1%>
-    <div id="best">
-      <% unless best.nil? %>
-        <%= render :partial => 'shared/best_proposal', :object => best %>
-      <% else %>
-        <div class="box">
-          <h1>
-            Elenco offerte ricevute<br/>
-            <small>
-              Quando ricevi una nuova offerta che ti sembra più vantaggiosa puoi indicarla come tale in modo da sollecitare la concorrenza
-              tra gli operatori.
-            </small>
-          </h1>
-          <div class="body">
-            <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
-              <%= hidden_field_tag 'request_id', @request.id %>
-              <% all_proposals.each do |proposal|
-                there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
-
-                <table>
-                  <tr>
-                    <td colspan="2"><%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
-                      Scegli questa come offerta milgiore</td>
-                  </tr>
-                  <tr>
-                    <td>Operatore</td>
-                    <td><%= proposal.user.login %></td>
-                  </tr>
-                  <tr>
-                    <td>Preventivo</td>
-                    <td><%= proposal.amount %> &euro;</td>
-                  </tr>
-                  <tr>
-                    <td>Descrizione</td>
-                    <td><%= proposal.description %></td>
-                  </tr>
-                </table>
-              <%end%>
-
-              <table>
-                <tr>
-                  <td colspan="2"><%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>
-                    Non mi piace nessuna offerta.</td>
-                </tr>
-              </table>
-              <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
-            <% end #form%>
-          </div>
-        </div>
-
-      <% end %>
-    </div>
-
-    <% unless best.nil? %>
-      <% best_proposer = best.user %>
+    <% if best.nil? %>
       <div class="box">
         <h1>
-          Dati per contattare l'offerente<br/>
+          Elenco offerte ricevute<br/>
           <small>
-            Qui di seguito sono riportati i dati dell'operatore che si è aggiudicato l'erogazione del servizio da te richiesto.
+            Scegli una delle offerte ricevute come migliore per entrare in contatto con il proponente.
           </small>
         </h1>
         <div class="body">
-          <table>
-            <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
-            <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
-            <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
-            <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
-            <% if best_proposer.is_professional %>
-              <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
-              <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
-              <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
-            <% end %>
-          </table>
-        </div>
+          <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
+            <%= hidden_field_tag 'request_id', @request.id %>
+            <% all_proposals.each do |proposal|
+              there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+
+              <table>
+                <tr>
+                  <td colspan="2"><%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+                    Scegli questa come offerta milgiore</td>
+                </tr>
+                <tr>
+                  <td>Operatore</td>
+                  <td><%= proposal.user.login %></td>
+                </tr>
+                <tr>
+                  <td>Preventivo</td>
+                  <td><%= proposal.amount %> &euro;</td>
+                </tr>
+                <tr>
+                  <td>Descrizione</td>
+                  <td><%= proposal.description %></td>
+                </tr>
+              </table>
+            <%end%>
+
+            <table>
+              <tr>
+                <td colspan="2"><%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>
+                  Non mi piace nessuna offerta.</td>
+              </tr>
+            </table>
+            <input type="submit" value="seleziona l'offerta preferita per entrare in contatto con il proponente"/>
+          <% end #form%>
+        </div> <!-- .body -->
       </div>
-    <% end %>
+
+    </div> <!-- .box -->
   <% end %>
+
+  <% unless best.nil? %>
+    <% best_proposer = best.user %>
+    <div class="box">
+      <h1>
+        Dati per contattare l'offerente<br/>
+        <small>
+          Qui di seguito sono riportati i dati dell'operatore che si è aggiudicato l'erogazione del servizio da te richiesto.
+        </small>
+      </h1>
+      <div class="body">
+        <table>
+          <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
+          <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
+          <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
+          <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
+          <% if best_proposer.is_professional %>
+            <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
+            <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
+            <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 
 <% if @request.is_expired and ( all_proposals.nil? or all_proposals.empty? )%>
-      <div class="box">
-        <h1>Elenco offerte ricevute</h1>
-        <div class="body">
-          Ci dispiace, ma nessun operatore ha fatto una proposta per
-          la tua richiesta entro i termini di validità.
-        </div>
-      </div>
+  <div class="box">
+    <h1>Elenco offerte ricevute</h1>
+    <div class="body">
+      Ci dispiace, ma nessun operatore ha fatto una proposta per
+      la tua richiesta entro i termini di validità.
+    </div>
+  </div>
 <% end %>
 
 </div>
