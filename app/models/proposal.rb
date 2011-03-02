@@ -5,6 +5,10 @@ class Proposal < ActiveRecord::Base
 
   validates_presence_of :description, :amount
 
+  # Pagination
+  cattr_reader :per_page
+  @@per_page = 10
+
   def self.find_best(user)
     Proposal \
       .joins(:request) \

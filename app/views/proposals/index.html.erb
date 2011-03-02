@@ -1,57 +1,69 @@
-<%unless @proposals.nil? || @proposals.count == 0 %>
-  <table>
-    <thead>
-      <tr>
-        <th>Richiesta</th>
-        <th>Scadenza</th>
-        <th>La tua offerta</th>
-        <th>Migliore</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%@proposals.each do |proposal|%>
+<div id="layout_side_main">
+
+  <div id="top_pagination">
+    <%= my_page_entries_info @proposals %>
+  </div>
+
+  <%unless @proposals.nil? || @proposals.count == 0 %>
+    <table>
+      <thead>
         <tr>
-          <td>
-            <%= link_to proposal.request.title, request_detail_path(proposal.request) %><br/>
-            di <%= proposal.request.user.login %>
-          </td>
-          <td>
-            <%= proposal.request.expiration.strftime("%d/%m/%Y %H:%M") %>
-          </td>
-          <td>
-            <%= proposal.description %><br/>
-            <%= proposal.amount %> &euro;
-          </td>
-          <td>
-            <%if proposal.is_best%>
-              <strong>SI</strong>
-            <%else%>
-              NO
-            <%end%>
-          </td>
-          <td>
-            <%if proposal.is_best && proposal.request.is_expired%>
-              <% originator = proposal.request.user %>
-              <table>
-                <tr><td>Nominativo:</td><td><%= originator.first_name %> <%= originator.last_name %></td></tr>
-                <tr><td>Email:</td><td><%= originator.email %></td></tr>
-                <tr><td>Indirizzo:</td><td><%= originator.address %> <%= originator.zip %> <%= originator.city %></td></tr>
-                <tr><td>Utente professionale:</td><td><%= originator.is_professional ? "si" : "no" %></td></tr>
-                <% if originator.is_professional %>
-                  <tr><td>Partita IVA:</td><td><%= originator.vat %></td></tr>
-                  <tr><td>Ragione sociale:</td><td><%= originator.company_name %></td></tr>
-                  <tr><td>Attività principale:</td><td><%= originator.activity %></td></tr>
-                <% end %>
-              </table>
-            <%else%>
-              &nbsp;
-            <%end%>
-          </td>
+          <th>Richiesta</th>
+          <th>Scadenza</th>
+          <th>La tua offerta</th>
+          <th>Migliore</th>
+          <th></th>
         </tr>
-      <%end%>
-    </tbody>
-  </table>
-<%else%>
-  Non ci sono elementi in questo elenco
-<%end%>
+      </thead>
+      <tbody>
+        <%@proposals.each do |proposal|%>
+          <tr>
+            <td>
+              <%= link_to proposal.request.title, request_detail_path(proposal.request) %><br/>
+              di <%= proposal.request.user.login %>
+            </td>
+            <td>
+              <%= proposal.request.expiration.strftime("%d/%m/%Y %H:%M") %>
+            </td>
+            <td>
+              <%= proposal.description %><br/>
+              <%= proposal.amount %> &euro;
+            </td>
+            <td>
+              <%if proposal.is_best%>
+                <strong>SI</strong>
+              <%else%>
+                NO
+              <%end%>
+            </td>
+            <td>
+              <%if proposal.is_best && proposal.request.is_expired%>
+                <% originator = proposal.request.user %>
+                <table>
+                  <tr><td>Nominativo:</td><td><%= originator.first_name %> <%= originator.last_name %></td></tr>
+                  <tr><td>Email:</td><td><%= originator.email %></td></tr>
+                  <tr><td>Indirizzo:</td><td><%= originator.address %> <%= originator.zip %> <%= originator.city %></td></tr>
+                  <tr><td>Utente professionale:</td><td><%= originator.is_professional ? "si" : "no" %></td></tr>
+                  <% if originator.is_professional %>
+                    <tr><td>Partita IVA:</td><td><%= originator.vat %></td></tr>
+                    <tr><td>Ragione sociale:</td><td><%= originator.company_name %></td></tr>
+                    <tr><td>Attività principale:</td><td><%= originator.activity %></td></tr>
+                  <% end %>
+                </table>
+              <%else%>
+                &nbsp;
+              <%end%>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  <%else%>
+    Non ci sono elementi in questo elenco
+  <%end%>
+
+  <div id="bottom_pagination">
+    <%= will_paginate @proposals, :previous_label => '&laquo;', :next_label => '&raquo;', :container => false %>
+  </div>
+
+</div>
