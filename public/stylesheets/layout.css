@@ -14,6 +14,8 @@ body{
     background-image:url('../images/stripes.png');
 }
 
+
+
 div.layout_centering {
     width: 920px;
     margin: auto;
@@ -66,6 +68,12 @@ div.layout_centering {
     padding: 0px;
     margin: 10px 0px 0px 0px;
     text-align: center;
+    background-image:url('../images/footer_stripes_tiled.png');
+    color: #D7B117;
+}
+
+#layout_footer A{
+    color: inherit;
 }
 
 #layout_flash{
