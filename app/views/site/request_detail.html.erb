@@ -33,11 +33,20 @@ there_are_proposals = (@request.proposals.count >= 1)
       <%unless (unloved_proposals.nil? || unloved_proposals.count == 0) %>
         <ul>
           <% unloved_proposals.each do |proposal| %>
-            <li>
-              <%= proposal.description %>
-              <%= proposal.amount %> &euro;
-              <%= proposal.user.login %>
-            </li>
+              <table>
+                <tr>
+                  <td>Operatore</td>
+                  <td><%= proposal.user.login %></td>
+                </tr>
+                <tr>
+                  <td>Preventivo</td>
+                  <td><%= proposal.amount %> &euro;</td>
+                </tr>
+                <tr>
+                  <td>Descrizione</td>
+                  <td><%= proposal.description %></td>
+                </tr>
+              </table>
           <% end%>
         </ul>
       <% end %>

@@ -3,12 +3,15 @@
     <h1>
       <%= link_to "Offerta alla richiesta #{personal_proposal.request.title}", request_path(personal_proposal.request) %>
     </h1>
+    <!--
     <h2><%= (current_user == personal_proposal.user) ? "è una tua offerta" : "offerta di #{personal_proposal.user.login}" %></h2>
+    -->
   </div>
 
   <div class="description">
     <%= personal_proposal.description %><br/>
-    <%= personal_proposal.amount %> &euro;
+    preventivo: <%= personal_proposal.amount %> &euro;<br/>
+    migliore: <%= personal_proposal.is_best ? "si" : "no" %>
   </div>
   <div class="times">
     <strong>

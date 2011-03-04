@@ -1,18 +1,19 @@
-div.proposal img {
-    margin: 0;
-}
-
-div.proposals a {
-    color: #5B8BC6;
-    text-decoration: none;
-}
-
-div.proposals a:hover {
-    text-decoration: underline;
-}
-
 div.proposals{
     display: table;
+}
+
+div.proposal_header{
+    display: table-row;
+    font-size: 70%;
+}
+
+div.proposal_header div {
+    display: table-cell;
+    vertical-align: top;
+    border-bottom: 1px dotted;
+    padding: 1px;
+    background: #dedede;
+    color: black;
 }
 
 div.proposal{
@@ -25,6 +26,10 @@ div.proposal div {
     vertical-align: top;
     border-bottom: 1px dotted;
     padding: 5px;
+}
+
+div.proposal img {
+    margin: 0;
 }
 
 div.proposal div.description {
@@ -76,3 +81,14 @@ div.proposal div.proposals{
 div.proposal div.times{
     width: 100px;
 }
+
+/* links */
+div.proposals a {
+    color: #5B8BC6;
+    text-decoration: none;
+}
+
+div.proposals a:hover {
+    text-decoration: underline;
+}
+/* links */

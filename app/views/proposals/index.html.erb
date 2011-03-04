@@ -6,6 +6,19 @@
 
   <%unless @proposals.nil? || @proposals.count == 0 %>
     <div class="proposals">
+
+      <div class="proposal_header">
+        <div class="details">
+          richiesta
+        </div>
+        <div class="description">
+          dettagli proposta
+        </div>
+        <div class="times">
+          scadenza
+        </div>
+      </div>
+
       <%@proposals.each do |proposal|%>
         <%= render :partial => 'shared/personal_proposal', :object => proposal %>
       <%end%>

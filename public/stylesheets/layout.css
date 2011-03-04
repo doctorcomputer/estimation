@@ -62,18 +62,23 @@ div.layout_centering {
 
 #layout_footer{
     clear: both;
-    border-top: 1px dotted gray;
-    font-size: 12px;
-    font-style: italic;
-    padding: 0px;
-    margin: 10px 0px 0px 0px;
+    border-top: 1px solid #dedede;
+    font-size: 60%;
+    font-style: normal;
+    padding: 10px 0 10px 0;
+    margin: 10px 0px 10px 0px;
     text-align: center;
     background-image:url('../images/footer_stripes_tiled.png');
-    color: #D7B117;
+    color: #555555;  /* #D7B117; */
 }
 
 #layout_footer A{
     color: inherit;
+}
+
+#layout_footer P{
+    margin: 0;
+    padding: 0;
 }
 
 #layout_flash{
