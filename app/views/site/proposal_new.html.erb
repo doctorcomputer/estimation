@@ -12,7 +12,7 @@
   specificato dalle condizioni d'utilizzo del sito.
 </p>
 
-<%= form_for @proposal, :url => proposal_submission_path do |f| %>
+<%= form_for @proposal, :url => proposal_submission_path, :html => {:class => :pretty} do |f| %>
   <%= hidden_field :request, 'id' %>
   <fieldset>
     <legend>Proposta</legend>
