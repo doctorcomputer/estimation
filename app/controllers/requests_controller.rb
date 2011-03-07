@@ -14,12 +14,17 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    if @request.is_draft
-      render :action => :new
-    else
-      @proposal = Proposal.new
-      render :action => :new
+    
+    if @request.is_active
+      the_action = :new_active
+    elsif @request.awarded?
+      the_action = :new_awarded
+    elsif @request.is_expired
+      the_action = :new_expired
+    elsif @request.is_draft
+      the_action = :new
     end
+    render :action => the_action
   end
 
   def create

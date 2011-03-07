@@ -1,0 +1,109 @@
+<%
+# This view should be used to show a user its active requests.
+# The view should give access to the following functionalities:
+# * select the best proposal (if any);
+# * show a list of current proposals (if any)
+%>
+
+<% all_proposals = @request.proposals %>
+<% best = @request.best_proposal %>
+
+<div id="layout_side_main">
+
+  <h1>Richiesta attiva</h1>
+
+  <%= render :partial => 'shared/personal_request', :object => @request %>
+  <%= render :partial => 'shared/best_proposal', :object => best %>
+
+  <% if current_user == @request.user %>
+    <% unless all_proposals.nil? || all_proposals.count==0
+      there_is_a_best_proposal = false%>
+      <div class="box">
+        <h1>
+          Elenco offerte ricevute<br/>
+          <small>
+            Quando ricevi una nuova offerta che ti sembra
+            più vantaggiosa puoi indicarla come tale
+            in modo da sollecitare la concorrenza
+            tra gli operatori.
+          </small>
+        </h1>
+        <div class="body">
+          <%= form_tag(set_best_proposal_path, :method => :post)  do |f| %>
+            <%= hidden_field_tag 'request_id', @request.id %>
+            <% all_proposals.each do |proposal|
+              there_is_a_best_proposal = there_is_a_best_proposal || proposal.is_best %>
+
+              <table>
+                <tr>
+                  <td colspan="2"><%= radio_button_tag :proposal_id, proposal.id, proposal==best %>
+                    Scegli questa come offerta milgiore</td>
+                </tr>
+                <tr>
+                  <td>Operatore</td>
+                  <td><%= proposal.user.login %></td>
+                </tr>
+                <tr>
+                  <td>Preventivo</td>
+                  <td><%= proposal.amount %> &euro;</td>
+                </tr>
+                <tr>
+                  <td>Descrizione</td>
+                  <td><%= proposal.description %></td>
+                </tr>
+              </table>
+            <%end%>
+
+            <table>
+              <tr>
+                <td colspan="2"><%= radio_button_tag :proposal_id, '', !there_is_a_best_proposal %>
+                  Nessuna delle proposte elencate è soddisfacente.</td>
+              </tr>
+            </table>
+            <input type="submit" value="imposta la proposta selezionata come preferita"/>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="box">
+      <h1>
+        Elenco offerte presentate<br/>
+        <small>
+          Ecco qui la lista delle offerte presentate per questa richiesta.
+          Fatti un idea e sottometti la tua offerta!
+        </small>
+      </h1>
+      <div class="body">
+        <% all_proposals.each do |proposal| %>
+          <table>
+            <tr>
+              <td>Operatore</td>
+              <td><%= proposal.user.login %></td>
+            </tr>
+            <tr>
+              <td>Preventivo</td>
+              <td><%= proposal.amount %> &euro;</td>
+            </tr>
+            <tr>
+              <td>Descrizione</td>
+              <td><%= proposal.description %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="box">
+      <h1>
+        Presenta la tua offerta<br/>
+      </h1>
+      <div class="body">
+        <%=link_to 'Fai la tua proposta', proposal_new_path(@request) %>
+      </div>
+    </div>
+
+  <% end %>
+
+
+</div>

@@ -30,6 +30,14 @@ class Request < ActiveRecord::Base
     return !(self.is_active || self.is_expired)
   end
 
+  # A Request is "awarded" when a proposal has been selected as best by the Request's owner
+  # and when it is expired.
+  # An awarded Request should not be modified and the Request's owner and best bid's owner
+  # should be granted access to each other contact data.
+  def awarded?
+    return is_expired && !best_proposal.nil?
+  end
+
   def self.find_drafts(user=nil)
     if user.nil?
       Request.where('status = :status', :status => :draft)
