@@ -17,12 +17,17 @@ class ApplicationController < ActionController::Base
       @active_proposals_number = Proposal.count_active(current_user)
       @expired_proposals_number = Proposal.count_expired(current_user)
       @best_proposals_number = Proposal.count_best(current_user)
+      @awarded_proposals_number = Proposal.count_awarded(current_user)
+      @rejected_proposals_number = Proposal.count_rejected(current_user)
     else
       @draft_requests_number = 0
       @expired_requests_number = 0
       @active_requests_number = 0
       @active_proposals_number = 0
       @expired_proposals_number = 0
+      @best_proposals_number = 0
+      @awarded_proposals_number = 0
+      @rejected_proposals_number = 0
     end
   end
 
