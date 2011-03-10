@@ -1,0 +1,70 @@
+<% best = @request.best_proposal %>
+<% best_proposer = best.user %>
+<% owner = @request.user %>
+
+
+<div id="layout_side_main">
+  <%= render :partial => 'shared/personal_request', :object => @request %>
+  <%= render :partial => 'shared/best_proposal', :object => best %>
+
+  <%if current_user == best_proposer || current_user == best_proposer %>
+
+    <div class="box">
+      <h1>
+        Dati per contattare il committente<br/>
+        <small>
+          Qui di seguito sono riportati i dati del committente che ha inserito la richiesta.
+        </small>
+      </h1>
+      <div class="body">
+        <table>
+          <tr><td>Nominativo:</td><td><%= owner.first_name %> <%= owner.last_name %></td></tr>
+          <tr><td>Email:</td><td><%= owner.email %></td></tr>
+          <tr><td>Indirizzo:</td><td><%= owner.address %> <%= owner.zip %> <%= owner.city %></td></tr>
+          <tr><td>Utente professionale:</td><td><%= owner.is_professional ? "si" : "no" %></td></tr>
+          <% if owner.is_professional %>
+            <tr><td>Partita IVA:</td><td><%= owner.vat %></td></tr>
+            <tr><td>Ragione sociale:</td><td><%= owner.company_name %></td></tr>
+            <tr><td>Attività principale:</td><td><%= owner.activity %></td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+    <div class="box">
+      <h1>
+        Dati per contattare l'operatore<br/>
+        <small>
+          Qui di seguito sono riportati i dati dell'operatore che si è aggiudicato l'erogazione del servizio da te richiesto.
+        </small>
+      </h1>
+      <div class="body">
+        <table>
+          <tr><td>Nominativo:</td><td><%= best_proposer.first_name %> <%= best_proposer.last_name %></td></tr>
+          <tr><td>Email:</td><td><%= best_proposer.email %></td></tr>
+          <tr><td>Indirizzo:</td><td><%= best_proposer.address %> <%= best_proposer.zip %> <%= best_proposer.city %></td></tr>
+          <tr><td>Utente professionale:</td><td><%= best_proposer.is_professional ? "si" : "no" %></td></tr>
+          <% if best_proposer.is_professional %>
+            <tr><td>Partita IVA:</td><td><%= best_proposer.vat %></td></tr>
+            <tr><td>Ragione sociale:</td><td><%= best_proposer.company_name %></td></tr>
+            <tr><td>Attività principale:</td><td><%= best_proposer.activity %></td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="box">
+      <h1>
+        Questa offerta è scaduta<br/>
+      </h1>
+      <div class="body">
+        L'utente che ha inserito questa richiesta
+        ha già trovato la migliore offerta.
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

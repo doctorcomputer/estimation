@@ -1,49 +1,56 @@
-house
-    design
-    renovations
-        bath
-    maintenance
-        painting
-        masonrywork
-        electricity
-        alarms
-        network
-        other
-    plants
-        electrical
-        plumbing
-        heating
-        air_conditioning
-    condo_management
-    other
-money
-    administration
-    fiscal
-    finance
-family
-    baby_sitting
-    nursing
-    lawyer
-wellness
-    treatment
-    hair
-    body
-special_event
-    catering
-    party
-    wedding_planning
-    other
-education
-    tutoring
-    other
-fashion
-    shopping_tutor
-    tailor
-    shoemaking
-    other
-hobby
-    musical_instruments
-    lutist
-kids
-    baby_sitting
-    tutoring
+casa/house
+    progettazione/design
+    ristrutturazione/renovations
+    manutenzione/maintenance
+        imbiancatura/painting
+        muratora/masonrywork
+        elettricità/electricity
+        allarmi/alarms
+        network/network
+        automazione/automation
+        domotica/domotics
+        altro/other
+    impiantistica/plants
+        elettricità/electrical
+        idraulica/plumbing
+        riscaldamento/heating
+        climatizzazione/cooling
+        condizionamento/air_conditioning
+        altro/other
+    amministratiri di condominio/condo_management
+    altro/other
+soldi/money
+    amministrazione/administration
+    consulenza fiscale/fiscal
+    consulenza finanziaria/finance
+famiglia/family
+    baby sitter/baby_sitting
+    assistenza infermieristica/nursing
+    assistenza legale/lawyer
+    altro/other
+benessere/wellness
+    trattamenti/treatment
+    capelli/hair
+    corpo/body
+    massaggi/massage
+    unghie/nails
+    altro/other
+eventi,ricorrenze e cerimonie/special_event
+    catering/catering
+    feste/party
+    wedding planner/wedding_planning
+    altro/other
+educazione/education
+    ripetizioni/tutoring
+    altro/other
+moda/fashion
+    persoanl_shopper/persoanl_shopper
+    sartoria/tailor
+    calzature/shoemaking
+    altro/other
+hobby/hobby
+    strumenti musicali/musical_instruments
+    liutaio/lutist
+bambini/kids
+    baby_sitter/baby_sitting
+    ripetizioni/tutoring

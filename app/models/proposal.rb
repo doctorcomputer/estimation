@@ -9,6 +9,37 @@ class Proposal < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
+  # Find the proposals that have not be awarded.
+  # These proposal are related to expired requests.
+  def self.find_rejected(user)
+    Proposal \
+      .joins(:request) \
+      .where(Proposal.table_name => {:user_id => user.id}) \
+      .where(Proposal.table_name => {:is_best => false}) \
+      .where(["#{Request.table_name}.status=:status", {:status => :active}]) \
+      .where([":now>=#{Request.table_name}.expiration", {:now => DateTime.now}])
+  end
+
+  def self.count_rejected(user)
+    self.find_rejected(user).count
+  end
+
+  # Find the proposals that have not be awarded.
+  # These proposal are related to expired requests.
+  def self.find_awarded(user)
+    Proposal \
+      .joins(:request) \
+      .where(Proposal.table_name => {:user_id => user.id}) \
+      .where(Proposal.table_name => {:is_best => true}) \
+      .where(["#{Request.table_name}.status=:status", {:status => :active}]) \
+      .where([":now>=#{Request.table_name}.expiration", {:now => DateTime.now}])
+  end
+
+  def self.count_awarded(user)
+    self.find_awarded(user).count
+  end
+
+  # Find the proposals that are currently best
   def self.find_best(user)
     Proposal \
       .joins(:request) \

@@ -12,13 +12,20 @@
           </ul>
         </li>
         <li>
-          Le tue offerte
+          Offerte in corso
           <ul>
-            <li><%= link_to "attive (#{@active_proposals_number})", proposals_path(:status => :active), :class=>:first %></li>
-            <li><%= link_to "migliori (#{@best_proposals_number})", proposals_path(:status => :best), :class=>:middle %></li>
-            <li><%= link_to "scadute (#{@expired_proposals_number})", proposals_path(:status => :expired), :class=>:last %></li>
+            <li><%= link_to "tutte (#{@active_proposals_number})", proposals_path(:status => :active), :class=>:first %></li>
+            <li><%= link_to "migliori (#{@best_proposals_number})", proposals_path(:status => :best), :class=>:last %></li>
           </ul>
         </li>
+        <li>
+          Offerte terminate
+          <ul>
+            <li><%= link_to "aggiudicate (#{@awarded_proposals_number})", proposals_path(:status => :awarded), :class=>:first %></li>
+            <li><%= link_to "perse (#{@rejected_proposals_number})", proposals_path(:status => :rejected), :class=>:last %></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
