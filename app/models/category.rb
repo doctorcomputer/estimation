@@ -36,16 +36,98 @@ class Category
   
   def self.root
 
-    root = Category.new('root') \
-      .add_child(Category.new('house') \
-          .add_child(Category.new('design')) \
-          .add_child(Category.new('renovations')) \
-          .add_child(Category.new('maintenance')) \
-       ) \
-      .add_child(Category.new('plants') \
-          .add_child(Category.new('electrical')) \
-          .add_child(Category.new('plumbing')) \
-      )
+root = Category.new('root') \
+  .add_child( \
+    Category.new('house') \
+    .add_child( \
+      Category.new('maintenance') \
+        .add_child(Category.new('painting')) \
+        .add_child(Category.new('masonrywork')) \
+        .add_child(Category.new('electricity')) \
+        .add_child(Category.new('alarms')) \
+        .add_child(Category.new('network')) \
+        .add_child(Category.new('automation')) \
+        .add_child(Category.new('domotics')) \
+        .add_child(Category.new('other')) \
+    ) \
+    .add_child(Category.new('design')) \
+    .add_child( \
+      Category.new('plants') \
+        .add_child(Category.new('electrical')) \
+        .add_child(Category.new('plumbing')) \
+        .add_child(Category.new('heating')) \
+        .add_child(Category.new('cooling')) \
+        .add_child(Category.new('air_conditioning')) \
+        .add_child(Category.new('other')) \
+    ) \
+    .add_child(Category.new('condo_management')) \
+    .add_child(Category.new('other'))
+   ) \
+  .add_child( \
+    Category.new('money') \
+      .add_child(Category.new('administration')) \
+      .add_child(Category.new('fiscal')) \
+      .add_child(Category.new('finance')) \
+  ) \
+  .add_child( \
+    Category.new('family') \
+      .add_child(Category.new('baby_sitting')) \
+      .add_child(Category.new('nursing')) \
+      .add_child(Category.new('lawyer')) \
+      .add_child(Category.new('other')) \
+  )  \
+  .add_child( \
+    Category.new('wellness') \
+      .add_child(Category.new('treatment')) \
+      .add_child(Category.new('hair')) \
+      .add_child(Category.new('body')) \
+      .add_child(Category.new('massage')) \
+      .add_child(Category.new('nails')) \
+      .add_child(Category.new('other')) \
+  ) \
+  .add_child( \
+    Category.new('special_event') \
+      .add_child(Category.new('catering')) \
+      .add_child(Category.new('party')) \
+      .add_child(Category.new('wedding_planning')) \
+      .add_child(Category.new('other')) \
+  ) \
+  .add_child( \
+    Category.new('education') \
+      .add_child(Category.new('tutoring')) \
+      .add_child(Category.new('other')) \
+  ) \
+  .add_child( \
+    Category.new('fashion') \
+      .add_child(Category.new('persoanl_shopper')) \
+      .add_child(Category.new('tailor')) \
+      .add_child(Category.new('shoemaking')) \
+      .add_child(Category.new('other')) \
+  )  \
+  .add_child( \
+    Category.new('hobby') \
+      .add_child(Category.new('musical_instruments')) \
+      .add_child(Category.new('lutist')) \
+      .add_child(Category.new('other')) \
+  )  \
+  .add_child( \
+    Category.new('kids') \
+      .add_child(Category.new('baby_sitting')) \
+      .add_child(Category.new('tutoring')) \
+      .add_child(Category.new('other')) \
+  )
+
+
+#    root = Category.new('root') \
+#      .add_child(Category.new('house') \
+#          .add_child(Category.new('design')) \
+#          .add_child(Category.new('renovations')) \
+#          .add_child(Category.new('maintenance')) \
+#       ) \
+#      .add_child(Category.new('plants') \
+#          .add_child(Category.new('electrical')) \
+#          .add_child(Category.new('plumbing')) \
+#      )
 
 
 
@@ -137,7 +219,7 @@ class OptionsVisitor
 
   def visit(category)
     if( !category.is_root || (category.is_root && @include_root) )
-      @options.push Option.new(category.unique_key, ("-" * category.depth) + I18n.t("category." + category.unique_key + ".title"))
+      @options.push Option.new(category.unique_key, ("-" * (category.depth-1)) + I18n.t("category." + category.unique_key + ".title"))
     end
     return self;
   end

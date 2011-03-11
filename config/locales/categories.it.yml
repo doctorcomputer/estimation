@@ -5,14 +5,116 @@ it:
       house:
         title: "Casa"
         design:
-          title: "Design e progettazione"
+          title: "Design e arredamento"
         renovations:
-          title: "Ristrutturazione"
+          title: "Ristrutturazioni"
         maintenance:
           title: "Manutenzione"
-      plants:
-        title: "Manutenzione impianti"
-        electrical:
-          title: "Elettricista"
-        plumbing:
-          title: "Idraulico"
+          painting:
+            title: "Imbiancatura"
+          masonrywork:
+            title: "Muratura"
+          electricity:
+            title: "Impianto elettrico"
+          alarms:
+            title: "Allarmi"
+          network:
+            title: "Cablaggio reti"
+          automation:
+            title: "Automazione"
+          domotics:
+            title: "Domotica"
+          other:
+            title: "Altro"
+        plants:
+          title: "Interventi impiantistici"
+          electrical:
+            title: "Impianto elettrico"
+          plumbing:
+            title: "Impianto idraulico"
+          heating:
+            title: "Impianto riscaldamento"
+          cooling:
+            title: "Impianto raffreddamento"
+          air_conditioning:
+            title: "Impianto aria condizionata"
+          other:
+            title: "Altro"
+        condo_management:
+          title: "Amministrazione condomini"
+        other:
+          title: "Altro"
+      money:
+        title: "Denaro"
+        administration:
+          title: "Investimenti"
+        fiscal:
+          title: "Consulenza fiscale"
+        finance:
+          title: "Consulenza finanziaria"
+      family:
+        title: "Famiglia"
+        baby_sitting:
+          title: "Baby sitter"
+        nursing:
+          title: "Servizi infermieristici"
+        lawyer:
+          title: "Avvocati"
+        other:
+          title: "Altro"
+      wellness:
+        title: "Benessere"
+        treatment:
+          title: "Trattamenti"
+        hair:
+          title: "Parrucchieri"
+        body:
+          title: "Trattamenti corpo"
+        massage:
+          title: "Massaggi"
+        nails:
+          title: "Unghie"
+        other:
+          title: "Altro"
+      special_event:
+        title: "Eventi speciali"
+        catering:
+          title: "Catering"
+        party:
+          title: "Organizzazione feste"
+        wedding_planning:
+          title: "Wedding planning"
+        other:
+          title: "Altro"
+      education:
+        title: "Servizi educativi"
+        tutoring:
+          title: "Ripetizioni"
+        other:
+          title: "Altro"
+      fashion:
+        title: "Moda"
+        persoanl_shopper:
+          title: "Personal Shopper"
+        tailor:
+          title: "Sartoria"
+        shoemaking:
+          title: "Calzaturieri"
+        other:
+          title: "Altro"
+      hobby:
+        title: "Tempo libero"
+        musical_instruments:
+          title: "Strumenti musicali"
+        lutist:
+          title: "Liuteria"
+        other:
+          title: "Altro"
+      kids:
+        title: "Bambini"
+        baby_sitting:
+          title: "Baby sitter"
+        tutoring:
+          title: "Ripetizioni"
+        other:
+          title: "Altro"
