@@ -1,7 +1,7 @@
 <div class="requests">
   <div class="request">
     <div class="picture">
-      <%= image_tag 'apartment.jpg' %>
+      <%= image_tag "category/#{site_request.category_id}.jpg" %>
     </div>
     <div class="details">
       <h1><%= link_to site_request.title, request_detail_path(site_request) %></h1>

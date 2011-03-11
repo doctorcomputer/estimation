@@ -1,3 +1,9 @@
+require 'category'
+
+v = CategoryCollectsAllVisitor.new
+Category.root.accept v
+categories = v.values
+
 users = Array.new
 
 users.push User.create(:login => 'albert',
@@ -95,7 +101,7 @@ number_of_requests.times do |index_request|
     #expired:   request is close because of expiration date
     #draft:     not already saved
     :status => :draft,
-    :category_id => 'root.house',
+    :category_id => categories[rand(categories.length)],
     :title=>"#{activities[(index_request+3) % activities.length]} n. #{index_request}",
     :description=>"Vorrei #{activities[(index_request+3) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request+2) % ways.length]}.",
     :expiration=>DateTime.now + index_request,
@@ -117,7 +123,7 @@ number_of_requests.times do |index_request|
     #expired:   request is close because of expiration date
     #draft:     not already saved
     :status=>:active,
-    :category_id => 'root.house',
+    :category_id => categories[rand(categories.length)],
     :title=>"#{activities[(index_request) % activities.length]} n. #{index_request}",
     :description=>"Vorrei #{activities[(index_request) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request) % ways.length]}.",
     :expiration=>DateTime.now + index_request,
@@ -157,7 +163,7 @@ number_of_requests.times do |index_request|
     #expired:   request is close because of expiration date
     #draft:     not already saved
     :status=>:active,
-    :category_id => 'root.house',
+    :category_id => categories[rand(categories.length)],
     :title=>"#{activities[(index_request) % activities.length]} n. #{index_request}",
     :description=>"Vorrei #{activities[(index_request) % activities.length]} di #{objects[index_request % objects.length]} #{ways[(index_request) % ways.length]}.",
     :expiration=>DateTime.now - index_request,

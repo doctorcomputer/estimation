@@ -225,6 +225,23 @@ class OptionsVisitor
   end
 end
 
+class CategoryCollectsAllVisitor
+
+  def initialize()
+    @values = Array.new
+  end
+
+  def visit(category)
+    if( !category.is_root )
+      @values.push category.unique_key
+    end
+    return self;
+  end
+
+  def values
+    @values
+  end
+end
 
 
 #root = Category.root
