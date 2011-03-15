@@ -14,14 +14,24 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    
+
+
     if @request.is_active
       the_action = :new_active
+
+    #The request has been awarded and only the owner and the best offer user
+    #might access the details. Other user should be informed that the request
+    #has been awarded, without disclosing further details
     elsif @request.awarded?
       the_action = :new_awarded
+
+    #The request has expired.
     elsif @request.is_expired
       the_action = :new_expired
+      
+    #The request is being edited and only the owner might access it.
     elsif @request.is_draft
+      raise "Unauthorized" if current_user != @request.user
       the_action = :new
     end
     render :action => the_action
@@ -107,17 +117,21 @@ class RequestsController < ApplicationController
   def index
     per_page = 5
     if params[:status] == :draft.to_s
-      #@requests = Request.find_drafts current_user
       @requests = Request \
-        .where('user_id = :user_id AND status = :status', :user_id => current_user.id, :status => :draft) \
+        .where('user_id = :user_id', :user_id => current_user.id) \
+        .where('status = :status', :status => :draft) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :active.to_s
       @requests = Request \
-        .where('user_id = :user_id AND status=:status AND :now<expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
+        .where('user_id = :user_id', :user_id => current_user.id) \
+        .where('status = :status', :status => :active) \
+        .where(':now<expiration', :now => DateTime.now) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :expired.to_s
       @requests = Request \
-        .where('user_id = :user_id AND status=:status AND :now>=expiration', :user_id => current_user.id, :status => :active, :now => DateTime.now) \
+        .where('user_id = :user_id', :user_id => current_user.id) \
+        .where('status = :status', :status => :active) \
+        .where(':now>=expiration', :now => DateTime.now) \
         .paginate( :page => params[:page], :per_page => per_page )
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."

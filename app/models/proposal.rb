@@ -39,13 +39,13 @@ class Proposal < ActiveRecord::Base
     self.find_awarded(user).count
   end
 
-  # Find the proposals that are currently best
+  # Find the proposals that are currently the best for an active request.
   def self.find_best(user)
     Proposal \
       .joins(:request) \
       .where(Proposal.table_name => {:user_id => user.id}) \
       .where(Proposal.table_name => {:is_best => true}) \
-      .where(["#{Request.table_name}.status=:status AND :now>=#{Request.table_name}.expiration", {:status => :active, :now => DateTime.now}])
+      .where("#{Request.table_name}.status=:status AND :now<#{Request.table_name}.expiration", :status => :active, :now => DateTime.now)
   end
 
   def self.find_expired(user)
