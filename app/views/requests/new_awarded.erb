@@ -7,7 +7,17 @@
   <%= render :partial => 'shared/personal_request', :object => @request %>
   <%= render :partial => 'shared/best_proposal', :object => best %>
 
-  <%if current_user == best_proposer || current_user == best_proposer %>
+  <%if current_user == @request.user || current_user == best_proposer %>
+
+    <p>
+    Questi sono i dati del committente e dell'autore della
+    proposta considerata migliore.
+    </p>
+    <p>
+    Il committente e il proponente possono usare i seguenti dati che
+    non sono visibili ad altri utenti per mettersi in contatto.
+    </p>
+
 
     <div class="box">
       <h1>
@@ -55,15 +65,8 @@
 
   <% else %>
 
-    <div class="box">
-      <h1>
-        Questa offerta è scaduta<br/>
-      </h1>
-      <div class="body">
-        L'utente che ha inserito questa richiesta
-        ha già trovato la migliore offerta.
-      </div>
-    </div>
+    Questa richiesta è scaduta ed è già stata identificata
+    la proposta più vantaggiosa presentata da un altro utente.
 
   <% end %>
 

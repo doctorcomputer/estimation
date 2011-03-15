@@ -1,0 +1,18 @@
+<div class="index_box">
+  <h1>Trova l'operatore migliore su MiServe</h1>
+  <div>
+    Immetti username e password
+    che hai specificato durante la registrazione
+    per loggarti.<br/>
+    Ancora non hai un account ? <%= link_to "Registrati", new_user_path %><br/>
+    <%= form_for UserSession.new do |form| %>
+      <%= form.label :login, 'username' %>
+      <%= form.text_field :login, :size=>10 %>
+      <br/>
+      <%= form.label :password, 'password' %>
+      <%= form.password_field :password, :size=>10 %>
+      <br/>
+      <%= form.submit "Loggati" %>
+    <% end%>
+  </div>
+</div>
