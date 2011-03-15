@@ -1,0 +1,348 @@
+--- &id005 !ruby/object:Category
+children:
+- &id002 !ruby/object:Category
+  children:
+  - &id001 !ruby/object:Category
+    children:
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 4
+      key: painting
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 5
+      key: masonrywork
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 6
+      key: electricity
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 7
+      key: alarms
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 8
+      key: network
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 9
+      key: automation
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 10
+      key: domotics
+      parent: *id001
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 11
+      key: other
+      parent: *id001
+    enabled: true
+    id: 3
+    key: maintenance
+    parent: *id002
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 12
+    key: design
+    parent: *id002
+  - &id003 !ruby/object:Category
+    children:
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 14
+      key: electrical
+      parent: *id003
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 15
+      key: plumbing
+      parent: *id003
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 16
+      key: heating
+      parent: *id003
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 17
+      key: cooling
+      parent: *id003
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 18
+      key: air_conditioning
+      parent: *id003
+    - !ruby/object:Category
+      children:
+      enabled: true
+      id: 19
+      key: other
+      parent: *id003
+    enabled: true
+    id: 13
+    key: plants
+    parent: *id002
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 20
+    key: condo_management
+    parent: *id002
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 21
+    key: other
+    parent: *id002
+  enabled: true
+  id: 2
+  key: house
+  parent: *id005
+- &id004 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 23
+    key: administration
+    parent: *id004
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 24
+    key: fiscal
+    parent: *id004
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 25
+    key: finance
+    parent: *id004
+  enabled: true
+  id: 22
+  key: money
+  parent: *id005
+- &id006 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 27
+    key: baby_sitting
+    parent: *id006
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 28
+    key: nursing
+    parent: *id006
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 29
+    key: lawyer
+    parent: *id006
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 30
+    key: other
+    parent: *id006
+  enabled: true
+  id: 26
+  key: family
+  parent: *id005
+- &id007 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 32
+    key: treatment
+    parent: *id007
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 33
+    key: hair
+    parent: *id007
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 34
+    key: body
+    parent: *id007
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 35
+    key: massage
+    parent: *id007
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 36
+    key: nails
+    parent: *id007
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 37
+    key: other
+    parent: *id007
+  enabled: true
+  id: 31
+  key: wellness
+  parent: *id005
+- &id008 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 39
+    key: catering
+    parent: *id008
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 40
+    key: party
+    parent: *id008
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 41
+    key: wedding_planning
+    parent: *id008
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 42
+    key: other
+    parent: *id008
+  enabled: true
+  id: 38
+  key: special_event
+  parent: *id005
+- &id009 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 44
+    key: tutoring
+    parent: *id009
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 45
+    key: other
+    parent: *id009
+  enabled: true
+  id: 43
+  key: education
+  parent: *id005
+- &id010 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 47
+    key: persoanl_shopper
+    parent: *id010
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 48
+    key: tailor
+    parent: *id010
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 49
+    key: shoemaking
+    parent: *id010
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 50
+    key: other
+    parent: *id010
+  enabled: true
+  id: 46
+  key: fashion
+  parent: *id005
+- &id011 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 52
+    key: musical_instruments
+    parent: *id011
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 53
+    key: lutist
+    parent: *id011
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 54
+    key: other
+    parent: *id011
+  enabled: true
+  id: 51
+  key: hobby
+  parent: *id005
+- &id012 !ruby/object:Category
+  children:
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 56
+    key: baby_sitting
+    parent: *id012
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 57
+    key: tutoring
+    parent: *id012
+  - !ruby/object:Category
+    children:
+    enabled: true
+    id: 58
+    key: other
+    parent: *id012
+  enabled: true
+  id: 55
+  key: kids
+  parent: *id005
+enabled: true
+id: 1
+key: root
+parent:

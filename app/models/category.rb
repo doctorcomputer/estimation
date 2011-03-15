@@ -33,8 +33,12 @@ class Category
       parent.depth + 1
     end
   end
-  
+
   def self.root
+    YAML::load( File.open(File.dirname(__FILE__) + "/category.yml" ) )
+  end
+  
+  def self.root_old
 
 root = Category.new('root') \
   .add_child( \
@@ -116,20 +120,6 @@ root = Category.new('root') \
       .add_child(Category.new('tutoring')) \
       .add_child(Category.new('other')) \
   )
-
-
-#    root = Category.new('root') \
-#      .add_child(Category.new('house') \
-#          .add_child(Category.new('design')) \
-#          .add_child(Category.new('renovations')) \
-#          .add_child(Category.new('maintenance')) \
-#       ) \
-#      .add_child(Category.new('plants') \
-#          .add_child(Category.new('electrical')) \
-#          .add_child(Category.new('plumbing')) \
-#      )
-
-
 
     return root
   end
