@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     
     if @user_session.save
-      flash[:notice] = "Bentornato #{current_user}!"
+      flash[:notice] = "Bentornato #{@user_session.record.first_name}!"
       if visited_request!=nil
         redirect_to request_detail_path(visited_request)
       else
@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
       end
     else
       #render :action => 'new'
-      flash[:error] = "Dati di logi errati."
+      flash[:error] = "Dati di login errati."
       redirect_to root_url
     end
   end
