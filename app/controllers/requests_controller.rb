@@ -117,17 +117,23 @@ class RequestsController < ApplicationController
   def index
     per_page = 5
     if params[:status] == :draft.to_s
+      @title="Richieste in fase di costruzione"
+      @subtitle="Elenco delle tue richieste ancora non pubblicate."
       @requests = Request \
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :draft) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :active.to_s
+      @title="Richieste attive"
+      @subtitle="Elenco delle tue richieste pubblicate che stanno ricevendo offerte da parte degli operatori."
       @requests = Request \
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :active) \
         .where(':now<expiration', :now => DateTime.now) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :expired.to_s
+      @title="Richieste scadute"
+      @subtitle="Richieste scadute, clicca sul titolo della richiesta per entrare in contatto con il miglior operatore."
       @requests = Request \
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :active) \

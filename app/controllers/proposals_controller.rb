@@ -18,16 +18,6 @@ class ProposalsController < ApplicationController
       .where(":now<#{Request.table_name}.expiration", :now => DateTime.now) \
       .includes(:request, :user) \
       .paginate( :page => params[:page], :per_page => per_page )
-#    elsif params[:status] == :expired.to_s
-#      @title="Offerte scadute"
-#      @subtitle="Elenco di tutte le tue offerte relative a richieste non ancora scadute."
-#      @proposals = Proposal \
-#      .joins(:request) \
-#      .where(Proposal.table_name => {:user_id => current_user.id}) \
-#      .where("#{Request.table_name}.status=:status", :status => :active) \
-#      .where(":now>=#{Request.table_name}.expiration", :now => DateTime.now) \
-#      .includes(:request, :user) \
-#      .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :best.to_s
       @title="Offerte migliori"
       @subtitle="Elenco delle tue offerte attualmente considerate come migliori. " \
