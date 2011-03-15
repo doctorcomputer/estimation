@@ -1,7 +1,13 @@
+<%
+# This page shows expired requests and should be visible only to
+# the owner and the awarded user
+%>
+
 <% all_proposals = @request.proposals %>
 <% best = @request.best_proposal %>
 <% there_are_proposals = !all_proposals.nil? and all_proposals.length >= 1 %>
 <% a_best_offer_has_been_choosed = there_are_proposals && best.nil? %>
+
 
 <div id="layout_side_main">
 

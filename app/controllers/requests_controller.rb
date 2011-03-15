@@ -14,13 +14,20 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    
+
+    # the request is alive, users can submit offers
     if @request.is_active
       the_action = :new_active
+
+    # the request is expired and the owner has choose a best offer
     elsif @request.awarded?
       the_action = :new_awarded
+
+    # the request is expired but the owner has not yet choosed the best offer
     elsif @request.is_expired
       the_action = :new_expired
+
+    # the request is being edited
     elsif @request.is_draft
       the_action = :new
     end
