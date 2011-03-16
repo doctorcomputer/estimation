@@ -20,31 +20,33 @@
 
 <%= render :partial => 'shared/search_bar', :object => @search %>
 
-<div class="index_box">
-  <h1>Benvenuto su miServe</h1>
-  <table width="100%">
-    <tr>
-      <td style="width: 50%">
-        <p>
-          <strong>Già registrato ?</strong><br/>
-          Accedi con la tua username e la tua password<br/>
-        </p>
-        <p class="button">
-          <button id="login_btn">accedi</button>
-        </p>
-      </td>
-      <td style="width: 50%">
-        <p>
-          <strong>Nuovo su miServe ?</strong><br/>
-          Registrati, è veloce e gratuito<br/>
-        </p>
-        <p class="button">
-          <button id="registration_btn">registrati</button>
-        </p>
-      </td>
-    </tr>
-  </table>
-</div>
+<% if current_user.nil? %>
+  <div class="index_box">
+    <h1>Benvenuto su miServe</h1>
+    <table width="100%">
+      <tr>
+        <td style="width: 50%">
+          <p>
+            <strong>Già registrato ?</strong><br/>
+            Accedi con la tua username e la tua password<br/>
+          </p>
+          <p class="button">
+            <button id="login_btn">accedi</button>
+          </p>
+        </td>
+        <td style="width: 50%">
+          <p>
+            <strong>Nuovo su miServe ?</strong><br/>
+            Registrati, è veloce e gratuito<br/>
+          </p>
+          <p class="button">
+            <button id="registration_btn">registrati</button>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>
 
 <div class="index_box">
   <h1>Trova l'operatore migliore su MiServe</h1>

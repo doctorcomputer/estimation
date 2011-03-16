@@ -1,0 +1,30 @@
+=====================
+HI
+* quando sono loggato nella home page appare ancora il box per loggarsi!
+* quando mi loggo salta ad un'offerta precedente
+* nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
+    ad esempio:
+        quelle in scadenza
+        quelle nuove
+        quelle con meno proposte
+* vorrei un ordina per
+    ore mancanti
+    importo miglior offerta
+* forse quando appare la richiesta nel sito non appare la descrizione!
+* quando inserisco la proposta vorrei poter specificare il tipo di offerta:
+    money
+    money / giorno
+    money / mese
+    money / ora
+    money / intervento
+* quando nell'area riservata vedo le offerte, vorrei ordinarle
+per data di creazione, per "quanto manca"
+=====================
+LO
+* la finestra di login ( http://localhost:3000/user_sessions/new )
+non è sto granchè.
+* forse ci vorrebbero le briciole, così uno può cliccare anche su altre rihieste.
+* il tasto "invia la tua proposta" in corrispondenza di una richiesta è frose un
+pò troppo piccolo.
+=====================
+DONE
