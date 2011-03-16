@@ -198,6 +198,8 @@ class Option
 
 end
 
+# This visitor collects all values in the category tree as options of a select tag.
+# It collects values upto a given depth, to avoid building cumbersome trees.
 class OptionsVisitor
 
   attr_accessor :options
@@ -208,11 +210,14 @@ class OptionsVisitor
   end
 
   def visit(category)
-    if( !category.is_root || (category.is_root && @include_root) )
-      @options.push Option.new(category.unique_key, ("-" * (category.depth-1)) + I18n.t("category." + category.unique_key + ".title"))
+    if (!category.is_root || (category.is_root && @include_root) ) && ( category.depth <= 2 )
+      @options.push Option.new(
+        category.unique_key, \
+        ( ("&nbsp;" * (category.depth-1)).html_safe ) + I18n.t("category." + category.unique_key + ".title"))
     end
     return self;
   end
+  
 end
 
 class CategoryCollectsAllVisitor
@@ -233,9 +238,3 @@ class CategoryCollectsAllVisitor
   end
 end
 
-
-#root = Category.root
-#print "#{root}\n"
-#print "#{root.accept(Visitor1.new).desc}\n"
-#print "#{root.accept(Visitor2.new).desc}\n"
-#print "#{YAML.dump(root)}\n"
