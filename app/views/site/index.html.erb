@@ -1,8 +1,31 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $j(document).ready(function(){
+      $j("#sorting").change(function(){
+        $j(this).closest("form").submit();
+      })
+    });
+  </script>
+<% end %>
+
 <%= render :partial => 'shared/search_bar', :object => @search %>
 
 
 <%if !@requests.nil? && @requests.count>0 %>
   <div id="top_pagination">
+
+    <%=form_tag( (url_for :controller=>:site, :action=>:index), :method=>:get )  do |f| %>
+      <% params.each do |key,value| %>
+        <%= hidden_field_tag key, value %>
+      <% end %>
+      mostra prima:
+      <%= select_tag \
+        :sorting, \
+        options_for_select({ 
+          "in scadenza" => :expiring_asc,
+          "appena pubblicata" => :expiring_desc }, params[:sorting]) %>
+    <%end%>
+
     <%= my_page_entries_info @requests %>
   </div>
 
