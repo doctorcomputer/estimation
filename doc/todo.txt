@@ -1,6 +1,5 @@
 =====================
 HI
-* quando mi loggo salta ad un'offerta precedente se sono giò loggato
 * nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
     ad esempio:
         quelle con meno proposte
@@ -19,7 +18,7 @@ per data di creazione, per "quanto manca"
 =====================
 LO
 * la finestra di login ( http://localhost:3000/user_sessions/new )
-non è sto granchè.
+non è sto granchè e ce n'è una diversa quando è richiesto il login
 * forse ci vorrebbero le briciole, così uno può cliccare anche su altre rihieste.
 * il tasto "invia la tua proposta" in corrispondenza di una richiesta è frose un
 pò troppo piccolo.
@@ -30,3 +29,4 @@ DONE
     ad esempio:
         quelle in scadenza
         quelle nuove
+* quando mi loggo salta ad un'offerta precedente se sono giò loggato

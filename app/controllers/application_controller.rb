@@ -51,6 +51,8 @@ class ApplicationController < ActionController::Base
   def set_visited_request request
     unless request.nil?
       cookies[:request_id] = request.id
+    else
+      cookies.delete :request_id
     end
   end
 

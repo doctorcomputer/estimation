@@ -17,11 +17,11 @@ class StaticController < ApplicationController
       .order("created_at DESC") \
       .limit(3)
 
-    @uncared_requests = Request \
-      .joins(:proposals) \
-      .where('status = :status', :status => :active) \
-      .where(':now<expiration', :now => DateTime.now) \
-      .limit(3)
+#    @uncared_requests = Request \
+#      .joins(:proposals) \
+#      .where('status = :status', :status => :active) \
+#      .where(':now<expiration', :now => DateTime.now) \
+#      .limit(3)
 
     #This could be used to extract request without offers
     #SELECT requests.*, count(proposals.request_id) FROM requests JOIN proposals on requests.id=proposals.request_id

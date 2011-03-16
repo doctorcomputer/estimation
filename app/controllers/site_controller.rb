@@ -24,11 +24,12 @@ class SiteController < ApplicationController
     set_visited_request(@request)
   end
 
-  #proposal_new/:id
+  # Called when user want to submit a new proposal.
+  # proposal_new/:id
   def proposal_new
     request = Request.find(params[:id])
     if ensure_login(request)
-      @request = Request.find params[:id]
+      @request = request
       @proposal = Proposal.new
       @proposal.request = @request
     end
@@ -59,7 +60,7 @@ class SiteController < ApplicationController
 
   def ensure_login(request=nil)
     unless request.nil?
-      set_visited_request(@request)
+      set_visited_request(request)
     end
     if current_user.nil?
       render :require_login
