@@ -69,3 +69,25 @@
     Numerosi utenti di MiServe hanno già bisogno di te.
   </div>
 </div>
+
+<% unless @expiring_requests.empty? %>
+  <div class="index_box">
+    <h1>Richieste in scadenza</h1>
+    <div>
+      <%@expiring_requests.each do |request|%>
+        <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
+      <%end%>
+    </div>
+  </div>
+<% end %>
+
+<% unless @newest_requests.empty? %>
+  <div class="index_box">
+    <h1>Nuove richieste</h1>
+    <div>
+      <%@newest_requests.each do |request|%>
+        <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
+      <%end%>
+    </div>
+  </div>
+<% end %>

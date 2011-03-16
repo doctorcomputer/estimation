@@ -1,11 +1,8 @@
 =====================
 HI
-* quando sono loggato nella home page appare ancora il box per loggarsi!
-* quando mi loggo salta ad un'offerta precedente
+* quando mi loggo salta ad un'offerta precedente se sono giò loggato
 * nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
     ad esempio:
-        quelle in scadenza
-        quelle nuove
         quelle con meno proposte
 * vorrei un ordina per
     ore mancanti
@@ -28,3 +25,8 @@ non è sto granchè.
 pò troppo piccolo.
 =====================
 DONE
+* quando sono loggato nella home page appare ancora il box per loggarsi!
+* nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
+    ad esempio:
+        quelle in scadenza
+        quelle nuove

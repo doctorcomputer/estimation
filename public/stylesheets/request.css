@@ -58,6 +58,8 @@ div.request h1 {
     font-weight: lighter;
     margin: 1px;
     padding: 0;
+    color: #5B8BC6;
+    background: none;
 }
 
 div.request h2 {
