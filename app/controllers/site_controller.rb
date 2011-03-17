@@ -3,16 +3,24 @@ class SiteController < ApplicationController
   def index
     @search = Struct.new("Search", :query, :category_key).new(params[:query],params[:category_key])
 
+    sorting = {
+      'expiring_asc' => 'expiration asc',
+      'published_desc' => 'updated_at desc',
+      nil => 'expiration asc'
+    }
+
     if @search.query.blank?
       @requests = Request \
         .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
         .where('category_id like :category_id', :category_id => "#{@search.category_key}%") \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => 10 )
     else
       @requests = Request \
         .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
         .where("category_id like :category_id", :category_id => "#{@search.category_key}%") \
         .where("title like ?", '%' + @search.query + '%') \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => 10 )
     end
 

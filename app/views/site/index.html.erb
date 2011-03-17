@@ -14,16 +14,18 @@
 <%if !@requests.nil? && @requests.count>0 %>
   <div id="top_pagination">
 
-    <%=form_tag( (url_for :controller=>:site, :action=>:index), :method=>:get )  do |f| %>
+    <%=form_tag( (url_for :controller=>:site, :action=>:index), :method=>:get, :style=> 'display: inline' )  do |f| %>
       <% params.each do |key,value| %>
-        <%= hidden_field_tag key, value %>
+        <% if key!='sorting' %>
+          <%= hidden_field_tag key, value %>
+        <% end %>
       <% end %>
       mostra prima:
       <%= select_tag \
         :sorting, \
         options_for_select({ 
           "in scadenza" => :expiring_asc,
-          "appena pubblicata" => :expiring_desc }, params[:sorting]) %>
+          "appena pubblicata" => :published_desc }, params[:sorting]) %>
     <%end%>
 
     <%= my_page_entries_info @requests %>
