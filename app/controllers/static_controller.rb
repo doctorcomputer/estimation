@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
 
   def index
+
     @search = Struct.new("Search", :query, :category_key).new("","")
 
     # find groups of interesting request that could be shown to the user.

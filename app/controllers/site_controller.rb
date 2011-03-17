@@ -1,6 +1,7 @@
 class SiteController < ApplicationController
 
   def index
+
     @search = Struct.new("Search", :query, :category_key).new(params[:query],params[:category_key])
 
     sorting = {

@@ -7,13 +7,18 @@
     <body>
         <h1>Benvenuto su mi-serve</h1>
         <p>
-            <%= @user.first_name %> <%= @user.last_name %>, grazie per esserti registrato.
-            Per completare il processo di registrazione di chiediamo di cliccare sul link
-            indicato qui di seguito.
-            <a href="">asas</a>
+            <%= @user.first_name %> <%= @user.last_name %>, grazie per la tua registrazione
+            su MiServe.<br/>
+            Per completare il processo di registrazione di chiediamo di
+            <%= link_to('cliccare qui per confermare la tua registrazione', :host=>APP_CONFIG['host'], :controller=>:user_sessions, :action=>:activate, :activation_token=>@user.perishable_token) %>.
             <br/>
-            Se hai dei problemi prova a copiare il link sottostante
-            direttamente nel browser.
+            
+            Se dovessi avere dei problemi ti preghiamo di copiare il codice sottostante e copiarlo
+            nella barra degli indirizzi del tuo browser:<br/>
+
+            <%= url_for(:host=>APP_CONFIG['host'], :controller=>:user_sessions, :action=>:activate, :activation_token=>@user.perishable_token) %>.
+
+            e di incollalo al seguente indirizzo
             <%= @user.perishable_token %>
         </p>
     </body>

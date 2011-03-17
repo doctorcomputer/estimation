@@ -25,8 +25,8 @@ Estimating::Application.routes.draw do
   resources :user_sessions
 	match 'login' => 'user_sessions#new'
 	match 'logout' => 'user_sessions#destroy'
-  match 'activation' => 'user_sessions#activation'
-  match 'activate' => 'user_sessions#activate'
+  match 'activation' => 'user_sessions#activation' # Shows the form in which the user could paste the activation code
+  match 'activate' => 'user_sessions#activate' # Activate the account
 
 
 

@@ -1,0 +1,11 @@
+development:
+  env: development_config
+  host: localhost
+
+test:
+  env: test_config
+  host: localhost
+
+production:
+  env: production_config
+  host: www.miserve.com
