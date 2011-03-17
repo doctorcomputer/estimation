@@ -1,9 +1,34 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $j(document).ready(function(){
+      $j("#sorting").change(function(){
+        $j(this).closest("form").submit();
+      })
+    });
+  </script>
+<% end %>
+
 <div id="layout_side_main">
 
   <h3><%= @title %></h3>
-  <p><%= @subtitle %> </p>
+  <p><%= @subtitle %></p>
 
   <div id="top_pagination">
+
+    <%=form_tag( (url_for :controller=>:requests, :action=>:index), :method=>:get, :style=> 'display: inline' )  do |f| %>
+      <% params.each do |key,value| %>
+        <% if key!='sorting' %>
+          <%= hidden_field_tag key, value %>
+        <% end %>
+      <% end %>
+      mostra prima:
+      <%= select_tag \
+        :sorting, \
+        options_for_select({
+          "in scadenza" => :expiring_asc,
+          "appena pubblicata" => :published_desc }, params[:sorting]) %>
+    <%end%>
+
     <%= my_page_entries_info @requests %>
   </div>
 

@@ -3,9 +3,6 @@ HI
 * nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
     ad esempio:
         quelle con meno proposte
-* vorrei un ordina per
-    ore mancanti
-    importo miglior offerta
 * forse quando appare la richiesta nel sito non appare la descrizione!
 * quando inserisco la proposta vorrei poter specificare il tipo di offerta:
     money
@@ -15,6 +12,7 @@ HI
     money / intervento
 * quando nell'area riservata vedo le offerte, vorrei ordinarle
 per data di creazione, per "quanto manca"
+* testare la posta
 =====================
 LO
 * la finestra di login ( http://localhost:3000/user_sessions/new )
@@ -24,6 +22,9 @@ non è sto granchè e ce n'è una diversa quando è richiesto il login
 pò troppo piccolo.
 =====================
 DONE
+* vorrei un ordina per
+    ore mancanti
+    importo miglior offerta
 * quando sono loggato nella home page appare ancora il box per loggarsi!
 * nella hp dovrebbero apparire delle richieste selezionate in qualche modo.
     ad esempio:

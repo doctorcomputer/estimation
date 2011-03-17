@@ -114,12 +114,20 @@ class RequestsController < ApplicationController
 
   def index
     per_page = 5
+
+    sorting = {
+      'expiring_asc' => 'expiration asc',
+      'published_desc' => 'updated_at desc',
+      nil => 'expiration asc'
+    }
+
     if params[:status] == :draft.to_s
       @title="Richieste in fase di costruzione"
       @subtitle="Elenco delle tue richieste ancora non pubblicate."
       @requests = Request \
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :draft) \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :active.to_s
       @title="Richieste attive"
@@ -128,6 +136,7 @@ class RequestsController < ApplicationController
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :active) \
         .where(':now<expiration', :now => DateTime.now) \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => per_page )
     elsif params[:status] == :expired.to_s
       @title="Richieste scadute"
@@ -136,6 +145,7 @@ class RequestsController < ApplicationController
         .where('user_id = :user_id', :user_id => current_user.id) \
         .where('status = :status', :status => :active) \
         .where(':now>=expiration', :now => DateTime.now) \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => per_page )
     else
       raise "'#{:status}' parameter with value '#{params[:status]}' not recognized."
