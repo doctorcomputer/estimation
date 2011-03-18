@@ -1,10 +1,10 @@
 development:
   env: development_config
-  host: localhost
+  host: localhost:3000
 
 test:
   env: test_config
-  host: localhost
+  host: localhost:3000
 
 production:
   env: production_config
