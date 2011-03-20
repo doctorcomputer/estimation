@@ -7,10 +7,13 @@
     <body>
         <h1>Benvenuto su mi-serve</h1>
         <p>
-            <%= @user.first_name %>, grazie per aver confermato la tua registrazione.
-            Da ora puoi collegarti al tuo account usando:
-            username: <b><%=@user.login%></b>
-            password: <i>[La password che hai scelto al momento della registrazione]</i>
+            <%= @user.first_name %> <%= @user.last_name %>,
+            grazie per aver confermato la tua registrazione.<br/>
+            Da ora puoi collegarti al tuo account usando i seguenti dati:
+            <ul>
+              <li>username: <b><%=@user.login%></b></li>
+              <li>password: <b>[La password che hai scelto al momento della registrazione]</b></li>
+            </ul>
         </p>
     </body>
 </html>
