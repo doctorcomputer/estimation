@@ -33,9 +33,11 @@
   </div>
 
   <%unless @requests.nil? || @requests.count == 0  %>
+    <div class="requests">
     <%@requests.each do |request|%>
       <%= render :partial => 'shared/personal_request', :object => request %>
     <%end%>
+    </div>
   <%else%>
     Non ci sono elementi in questo elenco
   <%end%>

@@ -23,14 +23,19 @@ div.request{
 div.request div {
     display: table-cell;
     vertical-align: top;
-    border-bottom: 1px dotted;
+    border-bottom: 1px solid gray;
     padding: 5px;
 }
+
+
+div.request:last-child div {
+    border-bottom: none; 
+}
+
 
 div.request div.proposals {
     color: gray;
     font-size: 10px;
-    border-color: black;
 }
 
 div.request div.proposals strong {
@@ -46,7 +51,6 @@ div.request div.proposals a {
 div.request div.times {
     color: #E66919;
     font-size: 10px;
-    border-color: black;
 }
 
 div.request div.times strong{

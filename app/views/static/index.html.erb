@@ -74,9 +74,11 @@
   <div class="index_box">
     <h1>Richieste in scadenza</h1>
     <div>
-      <%@expiring_requests.each do |request|%>
-        <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
-      <%end%>
+      <div class="requests">
+        <%@expiring_requests.each do |request|%>
+          <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
+        <%end%>
+      </div>
     </div>
   </div>
 <% end %>
@@ -85,9 +87,11 @@
   <div class="index_box">
     <h1>Nuove richieste</h1>
     <div>
-      <%@newest_requests.each do |request|%>
-        <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
-      <%end%>
+      <div class="requests">
+        <%@newest_requests.each do |request|%>
+          <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
+        <%end%>
+      </div>
     </div>
   </div>
 <% end %>

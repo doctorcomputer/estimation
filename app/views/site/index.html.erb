@@ -31,9 +31,11 @@
     <%= my_page_entries_info @requests %>
   </div>
 
-  <%@requests.each do |request|%>
-    <%= render :partial => 'shared/site_request', :object => request %>
-  <%end%>
+  <div class="requests">
+    <%@requests.each do |request|%>
+      <%= render :partial => 'shared/site_request', :object => request %>
+    <%end%>
+  </div>
 
   <div id="bottom_pagination">
     <%= will_paginate @requests, :previous_label => '&laquo;', :next_label => '&raquo;', :container => false %>
