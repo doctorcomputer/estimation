@@ -6,12 +6,19 @@
 <% all_proposals = @request.proposals %>
 <% best = @request.best_proposal %>
 <% there_are_proposals = !all_proposals.nil? and all_proposals.length >= 1 %>
-<% a_best_offer_has_been_choosed = there_are_proposals && best.nil? %>
-
+<% a_best_offer_has_been_choosed = there_are_proposals && !best.nil? %>
 
 <div id="layout_side_main">
 
-  <%= render :partial => 'shared/personal_request', :object => @request %>
+  <%# box containing the request details %>
+  <div class="box">
+    <h1>Dettagli della richiesta</h1>
+    <div class="body">
+      <%= render :partial => 'shared/personal_request', :object => @request %>
+      <%= @request.description %>
+    </div>
+  </div>
+  
   <%= render :partial => 'shared/best_proposal', :object => best %>
 
   <%if current_user == @request.user %>

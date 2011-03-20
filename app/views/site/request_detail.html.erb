@@ -1,4 +1,12 @@
-<%= render :partial => 'shared/site_request', :object => @request %>
+<%# box containing the request details %>
+<div class="box">
+  <h1>Dettagli della richiesta</h1>
+  <div class="body">
+    <%= render :partial => 'shared/site_request', :object => @request %>
+    <%= @request.description %>
+  </div>
+</div>
+
 
 <%# box for placing a proposal %>
 <div class="box">

@@ -12,7 +12,15 @@
 
   <h1>Richiesta attiva</h1>
 
-  <%= render :partial => 'shared/personal_request', :object => @request %>
+  <%# box containing the request details %>
+  <div class="box">
+    <h1>Dettagli della richiesta</h1>
+    <div class="body">
+      <%= render :partial => 'shared/personal_request', :object => @request %>
+      <%= @request.description %>
+    </div>
+  </div>
+
   <%= render :partial => 'shared/best_proposal', :object => best %>
 
   <% if current_user == @request.user %>

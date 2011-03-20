@@ -57,13 +57,14 @@ div.request div.times strong{
     display: block;
 }
 
-div.request h1 {
+div.request .details h1 {
     font-size: 12px;
     font-weight: lighter;
     margin: 1px;
     padding: 0;
     color: #5B8BC6;
     background: none;
+    border: none;
 }
 
 div.request h2 {
