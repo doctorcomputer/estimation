@@ -48,27 +48,38 @@
   </div>
 <% end %>
 
-<div class="index_box">
-  <h1>Trova l'operatore migliore su MiServe</h1>
-  <div>
-    <p>
-      <strong>Ti serve un imbianchino, un avvocato, una baby sitter ?</strong>
-    </p>
-    MiServe ti permette di trovare velocemente ed efficacemente
-    l'operatore più adatto alle tue esigenze.
+<div style="clear: both">
+
+  <div class="index_box" style="float: left; width: 48%">
+    <h1>Trova l'operatore migliore su MiServe</h1>
+    <div>
+      <p>
+        <strong>Ti serve un imbianchino, un avvocato, una baby sitter ?</strong>
+      </p>
+      <p>
+        MiServe ti permette di trovare velocemente ed efficacemente
+        l'operatore più adatto alle tue esigenze.
+      </p>
+    </div>
   </div>
+
+  <div class="index_box" style="float:right; width: 48%">
+    <h1>Trova nuovi clienti su MiServe</h1>
+    <div>
+      <p>
+        <strong>Sei un imbianchino, un avvocato, una baby sitter ?</strong>
+      </p>
+      <p>
+        Vuoi incrementare il numero di clienti e il tuo giro d'affari ?
+        Numerosi utenti di MiServe hanno già bisogno di te.
+      </p>
+    </div>
+  </div>
+
 </div>
 
-<div class="index_box">
-  <h1>Trova nuovi clienti su MiServe</h1>
-  <div>
-    <p>
-      <strong>Sei un imbianchino, un avvocato, una baby sitter ?</strong>
-    </p>
-    Vuoi incrementare il numero di clienti e il tuo giro d'affari ?
-    Numerosi utenti di MiServe hanno già bisogno di te.
-  </div>
-</div>
+
+<div style="clear: both">
 
 <% unless @expiring_requests.empty? %>
   <div class="index_box">
@@ -95,3 +106,6 @@
     </div>
   </div>
 <% end %>
+  
+</div>
+
