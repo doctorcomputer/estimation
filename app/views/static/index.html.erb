@@ -18,6 +18,14 @@
   </script>
 <% end %>
 
+<% content_for :layout_side_two do %>
+  <%= image_tag('square_banner.png') %>
+  <%= image_tag('square_banner.png') %>
+  <%= image_tag('square_banner.png') %>
+  <%= image_tag('square_banner.png') %>
+  <%= image_tag('square_banner.png') %>
+<% end %>
+
 <%= render :partial => 'shared/search_bar', :object => @search %>
 
 <% if current_user.nil? %>

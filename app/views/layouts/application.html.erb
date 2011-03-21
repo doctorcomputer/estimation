@@ -70,8 +70,23 @@
 
 
     <div id="layout_main_content">
-      <%= yield(:layout_side_one) if content_for?(:layout_side_one) %>
-      <%= yield %>
+
+      <% if content_for? :layout_side_one %>
+        <div id="layout_side_one">
+          <%= yield(:layout_side_one) %>
+        </div>
+      <% end %>
+
+      <div id="layout_side_main">
+        <%= yield %>
+      </div>
+
+      <% if content_for? :layout_side_two %>
+        <div id="layout_side_two">
+          <%= yield(:layout_side_two) %>
+        </div>
+      <% end %>
+      
     </div>
 
     <div id="layout_footer">

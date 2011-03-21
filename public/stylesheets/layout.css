@@ -6,7 +6,6 @@ body{
 
 /* --------------------------------------------------*/
 /* Layout start */
-
 #layout_header{
     height: 70px;
     padding: 0px;
@@ -42,14 +41,24 @@ div.layout_centering {
     width: 200px;
 }
 
-#layout_side_main{
+#layout_side_two{
     border: none;
+    min-height: 300px;
     padding: 0px;
     margin: 0px;
 
     float: right;
     margin-right: 0px;
-    width: 700px;
+    width: 250px;
+}
+
+#layout_side_main{
+    border: 1px;
+    padding: 0px;
+    margin: 0px;
+    margin-right: 0px;
+    width: 600px;
+    float: left;
 }
 
 #layout_main_content{
