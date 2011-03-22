@@ -105,12 +105,12 @@ img{
 /* Generic highlighted box */
 
 div.box{
-    margin: 5px 0px 0px 0px;
+    margin: 0px 0px 5px 0px;
     clear: both;
+    border: #006600 4px solid;
 }
 
 div.box h1{
-    border: 1px solid #00E000;
     background: #006600;
     color: #F2EC94;
     margin: 0px;
@@ -133,6 +133,12 @@ div.box div.body {
 
 #top_pagination {
     text-align: right;
+    font-size: 10px;
+}
+
+#top_pagination select {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid gray;
     font-size: 10px;
 }
 
