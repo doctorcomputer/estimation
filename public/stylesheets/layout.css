@@ -14,8 +14,6 @@ body{
     width: 100%;
 }
 
-
-
 div.layout_centering {
     width: 920px;
     margin: auto;
@@ -29,35 +27,32 @@ div.layout_centering {
     width: 100%;
 }
 
-
 #layout_side_one{
     border: none;
     min-height: 300px;
-    padding: 0px;
-    margin: 0px;
+    padding: 0px 2px 0px 0px;
+    margin: 0;
 
     float: left; 
-    margin-right: 0px;
-    width: 200px;
+    
+    width: 202px;
 }
 
 #layout_side_two{
     border: none;
     min-height: 300px;
-    padding: 0px;
-    margin: 0px;
+    padding: 0px 0px 0px 2px;
+    margin: 0;
 
     float: right;
-    margin-right: 0px;
-    width: 250px;
+    width: 202px;
 }
 
 #layout_side_main{
     border: 1px;
-    padding: 0px;
+    padding: 0px 2px 0px 2px;
     margin: 0px;
-    margin-right: 0px;
-    width: 600px;
+    width: 710px;
     float: left;
 }
 
