@@ -66,6 +66,13 @@ div.layout_centering {
     width: 920px;
 }
 
+#layout_prefooter{
+    clear: both;
+    width: 100%;
+    height: 4px;
+    display: block;
+}
+
 #layout_footer{
     clear: both;
     border-top: 1px solid #dedede;
