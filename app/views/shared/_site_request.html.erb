@@ -2,7 +2,67 @@
   small = false;
 end %>
 
+<% if small%>
+  <table class="request">
+    <tr>
+      <td>
+        <%= link_to site_request.title, request_detail_path(site_request) %>
+        <%= (current_user == site_request.user) ? "è una tua richiesta" : "di #{site_request.user.login}" %>
+      </td>
+      <td>
+        <%= site_request.proposals.count %> proposte<br/>
 
+        <% best_one = site_request.best_proposal %>
+        <% unless best_one.nil? %>
+          <strong><%= best_one.amount %>&nbsp;&euro; la preferita</strong><br/>
+        <% end %>
+
+        <% unless current_user == site_request.user %>
+          <%= link_to 'Invia la tua proposta', proposal_new_path(site_request) %>
+        <% end %>
+      </td>
+      <td class="times">
+        <strong><%=  distance_of_time_in_words DateTime.now, site_request.expiration%></strong>
+        <%= site_request.expiration.strftime("%d/%m/%Y %H:%M") %>
+      </td>
+    </tr>
+  </table>
+<% else%>
+  <table class="request">
+    <tr>
+      <td rowspan="2" class="picture">
+        <%= image_tag "category/#{site_request.category_id}.jpg" %>
+      </td>
+      <td class="details">
+        <h1><%= link_to site_request.title, request_detail_path(site_request) %></h1>
+        <h2><%= (current_user == site_request.user) ? "è una tua richiesta" : "di #{site_request.user.login}" %></h2>
+      </td>
+      <td class="proposals">
+        <%= site_request.proposals.count %> proposte<br/>
+
+        <% best_one = site_request.best_proposal %>
+        <% unless best_one.nil? %>
+          <strong><%= best_one.amount %>&nbsp;&euro; la preferita</strong><br/>
+        <% end %>
+
+        <% unless current_user == site_request.user %>
+          <%= link_to 'Invia la tua proposta', proposal_new_path(site_request) %>
+        <% end %>
+      </td>
+      <td class="times">
+        <strong><%=  distance_of_time_in_words DateTime.now, site_request.expiration%></strong>
+        <%= site_request.expiration.strftime("%d/%m/%Y %H:%M") %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" class="description">
+        <%= site_request.description %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<!--
 <% if small%>
   <div class="request">
     <div class="details">
@@ -55,4 +115,4 @@ end %>
     </div>
   </div>
 <% end %>
-
+-->
