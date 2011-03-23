@@ -54,7 +54,7 @@
 
 <div style="clear: both">
 
-  <div class="index_box" style="float: left; width: 48%">
+  <div class="index_box" style="float: left; width: 345px">
     <h1>Trova l'operatore migliore su MiServe</h1>
     <div>
       <p>
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="index_box" style="float:right; width: 48%">
+  <div class="index_box" style="float:right; width: 345px">
     <h1>Trova nuovi clienti su MiServe</h1>
     <div>
       <p>
@@ -86,7 +86,7 @@
 <div style="clear: both">
 
 <% unless @expiring_requests.empty? %>
-  <div class="index_box">
+  <div class="index_box" style="float: left; width: 345px">
     <h1>Richieste in scadenza</h1>
     <div>
       <div class="requests">
@@ -99,7 +99,7 @@
 <% end %>
 
 <% unless @newest_requests.empty? %>
-  <div class="index_box">
+  <div class="index_box" style="float: right; width: 345px">
     <h1>Nuove richieste</h1>
     <div>
       <div class="requests">
