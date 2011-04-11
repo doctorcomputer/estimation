@@ -28,7 +28,7 @@ class IndexTest < ActionDispatch::IntegrationTest
       'user[privacy]' => '1'
     }
 
-    assert_equal '/users', path
+    assert_equal '/', path
     assert_equal 'Riceverai una mail di attivazione.', flash[:notice]
     
   end

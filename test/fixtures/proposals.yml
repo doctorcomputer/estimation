@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  proposer: 
-  request: 
-  description: MyText
-  amount: 1
+  user: one
+  request: one
+  description: I would do it for 4000 eur
+  amount: 4000
 
 two:
-  proposer: 
-  request: 
-  description: MyText
-  amount: 1
+  user: one
+  request: one
+  description: I would do it for 3000 eur
+  amount: 3000

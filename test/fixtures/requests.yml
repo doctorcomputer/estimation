@@ -6,6 +6,8 @@ one:
   description: MyText
   expiration: 2011-02-03 23:19:52
   condition_confirmation: 2011-02-03 23:19:52
+  user: one
+  category_id: Category.root
 
 two:
   status: 1
@@ -13,3 +15,5 @@ two:
   description: MyText
   expiration: 2011-02-03 23:19:52
   condition_confirmation: 2011-02-03 23:19:52
+  user: one
+  category_id: Category.root
