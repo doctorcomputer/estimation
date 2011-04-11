@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20110410174005) do
 
   create_table "favourite_categories", :force => true do |t|
     t.integer  "user_id"
-    t.string   "category"
+    t.string   "category",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

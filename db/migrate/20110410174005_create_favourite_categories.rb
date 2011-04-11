@@ -2,7 +2,7 @@ class CreateFavouriteCategories < ActiveRecord::Migration
   def self.up
     create_table :favourite_categories do |t|
       t.references :user
-      t.string :category
+      t.string :category, :null=>false
       t.timestamps
     end
   end

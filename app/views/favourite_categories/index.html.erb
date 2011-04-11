@@ -1,0 +1,21 @@
+<div id="layout_side_main">
+
+  <h3>Categorie preferite</h3>
+  <p>Gestisci le categorie preferite</p>
+
+  <%unless @fav_categories.nil? || @fav_categories.count == 0  %>
+
+    <%@fav_categories.each do |category|%>
+      <%= category.category %>
+    <%end%>
+
+  <%else%>
+    Non ci sono elementi in questo elenco
+  <%end%>
+
+  <%= form_for @fav_category do |f| %>
+    <%= select :favourite_category, :category, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value', @fav_category.category) %>
+    <%= submit_tag "Aggiungi la categoria tra le tue preferite" %>
+  <% end %>
+
+</div>

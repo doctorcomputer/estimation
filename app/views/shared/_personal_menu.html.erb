@@ -24,7 +24,12 @@
             <li><%= link_to "perse (#{@rejected_proposals_number})", proposals_path(:status => :rejected), :class=>:last %></li>
           </ul>
         </li>
-
+        <li>
+          Categorie preferite
+          <ul>
+            <li><%= link_to "elenco", favourite_categories_path, :class=>:first %></li>
+          </ul>
+        </li>
       </ul>
     </div>
 <% end %>

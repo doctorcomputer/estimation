@@ -20,6 +20,9 @@ Estimating::Application.routes.draw do
   # Personal proposals
   resources :proposals
 
+  # Personal favourite categories
+  resources :favourite_categories
+
   # User and login related
   resources :users
   resources :user_sessions
