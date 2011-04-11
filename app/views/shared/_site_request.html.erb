@@ -7,6 +7,7 @@ end %>
     <tr>
       <td class="details">
         <%= link_to site_request.title, request_detail_path(site_request) %>
+        <br/>
         <%= (current_user == site_request.user) ? "è una tua richiesta" : "di #{site_request.user.login}" %>
       </td>
       <td class="proposals">

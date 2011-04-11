@@ -71,6 +71,7 @@ div.request:last-child div {
 
 .request .details{
     width: 40%;
+    font-size: 12px;
 }
 
 .request .details h1 {
