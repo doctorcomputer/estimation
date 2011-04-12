@@ -142,12 +142,22 @@ root = Category.new('root') \
     return @parent.nil?
   end
 
+  # return the unique key of this category
   def unique_key
     if @parent.nil?
       key
     else
       @parent.unique_key + "." + key
     end
+  end
+
+  # return the translated name of a category
+  def t_name
+    I18n.t("category." + category.unique_key + ".title")
+  end
+
+  def self.t_name_by_key(key)
+    I18n.t("category." + key + ".title")
   end
   
 end
