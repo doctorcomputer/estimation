@@ -37,10 +37,34 @@ class CategoryTest < ActiveSupport::TestCase
     assert !(v.is_excluded 'root.b.2')
   end
 
+  def test_find_root_by_unique_key_array
+    tested_key = ['root']
+    initial_length = tested_key.length
+    assert_not_nil @tree.find_by_unique_key_array(tested_key)
+
+    # This is to ensure that there are not side effects on the provided array
+    assert_equal(initial_length, tested_key.length)
+
+    assert_equal @tree, @tree.find_by_unique_key_array(tested_key)
+  end
+
   def test_find_root_by_unique_key
+    tested_key = 'root'
+    assert_not_nil @tree.find_by_unique_key(tested_key)
+    assert_equal @tree, @tree.find_by_unique_key(tested_key)
+  end
+
+  def test_find_by_unique_key_array
+    tested_key = ['root','a','2']
+    initial_length = tested_key.length
     assert_not_nil @category_a_2
-    assert_not_nil @tree.find_by_unique_key('root')
-    assert_equal @tree, @tree.find_by_unique_key('root')
+
+    assert_not_nil @tree.find_by_unique_key_array(tested_key)
+
+    # This is to ensure that there are not side effects on the provided array
+    assert_equal(initial_length, tested_key.length)
+
+    assert_equal @category_a_2, @tree.find_by_unique_key_array(tested_key)
   end
 
   def test_find_by_unique_key

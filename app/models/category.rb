@@ -8,6 +8,25 @@ class Category
   attr_accessor :key
   attr_accessor :parent
 
+  def find_by_unique_key_array the_ids
+    ids = Array.new(the_ids)
+    result = nil;
+    if(!ids.nil? && !ids.empty? && ids[0]==@key)
+      ids.delete_at(0)
+      if ids.empty?
+        result = self
+      else
+        i = 0
+        while result == nil && i<@children.length
+          result = @children[i].find_by_unique_key_array ids
+          i = i + 1
+        end
+      end
+    end
+    return result
+  end
+
+  # Find the descendant that is described by the provided key.
   def find_by_unique_key unique_key
     result = nil
     ids = unique_key.split('.')
