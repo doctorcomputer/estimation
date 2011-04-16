@@ -72,5 +72,28 @@ class CategoryTest < ActiveSupport::TestCase
     assert_not_nil @tree.find_by_unique_key('root.a.2')
     assert_equal @category_a_2, @tree.find_by_unique_key('root.a.2')
   end
+
+  def test_not_define_a_category_with_illegal_key
+    assert_raise(RuntimeError) {
+      Category.new 'illegal.name'
+    }
+  end
+
+  def test_breadcrumb_keys_with_root
+    keys = @category_a_2.breadcrumb_keys
+    assert_not_nil(keys)
+    assert_equal(3, keys.length)
+    assert_equal('root', keys[0])
+    assert_equal('root.a', keys[1])
+    assert_equal('root.a.2', keys[2])
+  end
+
+  def test_breadcrumb_keys_without_root
+    keys = @category_a_2.breadcrumb_keys :exclude_root => true
+    assert_not_nil(keys)
+    assert_equal(2, keys.length)
+    assert_equal('root.a', keys[0])
+    assert_equal('root.a.2', keys[1])
+  end
   
 end

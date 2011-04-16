@@ -28,22 +28,7 @@ class Category
 
   # Find the descendant that is described by the provided key.
   def find_by_unique_key unique_key
-    result = nil
-    ids = unique_key.split('.')
-    if(!ids.nil? && !ids.empty? && ids[0]==@key)
-      ids.delete_at(0)
-      if ids.empty?
-        result = self
-      else
-        subkey = ids.join('.')
-        i = 0
-        while result == nil && i<@children.length
-          result = @children[i].find_by_unique_key subkey
-          i = i + 1
-        end
-      end
-    end
-    return result
+    return find_by_unique_key_array unique_key.split('.')
   end
 
   def self.next_id
@@ -51,6 +36,7 @@ class Category
   end
 
   def initialize(key=nil)
+    raise "Illegal category key [#{key}]" if !key.nil? && key.include?('.')
     @id = Category.next_id
     @parent = nil
     @children = nil
@@ -115,6 +101,25 @@ class Category
   # return the translated name of a category
   def self.t_name_by_key(key)
     I18n.t("category." + key + ".title")
+  end
+
+  def breadcrumb_keys options=nil
+    whole = self.unique_key
+    result = Array.new
+    first = 0
+    last = 0
+    while !last.nil? && last < whole.length
+      last = whole.index '.', last
+      last = whole.length if last.nil?
+      result<<whole[first, last-first]
+      last = last + 1 #to jump the dot
+    end
+
+    if !options.nil? && options[:exclude_root] == true
+      result.delete_at 0
+    end
+
+    return result
   end
   
 end
