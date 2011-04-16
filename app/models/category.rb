@@ -65,10 +65,6 @@ class Category
     YAML::load( File.open(File.dirname(__FILE__) + "/category.yml" ) )
   end
   
-  def to_s
-    return "#{@key.nil? ? 'root' : @key} #{@children.count} children"
-  end
-
   def accept(visitor)
     visitor.visit(self)
     unless @children.nil?
