@@ -1,11 +1,31 @@
 require 'yaml'
 
+# A category in a category tree.
 class Category
 
   @@next = 0
 
   attr_accessor :key
   attr_accessor :parent
+
+  def find_by_unique_key unique_key
+    result = nil
+    ids = unique_key.split('.')
+    if(!ids.nil? && !ids.empty? && ids[0]==@key)
+      ids.delete_at(0)
+      if ids.empty?
+        result = self
+      else
+        subkey = ids.join('.')
+        i = 0
+        while result == nil && i<@children.length
+          result = @children[i].find_by_unique_key subkey
+          i = i + 1
+        end
+      end
+    end
+    return result
+  end
 
   def self.next_id
     @@next = @@next + 1
@@ -140,17 +160,22 @@ class OptionsVisitor
 
   def visit(category)
     if (!category.is_root || (category.is_root && @include_root) ) && ( category.depth <= 2 )
-      @options.push Option.new(
-        category.unique_key, \
-        ( ("&nbsp;" * (category.depth-1)).html_safe ) + I18n.t("category." + category.unique_key + ".title"))
+      cat_key = category.unique_key
+      unless is_excluded(cat_key)
+        @options.push Option.new(
+          cat_key, \
+          ( ("&nbsp;" * (category.depth-1)).html_safe ) + I18n.t("category." + category.unique_key + ".title"))
+      end
     end
     return self;
   end
 
-  def is_excluded(category)
+  # Return true if the a category with the given category key
+  # should not be visited
+  def is_excluded(category_key)
     unless @excludeds.nil?
       @excludeds.each do |excluded_key|
-        if (category.length >= excluded_key.length) && (category.start_with? excluded_key)
+        if (category_key.length >= excluded_key.length) && (category_key.start_with? excluded_key)
           return true
         end
       end

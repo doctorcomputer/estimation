@@ -1,16 +1,11 @@
 <div id="layout_side_main">
 
-  <h3>Categorie preferite</h3>
+  <h1>Categorie preferite</h1>
   <p>Gestisci fino a 5 categorie preferite.</p>
-
-  <% if !@fav_categories.nil? && @fav_categories.count < 5 %>
-    <%= form_for @fav_category do |f| %>
-      <%= select :favourite_category, :category, options_from_collection_for_select(Category.root.accept(OptionsVisitor.new).options, 'id', 'value', @fav_category.category) %>
-      <%= submit_tag "Aggiungi la categoria tra le tue preferite" %>
-    <% end %>
-  <% end %>
+  <p>Le tue categorie preferite saranno utilizzate per mostrarti i risultati più vicini ai tuoi interessi.</p>
 
   <%unless @fav_categories.nil? || @fav_categories.count == 0  %>
+    <h2>Le tue categorie preferite</h2>
     <table>
       <tbody>
         <%@fav_categories.each do |category|%>
@@ -25,8 +20,18 @@
         <%end%>
       </tbody>
     </table>
-  <%else%>
-    Non hai ancora scelto nessuna categoria preferita.
   <%end%>
+
+  <% if !@fav_categories.nil? && @fav_categories.count < 5
+    visitor = OptionsVisitor.new
+    visitor.exclude @fav_category_keys unless @fav_category_keys.nil?
+    %>
+    <h2>Aggiungi una categoria tra le tue preferite</h2>
+    <%= form_for @fav_category do |f| %>
+      <%= select :favourite_category, :category, options_from_collection_for_select(Category.root.accept(visitor).options, 'id', 'value', @fav_category.category) %>
+      <%= submit_tag "Aggiungi la categoria tra le tue preferite" %>
+    <% end %>
+  <% end %>
+
 
 </div>
