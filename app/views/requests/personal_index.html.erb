@@ -6,7 +6,7 @@ Benvenuto <%=@user.first_name%> <%=@user.last_name%>
   nel sistema, creare nuove richieste e vedere quali operatori ti hanno risposto.
 </p>
 
-<% unless @requests.empty? %>
+<% unless @requests.nil? || @requests.empty? %>
   <div class="index_box">
     <h1>Richieste in scadenza</h1>
     <div>
