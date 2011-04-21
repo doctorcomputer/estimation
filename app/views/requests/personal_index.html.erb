@@ -5,3 +5,16 @@ Benvenuto <%=@user.first_name%> <%=@user.last_name%>
   Questa è la tua area personale. Dal menù puoi controllare le richieste che hai inserito
   nel sistema, creare nuove richieste e vedere quali operatori ti hanno risposto.
 </p>
+
+<% unless @requests.empty? %>
+  <div class="index_box">
+    <h1>Richieste in scadenza</h1>
+    <div>
+      <div class="requests">
+        <%@requests.each do |request|%>
+          <%= render :partial => 'shared/site_request', :object => request, :locals => {:small => true} %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+<% end %>

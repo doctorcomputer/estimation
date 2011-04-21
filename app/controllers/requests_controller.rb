@@ -162,6 +162,18 @@ class RequestsController < ApplicationController
   def personal_index
     if(current_user!=nil)
       @user = current_user
+      favs = @user.favourite_categories
+      unless favs.nil? || favs.empty?
+        keys = favs.map do |fav|
+          fav.category
+        end
+        @requests = Request \
+          .where(:category_id => keys) \
+          .where('user_id <> :user_id', :user_id => current_user.id) \
+          .where('status = :status', :status => :active) \
+          .where(':now<expiration', :now => DateTime.now) \
+          .order('expiration asc')
+      end
     else
       render :action => :index
     end

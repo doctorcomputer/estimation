@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :proposals
   has_many :requests
+  has_many :favourite_categories
 
   attr_accessor :eula, :privacy
   
