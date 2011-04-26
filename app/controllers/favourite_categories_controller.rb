@@ -40,4 +40,19 @@ class FavouriteCategoriesController < ApplicationController
     render :action => :index
   end
 
+  def interesting_requests
+    fav_categories = FavouriteCategory.where('user_id = :user_id', :user_id => current_user.id)
+    unless fav_categories.nil?
+      fav_category_keys = fav_categories.collect{ |cat| cat.category }
+      puts "**********************************************************"
+      @requests = Request \
+        .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
+        .where(:category_id => fav_category_keys) \
+        .paginate( :page => params[:page], :per_page => 10 )
+      puts "----------------------------------------------------------"
+    else
+      @requests = nil
+    end
+  end
+
 end

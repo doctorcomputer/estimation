@@ -22,6 +22,7 @@ Estimating::Application.routes.draw do
 
   # Personal favourite categories
   resources :favourite_categories
+  match 'interesting_requests' => 'favourite_categories#interesting_requests', :as => :interesting_requests
 
   # User and login related
   resources :users

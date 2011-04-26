@@ -2,32 +2,23 @@
     <div class="menu_tree">
       <ul>
         <li>
-          Le tue richieste
+          Strumenti per utenti
           <ul>
-            <li><%= link_to "nuova", new_request_path, :class=>:first %></li>
-            <li><%= link_to "in preparazione (#{@draft_requests_number})", requests_path(:status => :draft), :class=>:middle %></li>
-            <li><%= link_to "attive (#{@active_requests_number})", requests_path(:status => :active), :class=>:middle %></li>
-            <li><%= link_to "scadute (#{@expired_requests_number})", requests_path(:status => :expired), :class=>:last %></li>
+            <li><%= link_to "nuova richiesta", new_request_path, :class=>:first %></li>
+            <li><%= link_to "richieste in preparazione (#{@draft_requests_number})", requests_path(:status => :draft), :class=>:middle %></li>
+            <li><%= link_to "richieste attive (#{@active_requests_number})", requests_path(:status => :active), :class=>:middle %></li>
+            <li><%= link_to "richieste scadute (#{@expired_requests_number})", requests_path(:status => :expired), :class=>:last %></li>
           </ul>
         </li>
         <li>
-          Offerte in corso
+          Strumenti per operatori
           <ul>
-            <li><%= link_to "tutte (#{@active_proposals_number})", proposals_path(:status => :active), :class=>:first %></li>
-            <li><%= link_to "migliori (#{@best_proposals_number})", proposals_path(:status => :best), :class=>:last %></li>
-          </ul>
-        </li>
-        <li>
-          Offerte terminate
-          <ul>
-            <li><%= link_to "aggiudicate (#{@awarded_proposals_number})", proposals_path(:status => :awarded), :class=>:first %></li>
-            <li><%= link_to "perse (#{@rejected_proposals_number})", proposals_path(:status => :rejected), :class=>:last %></li>
-          </ul>
-        </li>
-        <li>
-          Categorie preferite
-          <ul>
-            <li><%= link_to "elenco", favourite_categories_path, :class=>:first %></li>
+            <li><%= link_to "categorie preferite", favourite_categories_path(:status => :active), :class=>:first %></li>
+            <li><%= link_to "richieste interessanti", :controller => :favourite_categories, :action => :interesting_requests, :class=>:middle %></li>
+            <li><%= link_to "tutte le proposte (#{@active_proposals_number})", proposals_path(:status => :active), :class=>:middle %></li>
+            <li><%= link_to "proposte migliori (#{@best_proposals_number})", proposals_path(:status => :best), :class=>:middle %></li>
+            <li><%= link_to "proposte aggiudicate (#{@awarded_proposals_number})", proposals_path(:status => :awarded), :class=>:middle %></li>
+            <li><%= link_to "proposte perse (#{@rejected_proposals_number})", proposals_path(:status => :rejected), :class=>:last %></li>
           </ul>
         </li>
       </ul>

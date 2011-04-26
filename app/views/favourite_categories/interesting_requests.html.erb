@@ -1,0 +1,33 @@
+<%if !@requests.nil? && @requests.count>0 %>
+  <div id="top_pagination">
+
+    <%=form_tag( (url_for :controller=>:site, :action=>:index), :method=>:get, :style=> 'display: inline' )  do |f| %>
+      <% params.each do |key,value| %>
+        <% if key!='sorting' %>
+          <%= hidden_field_tag key, value %>
+        <% end %>
+      <% end %>
+      mostra prima:
+      <%= select_tag \
+        :sorting, \
+        options_for_select({
+          "in scadenza" => :expiring_asc,
+          "appena pubblicata" => :published_desc }, params[:sorting]) %>
+    <%end%>
+
+    <%= my_page_entries_info @requests %>
+  </div>
+
+  <div class="requests">
+    <%@requests.each do |request|%>
+      <%= render :partial => 'shared/site_request', :object => request %>
+    <%end%>
+  </div>
+
+  <div id="bottom_pagination">
+    <%= will_paginate @requests, :previous_label => '&laquo;', :next_label => '&raquo;', :container => false %>
+  </div>
+
+<%else%>
+  Non ci sono richieste nelle categorie da te preferite
+<%end%>
