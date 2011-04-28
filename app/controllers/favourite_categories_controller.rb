@@ -43,13 +43,20 @@ class FavouriteCategoriesController < ApplicationController
   def interesting_requests
     fav_categories = FavouriteCategory.where('user_id = :user_id', :user_id => current_user.id)
     unless fav_categories.nil?
+
+      sorting = {
+        'expiring_asc' => 'expiration asc',
+        'published_desc' => 'updated_at desc',
+        nil => 'expiration asc'
+      }
+
       fav_category_keys = fav_categories.collect{ |cat| cat.category }
-      puts "**********************************************************"
       @requests = Request \
         .where('status=:status AND :now<expiration', :status => :active, :now => DateTime.now) \
         .where(:category_id => fav_category_keys) \
+        .where('user_id <> :user', :user => current_user.id) \
+        .order(sorting[params[:sorting]]) \
         .paginate( :page => params[:page], :per_page => 10 )
-      puts "----------------------------------------------------------"
     else
       @requests = nil
     end

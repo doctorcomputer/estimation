@@ -1,7 +1,17 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $j(document).ready(function(){
+      $j("#sorting").change(function(){
+        $j(this).closest("form").submit();
+      })
+    });
+  </script>
+<% end %>
+
 <%if !@requests.nil? && @requests.count>0 %>
   <div id="top_pagination">
 
-    <%=form_tag( (url_for :controller=>:site, :action=>:index), :method=>:get, :style=> 'display: inline' )  do |f| %>
+    <%=form_tag( (url_for :controller=>:favourite_categories, :action=>:interesting_requests), :method=>:get, :style=> 'display: inline' )  do |f| %>
       <% params.each do |key,value| %>
         <% if key!='sorting' %>
           <%= hidden_field_tag key, value %>
