@@ -1,4 +1,8 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+proposal_one:
+  user: proposal_owner
+  request: the_request
+  description: I'll do it for 10 eur
+  amount: 10
 
 one:
   user: one

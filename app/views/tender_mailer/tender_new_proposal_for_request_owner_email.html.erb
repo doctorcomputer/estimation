@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nuova offerta relativa alla tua richiesta <%=@request.id%></title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      Ciao <%=@request.user.first_name%> <%=@request.user.last_name%><br/>
+      l'utente <%=@proposal.user.login%> ha inviato una nuova proposta
+      relativa alla tua richiesta <%=@request.id%> "<%=@request.description%>".
+    </p>
+    <p>
+      I dettagli della proposta
+    <table>
+      <tr><td>Offerente</td><td><%=@proposal.user.login%></td></tr>
+      <tr><td>Ammontare</td><td><%=@proposal.amount%></td></tr>
+      <tr><td>Descrizione</td><td><%=@proposal.description%></td></tr>
+    </table>
+  </p>
+  <p>
+    Collegati alla tua area riservata per vedere i dettagli di questa offerta e
+    delle altre che hai eventualmente ricevuto.
+  </p>
+  <p>
+    Se questa proposta è di tuo gradimento ricordati di segnalarla come la
+    tua preferita. In questo modo incentiverai la concorrenza tra gli altri
+    proponenti.
+  </p>
+</body>
+</html>

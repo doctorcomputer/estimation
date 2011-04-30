@@ -18,3 +18,41 @@ one:
   current_login_at: 2011-01-21 20:27:38
   last_eula_confirmation: 2011-01-21 20:27:38
   last_privacy_confirmation: 2011-01-21 20:27:38
+
+request_owner:
+  login: john
+  email: john@test.fake
+  first_name: John
+  last_name: TheRipper
+  address: Big street
+  zip: 54321
+  city: Atlanta
+  is_professional: false
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 1
+  last_login_at: 2011-01-21 20:27:38
+  current_login_at: 2011-01-21 20:27:38
+  last_eula_confirmation: 2011-01-21 20:27:38
+  last_privacy_confirmation: 2011-01-21 20:27:38
+
+proposal_owner:
+  login: mark
+  email: mark@test.fake
+  first_name: Mark
+  last_name: Twain
+  address: Bateaux Rouge
+  zip: 12121
+  city: Missisipi
+  is_professional: false
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  login_count: 1
+  last_login_at: 2011-01-21 20:27:38
+  current_login_at: 2011-01-21 20:27:38
+  last_eula_confirmation: 2011-01-21 20:27:38
+  last_privacy_confirmation: 2011-01-21 20:27:38

@@ -46,7 +46,8 @@ class SiteController < ApplicationController
 
   def proposal_submission
 
-    # If the user is logged in, then the proposal is saved else he's required to login.
+    # If the user is logged in, then the proposal is saved else he is required
+    # to login.
     # The id of the request he was currently watching is saved.
     if current_user
       @request = Request.find params[:request][:id]
@@ -57,6 +58,9 @@ class SiteController < ApplicationController
       @proposal.request = @request
       @proposal.user = current_user
       if @proposal.save
+
+        TenderMailer.tender_new_proposal_for_request_owner_email(@request, @proposal).deliver
+
         flash.now[:notice]='La tua offerta è stata registrata con successo. Puoi ora tenerla sotto controllo nella tua area personale'
         render :request_detail
       end
