@@ -20,10 +20,10 @@ one:
   last_privacy_confirmation: 2011-01-21 20:27:38
 
 request_owner:
-  login: john
-  email: john@test.fake
-  first_name: John
-  last_name: TheRipper
+  login: requestor_login
+  email: requestor@test.fake
+  first_name: RequestorFirst
+  last_name: RequestorLast
   address: Big street
   zip: 54321
   city: Atlanta
@@ -39,10 +39,10 @@ request_owner:
   last_privacy_confirmation: 2011-01-21 20:27:38
 
 proposal_owner:
-  login: mark
-  email: mark@test.fake
-  first_name: Mark
-  last_name: Twain
+  login: proposal_owner
+  email: proposal@test.fake
+  first_name: ProposalFirst
+  last_name: ProposalLast
   address: Bateaux Rouge
   zip: 12121
   city: Missisipi

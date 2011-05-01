@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Una delle tue offerte non è più la migliore</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      Ciao <%=@proposal.user.first_name%> <%=@proposal.user.last_name%><br/>
+      l'utente <%=@request.user.login%> non considera più la tua proposta
+      come migliore per la richiesta <%=@request.id%> "<%=@request.description%>".
+    </p>
+  <p>
+    Accedi al sito e controlla le proposte che sono state inviate.
+    Potrai così inviare una nuova proposta e tentare nuovamente di ottenere
+    il favore del cliente.
+  </p>
+</body>
+</html>

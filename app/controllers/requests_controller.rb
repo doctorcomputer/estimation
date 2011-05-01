@@ -187,9 +187,20 @@ class RequestsController < ApplicationController
       current_status = proposal.is_best
       next_status = (best_id.nil? || best_id.blank?) ? false : (best_id.to_s == proposal.id.to_s)
       if current_status != next_status
+
+        # This is the proposal that was the best and
+        # it is going to be discarded
+        if proposal.is_best
+          TenderMailer.tender_proposal_discarded_as_best(@request, proposal)
+          flash.now[:notice] = "La proposta di #{proposal.user.login} è ora la proposta migliore."
+        end
+
         proposal.is_best = next_status
+
+        # This is the proposal that is going to become the best
         proposal.save
-        if proposal.is_best 
+        if proposal.is_best
+          TenderMailer.tender_proposal_choosen_as_best(@request, proposal)
           flash.now[:notice] = "La proposta di #{proposal.user.login} è ora la proposta migliore."
         end
       end
