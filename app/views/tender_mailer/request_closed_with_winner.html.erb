@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>La richiesta <%=@request.id%> è terminata.</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      La richiesta <%=@request.id%> i cui dettagli sono qui sotto riportati
+      ha raggiunto la sua scadenza.
+      <table>
+        <tr>
+          <th>Richiedente</th>
+          <td>
+            <%=@request.user.first_name%> <%=@request.user.last_name%><br/>
+            <%=@request.user.address%> <%=@request.user.zip%>
+            <%=@request.user.city%><br/>
+            <%=@request.user.email%>
+          </td>
+        </tr>
+        <tr>
+          <th>Descrizione</th>
+          <td><%=@request.description%></td></tr>
+      </table>
+    </p>
+    <p>
+      L'offerta che è stata giudicata come migliore è la seguente.
+      <table>
+        <tr>
+          <th>Offerente</th>
+          <td>
+            <%=@proposal.user.first_name%> <%=@proposal.user.last_name%><br/>
+            <%=@proposal.user.address%> <%=@proposal.user.zip%>
+            <%=@proposal.user.city%><br/>
+            <%=@proposal.user.email%>
+          </td></tr>
+        <tr>
+          <th>Descrizione</th>
+          <td><%=@proposal.description%></td>
+        </tr>
+        <tr>
+          <th>Ammontare</th>
+          <td><%=@proposal.amount%></td>
+        </tr>
+      </table>
+    </p>
+
+    <p>
+      Come specificato nelle condizioni di utilizzo del sito,
+      <strong><%=@proposal.user.first_name%> <%=@proposal.user.last_name%></strong>
+      si impegna per quanto possibile a soddisfare la richiesta di <strong><%=@request.user.first_name%> <%=@request.user.last_name%></strong>
+      richiedendo il compenso proposto di <%=@proposal.amount%>.<br/>
+
+    </p>
+
+
+
+</body>
+</html>

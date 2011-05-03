@@ -43,4 +43,13 @@ class TenderMailer < ActionMailer::Base
        )
   end
 
+  # When a request is closed, a mail is sent to the winner
+  def request_closed_with_winner(the_request, the_proposal, to_owner)
+    @request = the_request
+    @proposal = the_proposal
+    mail(:to => to_owner ? @request.user.email : @proposal.user.email,
+         :subject => "La richiesta #{@request.id} è chiusa"
+       )
+  end
+
 end

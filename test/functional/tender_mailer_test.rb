@@ -2,6 +2,37 @@ require 'test_helper'
 
 class TenderMailerTest < ActionMailer::TestCase
 
+  def test_request_closed_with_winner_to_owner
+    request = requests(:request_one)
+    proposal = proposals(:proposal_one)
+    email = TenderMailer.request_closed_with_winner(request, proposal, true).deliver
+
+    assert !ActionMailer::Base.deliveries.empty?
+
+    # mail is sent to the proposer
+    assert_equal request.user.email, email.to[0]
+
+    # mail contains owner and proposer data
+    assert_match /#{request.user.first_name}/, email.encoded
+    assert_match /#{request.user.last_name}/, email.encoded
+    assert_match /#{proposal.user.first_name}/, email.encoded
+    assert_match /#{proposal.user.last_name}/, email.encoded
+  end
+
+  def test_request_closed_with_winner_to_winner_proposer
+    request = requests(:request_one)
+    proposal = proposals(:proposal_one)
+    email = TenderMailer.request_closed_with_winner(request, proposal, false).deliver
+
+    assert !ActionMailer::Base.deliveries.empty?
+
+    # mail contains owner and proposer data
+    assert_match /#{request.user.first_name}/, email.encoded
+    assert_match /#{request.user.last_name}/, email.encoded
+    assert_match /#{proposal.user.first_name}/, email.encoded
+    assert_match /#{proposal.user.last_name}/, email.encoded
+  end
+
   def test_tender_proposal_discarder_as_best
     request = requests(:request_one)
     proposal = proposals(:proposal_one)

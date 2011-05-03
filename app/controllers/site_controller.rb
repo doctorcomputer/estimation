@@ -59,7 +59,8 @@ class SiteController < ApplicationController
       @proposal.user = current_user
       if @proposal.save
 
-        TenderMailer.tender_new_proposal_for_request_owner_email(@request, @proposal).deliver
+        #TenderMailer.tender_new_proposal_for_request_owner_email(@request, @proposal).deliver
+        TenderMailer.delay.tender_new_proposal_for_request_owner_email(@request, @proposal)
 
         flash.now[:notice]='La tua offerta è stata registrata con successo. Puoi ora tenerla sotto controllo nella tua area personale'
         render :request_detail
