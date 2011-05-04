@@ -1,3 +1,7 @@
+# A request issued by someone to find an operator that will provide a service.
+#
+# A request has a status (or publication status) that states if it is
+# a draft (:draft) or if it is published (:active).
 class Request < ActiveRecord::Base
 
 	belongs_to :user	# foreign key: user_id

@@ -52,6 +52,31 @@
   </div>
 <% end %>
 
+<div class="index_box" style="text-align: center">
+  <OBJECT
+    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0"
+    WIDTH="400" HEIGHT="246" id="slidesimple" ALIGN="">
+      <PARAM NAME=movie VALUE="/flash/slidesimple.swf?xmlUrl=<%=  APP_CONFIG['protocol'] + APP_CONFIG['host'] + compute_public_path( 'banner_123.xml', 'flash', 'xml', true )%>">
+      <PARAM NAME=loop VALUE=false>
+      <PARAM NAME=menu VALUE=false>
+      <PARAM NAME=quality VALUE=high>
+      <PARAM NAME=bgcolor VALUE=#ffffff>
+      <EMBED
+        src="/flash/slidesimple.swf?xmlUrl=<%=  APP_CONFIG['protocol'] + APP_CONFIG['host'] + compute_public_path( 'banner_123.xml', 'flash', 'xml', true )%>"
+        loop="false"
+        menu="false"
+        quality="high"
+        bgcolor="#FFFFFF"
+        WIDTH="400"
+        HEIGHT="246"
+        TYPE="application/x-shockwave-flash"
+        PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+      </EMBED>
+  </OBJECT>
+</div>
+
+
 <div style="clear: both">
 
   <div class="index_box" style="float: left; width: 345px">

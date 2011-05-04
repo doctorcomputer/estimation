@@ -1,11 +1,14 @@
 development:
   env: development_config
   host: localhost:3000
+  protocol: http://
 
 test:
   env: test_config
   host: localhost:3000
+  protocol: http://
 
 production:
   env: production_config
   host: www.miserve.com
+  protocol: http://
