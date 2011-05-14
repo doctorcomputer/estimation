@@ -9,3 +9,4 @@ gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 gem "will_paginate", "~> 3.0.pre2"
 gem 'delayed_job'
+gem 'mysql2'

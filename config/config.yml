@@ -10,5 +10,5 @@ test:
 
 production:
   env: production_config
-  host: miserve.heroku.com
+  host: www.miserve.eu
   protocol: http://
