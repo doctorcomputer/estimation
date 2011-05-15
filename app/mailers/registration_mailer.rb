@@ -1,6 +1,6 @@
 class RegistrationMailer < ActionMailer::Base
 
-  default :from => "info@miserve.eu"
+  default :from => "noreply@miserve.eu"
 
   def registration_activation_email(user)
     @user = user

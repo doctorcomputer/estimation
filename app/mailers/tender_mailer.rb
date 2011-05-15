@@ -4,6 +4,8 @@
 # Copyright:: Copyright (c) 2011 Studio Ingegneria Demichelis
 class TenderMailer < ActionMailer::Base
 
+  default :from => "noreply@miserve.eu"
+
   # Users can define the categories they are most interested in.
   # When a new request is posted, if the request matches with
   # the user's preferencies, a mail is sent to him.
