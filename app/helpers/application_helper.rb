@@ -22,4 +22,16 @@ module ApplicationHelper
     end
   end
 
+  def titlize supposed_title
+    unless supposed_title.nil?
+      if supposed_title.size > 40
+        supposed_title[0..40].capitalize + "..."
+      else
+        supposed_title
+      end
+    else
+      nil
+    end
+  end
+
 end
