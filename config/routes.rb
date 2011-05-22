@@ -31,6 +31,10 @@ Estimating::Application.routes.draw do
 	match 'logout' => 'user_sessions#destroy'
   match 'activation' => 'user_sessions#activation' # Shows the form in which the user could paste the activation code
   match 'activate' => 'user_sessions#activate' # Activate the account
+  match 'lost_password' => 'users#lost_password'
+  match 'require_reset_password_token' => 'users#require_reset_password_token' # Send an email with info about how to reset the pwd
+  match 'confirm_password_reset' => 'users#confirm_password_reset'
+  match 'password_reset' => 'users#password_reset'
 
 
 

@@ -40,61 +40,87 @@ class UsersController < ApplicationController
     end
   end
 
+  # Invoked when a user lost his/her password
+  def lost_password
 
+  end
 
+  # Invoked when a user lost his/her password
+  def require_reset_password_token
+    email = params[:email]
+    if email.nil? || email.blank?
+      flash.now[:error] = "Per favore, fornisci un indirizzo di posta elettronica."
+      render :action => :lost_password
+      return
+    end
 
-#  # GET /users
-#  # GET /users.xml
-#  def index
-#    @users = User.all
-#
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.xml  { render :xml => @users }
-#    end
-#  end
-#
-#  # GET /users/1
-#  # GET /users/1.xml
-#  def show
-#    @user = User.find(params[:id])
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @user }
-#    end
-#  end
-#
-#  # GET /users/1/edit
-#  def edit
-#    @user = User.find(params[:id])
-#  end
-#
-#  # PUT /users/1
-#  # PUT /users/1.xml
-#  def update
-#    @user = User.find(params[:id])
-#
-#    respond_to do |format|
-#      if @user.update_attributes(params[:user])
-#        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-#        format.xml  { head :ok }
-#      else
-#        format.html { render :action => "edit" }
-#        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-#      end
-#    end
-#  end
-#
-#  # DELETE /users/1
-#  # DELETE /users/1.xml
-#  def destroy
-#    @user = User.find(params[:id])
-#    @user.destroy
-#
-#    respond_to do |format|
-#      format.html { redirect_to(users_url) }
-#      format.xml  { head :ok }
-#    end
-#  end
+    user = User.find_by_email email
+    if !user.nil?
+      new_token = user.reset_perishable_token!
+      flash.now[:notice] = "E' stata inviata una mail all'indirizzo #{user.email} con le istruzioni per il reset della password."
+      RegistrationMailer.reset_password_email(user, new_token).deliver
+      render :template => "users/generic.html.erb"
+    else
+      flash.now[:warning] = "L'indirizzo di posta elettronica '#{email}' non risulta associato ad alcun utente."
+      render :action => :lost_password
+    end
+  end
+
+  def confirm_password_reset
+    @token = params[:activation_token]
+
+    if @token.nil? || @token.strip.length == 0
+      flash.now[:error] = "Il token non è valido."
+      render :template => "users/generic.html.erb"
+      return
+    end
+
+    user = User.find_by_perishable_token @token
+    if user.nil?
+      flash.now[:error] = "Il token non esiste."
+      render :template => "users/generic.html.erb"
+      return
+    end
+
+    render :action => :password_reset
+    return
+  end
+
+  def password_reset
+    puts '*********** 0'
+    @token = params[:activation_token]
+
+    if @token.nil? || @token.strip.length == 0
+      flash.now[:error] = "Il token non è valido."
+      render :template => "users/generic.html.erb"
+      return
+    end
+
+    user = User.find_by_perishable_token @token
+    if user.nil?
+      flash.now[:error] = "Il token non esiste."
+      render :template => "users/generic.html.erb"
+      return
+    end
+
+    new_password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    puts "zappala: #{new_password} / #{password_confirmation}"
+
+    if !new_password.nil? && new_password==password_confirmation
+      user.password = new_password
+      user.password_confirmation = password_confirmation
+      if user.save
+        flash.now[:notice] = "La password è stata cambiata."
+        render :template => "users/generic.html.erb"
+        return
+      end
+    else
+      flash.now[:error] = "La password non corrisponde."
+      render :action => :password_reset
+      return
+    end
+  end
+
 end

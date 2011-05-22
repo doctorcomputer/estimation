@@ -33,6 +33,7 @@
               <%= form.label :login, 'username' %> <%= form.text_field :login, :size=>10 %>
               <%= form.label :password, 'password' %> <%= form.password_field :password, :size=>10 %>
               <%= form.submit "Loggati" %> o <%= link_to "Registrati", new_user_path %><br/>
+              <%= link_to "Password Persa", 'lost_password' %>
             <% end%>
           <% end%>
         </div>
