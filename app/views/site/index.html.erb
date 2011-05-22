@@ -1,3 +1,5 @@
+<% @page_title = titlize("Ricerca '#{@search.query} #{Category.t_name_by_key(@search.category_key)}'")  %>
+
 <% content_for :head do %>
   <script type="text/javascript">
     $j(document).ready(function(){
@@ -13,7 +15,6 @@
 <% end %>
 
 <%= render :partial => 'shared/search_bar', :object => @search %>
-
 
 <%if !@requests.nil? && @requests.count>0 %>
   <div id="top_pagination">
@@ -48,3 +49,5 @@
 <%else%>
   Non ci sono risultati per questa ricerca
 <%end%>
+
+<%= render :partial => 'shared/search_bar', :object => @search %>
