@@ -1,0 +1,65 @@
+div.menu_tree{
+    /*avoid gap after li in ie6 by setting width*/
+    /* width: 190px; */
+    margin: 0px;
+    padding: 0px;
+    color: black;
+
+    font-size: 14px;
+}
+
+div.menu_tree A:HOVER,
+div.menu_tree A.last:HOVER{
+    text-decoration: none;
+    /* background: #8B0F03; */
+    background: #E66919;
+    color: white;
+    border-bottom: 1px solid #F23005;
+}
+
+div.menu_tree li A,
+div.menu_tree li A.last{
+    text-decoration: none;
+    color: black;
+    margin-left: 0px;
+    padding-left: 0px;
+    border-bottom: 1px dotted gray;
+    display: block;
+}
+div.menu_tree li A.last{
+    border-bottom: none;
+}
+
+div.menu_tree ul{
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0px;
+    font-weight: bold;
+}
+
+/* Match the header of a menu section. */
+div.menu_tree ul li{
+    color: #E66919;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-right: 1px dotted gray;
+    /*
+    border-top: 0px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    */
+}
+
+div.menu_tree ul li li{
+    border: none;
+}
+
+div.menu_tree ul ul{
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-weight: normal;
+    border: none;
+}

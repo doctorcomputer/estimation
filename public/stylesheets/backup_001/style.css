@@ -26,10 +26,10 @@ img{
 
 #tab_menu li{
     display: inline;
-    border-top: 1px solid #B53E04;
+    border-top: 1px solid black;
     border-bottom: none;
-    border-left: 1px solid #B53E04;
-    border-right: 3px solid #B53E04;
+    border-left: 1px solid black;
+    border-right: 3px solid black;
     margin: 5px 5px 0px 5px;
     /*
     padding: 5px 5px 0px 5px;
@@ -39,7 +39,7 @@ img{
 }
 
 #tab_menu li a{
-    color: #B53E04;
+    color: #9A0028;
     text-decoration: none;
     margin: 4px 4px 0px 4px;
 }
@@ -88,10 +88,11 @@ img{
 #user_box{
     float:right;
     font-size: 10px;
-    background: #B53E04;
+    background: #5B8BC6;
     margin: 5px;
     padding: 5px;
-    border: none;
+    border: 2px #9A0028 dotted;
+    color: black;
 }
 
 #user_box input{
