@@ -18,13 +18,20 @@ form.pretty fieldset {
 form.pretty fieldset legend {
     font-size: 150%;
     font-weight: normal;
-    color: #473C09;
+    color: #547C01;
     margin: 0 0 0 0;
     padding: 0 5px;
 }
 
 form.pretty label {
     font-size: 100%;
+}
+
+form.pretty input[type=submit],
+form.pretty button{
+    background: none repeat scroll 0 0 #B53E04;
+    border: 1px solid #E66919;
+    color: white;
 }
 
 form.pretty label u {
@@ -35,7 +42,6 @@ form.pretty label u {
 form.pretty input, form.pretty select, form.pretty textarea {
     font-family: Tahoma, Arial, sans-serif;
     font-size: 100%;
-    color: #000000;
 }
 
 form.pretty textarea {
@@ -64,7 +70,7 @@ form.pretty fieldset div.notes {
     margin: 0px 0px 10px 10px;
     padding: 5px;
     border: 1px solid #84AC31;
-    color: #84AC31;
+    color: white;
     font-size: 88%;
     background-color: #547C01;
 }
@@ -77,13 +83,12 @@ form.pretty fieldset div.notes h4 {
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: #EFDD19;
-    color: #473C08;
+    colot: white;
     font-size: 110%;
 }
 
 form.pretty fieldset div.notes p {
     margin: 0em 0em 1.2em 0em;
-    color: black;
 }
 
 form.pretty fieldset div.notes p.last {

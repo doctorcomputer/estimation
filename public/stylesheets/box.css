@@ -25,9 +25,9 @@ div.index_box p.button {
     font-weight: bold;
 }
 div.index_box button {
-    background: #9A0028;
+    background: #B53E04;
+    border: 1px solid #E66919;
     color: white;
-    border: 0;
     font-size: 20px;
 }
 

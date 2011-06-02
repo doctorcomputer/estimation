@@ -98,15 +98,15 @@
         </div>
         <div class="optional">
           <%= label_tag :btn_save, "Pubblica:" %>
-          <button id="btn_publish" value="Pubblica">Pubblica</button>
-          <small>Quando pubblichi una richiesta questa viene resa disponibile sul sito a tutti gli operatori.</small>
-        </div>
-        <div class="optional">
-          <label>&nbsp;</label>
     <%# f.label :eula, 'Condizioni:' %>
           <%= check_box_tag :eula, :accepted, false, :class=>:checkBox %> Accetto le condizioni di pubblicazione.
           <small class="error"><%= @request.errors[:eula].join(". ") %></small>
           <small>Le condizioni di pubblicazione sono specificate nelle <%= link_to "condizioni d'uso", {:controller=>:static, :action=>:terms_of_service}, :target=>'_blank' %></small>
+        </div>
+        <div class="optional">
+          <label>&nbsp;</label>
+          <button id="btn_publish" value="Pubblica">Pubblica</button>
+          <small>Quando pubblichi una richiesta questa viene resa disponibile sul sito a tutti gli operatori.</small>
         </div>
       </fieldset>
 

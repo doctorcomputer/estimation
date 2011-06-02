@@ -5,7 +5,7 @@
       <% unless @page_title.nil? %>
         <%= @page_title %> -
       <% end %>
-      MiServe
+      Mi Serve
     </title>
     <%= stylesheet_link_tag :all %>
     <%= stylesheet_link_tag ['smoothness/jquery-ui-1.8.7.custom'] %>
@@ -29,12 +29,20 @@
             Bentornato <%=current_user.first_name%> <%=current_user.last_name%> ! |
             <%=link_to "Esci", logout_path%>
           <% else%>
-            <%= form_for UserSession.new do |form| %>
-              <%= form.label :login, 'username' %> <%= form.text_field :login, :size=>10 %>
-              <%= form.label :password, 'password' %> <%= form.password_field :password, :size=>10 %>
-              <%= form.submit "Loggati" %> o <%= link_to "Registrati", new_user_path %><br/>
-              <%= link_to "Password Persa", 'lost_password' %>
-            <% end%>
+            <div style="display: inline-block; vertical-align: top">
+              <%= form_for UserSession.new do |form| %>
+                Loggati o <%= link_to "Registrati", new_user_path %>. <%= link_to "Password Persa ?", 'lost_password' %><br/>
+                <div style="display: inline-block;">
+                  <%= form.label :login, 'username' %><br/>
+                  <%= form.text_field :login, :size=>10 %>
+                </div>
+                <div style="display: inline-block;">
+                  <%= form.label :password, 'password' %><br/>
+                  <%= form.password_field :password, :size=>10 %>
+                </div>
+                <%= form.submit "Loggati" %><br/>
+              <% end%>
+            </div>
           <% end%>
         </div>
       </div>

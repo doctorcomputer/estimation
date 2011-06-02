@@ -87,16 +87,28 @@ img{
 /* User box: begin */
 #user_box{
     float:right;
-    font-size: 10px;
+    font-size: 14px;
     background: #B53E04;
-    margin: 5px;
-    padding: 5px;
-    border: none;
+    color: #E66919;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 700;
+}
+
+#user_box A{
+    color: #E66919;
+}
+
+#user_box label{
+    font-size: 10px;
+    font-weight: normal;
 }
 
 #user_box input{
-    border: 0px;
+    border: 1px solid #E66919;
+    font-size: 10px;
 }
+
 /* User box: end */
 /* --------------------------------------------------*/
 
@@ -106,12 +118,12 @@ img{
 div.box{
     margin: 0px 0px 5px 0px;
     clear: both;
-    border: #006600 4px solid;
+    border: #547C01 4px solid;
 }
 
 div.box h1{
-    background: #006600;
-    color: #F2EC94;
+    background: #547C01;
+    color: white;
     margin: 0px;
     padding: 5px;
     font-weight: bold;
@@ -123,7 +135,6 @@ div.box div.body {
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
     background: none;
-    color: #844E03;
     margin: 0px;
     padding: 5px;
     font-weight: normal;

@@ -63,8 +63,10 @@ class SiteController < ApplicationController
         TenderMailer.delay.tender_new_proposal_for_request_owner_email(@request, @proposal)
 
         flash.now[:notice]='La tua offerta è stata registrata con successo. Puoi ora tenerla sotto controllo nella tua area personale'
-        render :request_detail
+      else
+        flash.now[:error]='La tua offerta non è stata salvata'
       end
+      render :action => :request_detail
     else
       render :require_login
     end
