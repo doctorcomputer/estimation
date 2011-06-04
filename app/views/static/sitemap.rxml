@@ -1,0 +1,59 @@
+xml.instruct!
+xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+
+  # root
+  xml.url do
+    xml.loc url_for(:controller => :static, :action => :index, :only_path => false)
+    xml.changefreq "daily"
+    xml.priority "1.0"
+  end
+
+
+
+
+  # info pages
+  xml.url do
+    xml.loc url_for(:controller => :static, :action => :how_it_works, :only_path => false)
+    xml.changefreq "yearly"
+    xml.priority "1.0"
+  end
+
+  xml.url do
+    xml.loc url_for(:controller => :static, :action => :terms_of_service, :only_path => false)
+    xml.changefreq "yearly"
+    xml.priority "0.2"
+  end
+
+  xml.url do
+    xml.loc url_for(:controller => :static, :action => :privacy, :only_path => false)
+    xml.changefreq "yearly"
+    xml.priority "0.2"
+  end
+
+
+
+
+
+  #requests
+  @requests.each do |request|
+    xml.url do
+      xml.loc "#{url_for(:controller => :static, :action => :index, :only_path => false)}/request_detail/#{request.id}"
+      xml.changefreq "daily"
+      xml.priority "0.7"
+      xml.lastmod request.updated_at.strftime("%Y-%m-%d")
+    end
+  end
+
+
+  
+
+
+  # categories
+  @categories.each do |category|
+    xml.url do
+      xml.loc "#{url_for(:controller => :site,:action => :index,:only_path => false)}/#{category}"
+      xml.changefreq "monthly"
+      xml.priority "0.7"
+    end
+  end
+end

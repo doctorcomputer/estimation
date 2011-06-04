@@ -1,22 +1,28 @@
 class StaticController < ApplicationController
 
+  def find_expiring limit
+    Request \
+      .where('status = :status', :status => :active) \
+      .where(':now<expiration', :now => DateTime.now) \
+      .order("expiration ASC") \
+      .limit(limit)
+  end
+
+  def find_new limit
+    Request \
+      .where('status = :status', :status => :active) \
+      .where(':now<expiration', :now => DateTime.now) \
+      .order("created_at DESC") \
+      .limit(limit)
+  end
+
   def index
 
     @search = Struct.new("Search", :query, :category_key).new("","")
 
     # find groups of interesting request that could be shown to the user.
-
-    @expiring_requests = Request \
-      .where('status = :status', :status => :active) \
-      .where(':now<expiration', :now => DateTime.now) \
-      .order("expiration ASC") \
-      .limit(3)
-
-    @newest_requests = Request \
-      .where('status = :status', :status => :active) \
-      .where(':now<expiration', :now => DateTime.now) \
-      .order("created_at DESC") \
-      .limit(3)
+    @expiring_requests = find_expiring 3
+    @newest_requests = find_new 3
 
 #    @uncared_requests = Request \
 #      .joins(:proposals) \
@@ -46,6 +52,19 @@ class StaticController < ApplicationController
 
   def site_map
     
+  end
+
+  # This is the sitemap xml file used by search engines
+  def sitemap
+    headers["Content-Type"] = "text/xml"
+    @categories = Category.root.accept(CategoryCollectsAllVisitor.new).values
+
+    @requests = Request \
+      .select('id,updated_at,status') \
+      .where('status = :status', :status => :active) \
+      .where(':now<expiration', :now => DateTime.now) \
+      .order("created_at DESC") \
+      .limit(40000)
   end
 
 end
