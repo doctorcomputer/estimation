@@ -1,0 +1,35 @@
+<% @page_title = titlize("Mappa di MiServe.eu")  %>
+<% @page_description = "Non sai come orientarti in MiServe.eu ? Consulta la site map." %>
+
+<% content_for :layout_side_two do %>
+  <%= render :partial => 'shared/default_side_two' %>
+<% end %>
+
+<div style="float: left">
+  <h1>Informazioni:</h1>
+  <ul>
+    <li><%= link_to "Homepage", root_path %></li>
+    <li><%= link_to "Come funziona MiServe.eu", :controller => :static, :action => :how_it_works %></li>
+    <li><%= link_to "Accordo per gli utenti", :controller => :static, :action => :terms_of_service %></li>
+    <li><%= link_to "Informativa sulla privacy", :controller => :static, :action => :privacy %></li>
+  </ul>
+</div>
+
+<div style="float: left">
+  <h1>Account:</h1>
+  <ul>
+    <li><%= link_to "Nuovo account", new_user_path %></li>
+    <li><%= link_to "Recupero password", 'lost_password' %></li>
+  </ul>
+</div>
+
+<div style="float: left">
+  <h1>Categorie:</h1>
+  <% categories = Category.root.accept(CategoryCollectsAllVisitor.new).values %>
+  <ul>
+  <% categories.each do |cat| %>
+    <li><%= link_to Category.t_name_by_key(cat), "/index/#{cat}" %></li>
+  <%end%>
+  </ul>
+</div>
+
