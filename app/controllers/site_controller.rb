@@ -2,7 +2,9 @@ class SiteController < ApplicationController
 
   def index
 
-    @search = Struct.new("Search", :query, :category_key).new(params[:query],params[:category_key])
+    query = params[:query].nil? ? "" : params[:query].nil
+    category_key = params[:category_key].nil? ? "" : params[:category_key]
+    @search = Struct.new("Search", :query, :category_key).new(query,category_key)
 
     sorting = {
       'expiring_asc' => 'expiration asc',

@@ -6,7 +6,7 @@ Estimating::Application.routes.draw do
   match 'info/:action' => 'static'
 
   # Public site workflow
-  match 'index' => 'site#index', :as => :index
+  match 'index(/:category_key)' => 'site#index', :as => :index, :category_key => /.+/
   match 'request_detail/:id' => 'site#request_detail', :as => :request_detail
   match 'proposal_submission' => 'site#proposal_submission', :as => :proposal_submission
   match 'proposal_new/:id' => 'site#proposal_new', :as => :proposal_new

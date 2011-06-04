@@ -44,4 +44,8 @@ class StaticController < ApplicationController
     
   end
 
+  def site_map
+    
+  end
+
 end

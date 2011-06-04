@@ -1,4 +1,10 @@
-<% @page_title = titlize("Proposte di lavori nella categoria '#{@search.query} #{Category.t_name_by_key(@search.category_key)}'") %>
+<% 
+unless @search.nil?
+  @page_title = titlize("Proposte di lavori nella categoria '#{@search.query} #{Category.t_name_by_key(@search.category_key)}'")  
+else
+  @page_title = titlize("Proposte di lavori nella categoria '#{@search.query} #{Category.t_name_by_key(@search.category_key)}'")  
+end
+%>
 <% @page_description = "Elenco degli appalti ancora aperti nella categoria '#{Category.t_name_by_key(@search.category_key)}'. I titolari delle richieste accettano nuovi preventivi." %>
 
 <% content_for :head do %>

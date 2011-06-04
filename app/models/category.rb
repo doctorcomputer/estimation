@@ -99,6 +99,7 @@ class Category
     I18n.t("category." + key + ".title")
   end
 
+  # return the path to the category
   def breadcrumb_keys options=nil
     whole = self.unique_key
     result = Array.new
@@ -209,6 +210,9 @@ class OptionsVisitor
   
 end
 
+# This one returs all categories
+# Usage is:
+# @categories = CategoryCollectsAllVisitor.new.visit(Category.root)
 class CategoryCollectsAllVisitor
 
   def initialize()
