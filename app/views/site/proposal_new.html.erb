@@ -1,4 +1,5 @@
 <% @page_title = titlize("Nuova proposta per '#{@request.title}'")  %>
+<% @page_description = "Nuova offerta economica per l'appalto '#{@request.title}' nella categoria '#{Category.t_name_by_key(@request.category_id)}'." %>
 
 <% content_for :layout_side_two do %>
   <%= render :partial => 'shared/default_side_two' %>
