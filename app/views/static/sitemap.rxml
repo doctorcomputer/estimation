@@ -51,7 +51,7 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   # categories
   @categories.each do |category|
     xml.url do
-      xml.loc "#{url_for(:controller => :site,:action => :index,:only_path => false)}/#{category}"
+      xml.loc "#{url_for(:controller => :site,:action => :index,:only_path => false)}#{category}"
       xml.changefreq "monthly"
       xml.priority "0.7"
     end

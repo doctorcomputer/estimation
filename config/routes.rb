@@ -4,6 +4,7 @@ Estimating::Application.routes.draw do
 	root :to => "static#index"
   match 'how_it_works' => 'static#how_it_works'
   match 'info/:action' => 'static'
+  match 'sitemap.xml' => 'static#sitemap'
 
   # Public site workflow
   match 'index(/:category_key)' => 'site#index', :as => :index, :category_key => /.+/
