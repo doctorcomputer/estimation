@@ -2,7 +2,7 @@ class SiteController < ApplicationController
 
   def index
 
-    query = params[:query].nil? ? "" : params[:query].nil
+    query = params[:query].nil? ? "" : params[:query]
     category_key = params[:category_key].nil? ? "" : params[:category_key]
     @search = Struct.new("Search", :query, :category_key).new(query,category_key)
 

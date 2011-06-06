@@ -8,4 +8,9 @@ class IndexTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should run a query without search term" do
+    get "/index?query=&category_key=root.house"
+    assert_response :success
+  end
+
 end
