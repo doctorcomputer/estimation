@@ -2,6 +2,7 @@
 <% @page_description = "MiServe.eu ti aiuta a trovare l'operatore più conveniente per le tue necessità. MiServe.eu ti aiuta a trovare nuovi clienti," %>
 
 <% content_for :head do %>
+  <%= javascript_include_tag ['jquery.cycle.all.min.js'] %>
   <script type="text/javascript">
     $j(document).ready(function(){
 
@@ -16,6 +17,12 @@
       btn.click(function(){
         window.location.href='<%= new_user_session_path %>';
       });
+
+      /*
+      $j('.slideshow').cycle({
+        fx: 'fade'
+      });
+      */
 
     });
   </script>
@@ -56,6 +63,27 @@
 <% end %>
 
 <div class="index_box" style="text-align: center">
+
+  <!--
+  <div class="slideshow">
+    <img src="http://cloud.github.com/downloads/malsup/cycle/beach1.jpg" width="200" height="200" />
+    <div>
+      1. blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah
+    </div>
+    <img src="http://cloud.github.com/downloads/malsup/cycle/beach2.jpg" width="200" height="200" />
+    <div>
+      2. blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah
+    </div>
+    <div>
+      3. blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah
+    </div>
+    <div>
+      4. blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah
+    </div>
+  </div>
+  -->
+
+  
   <OBJECT
     classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
     codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0"
@@ -77,6 +105,7 @@
         PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
       </EMBED>
   </OBJECT>
+  
 </div>
 
 
