@@ -1,0 +1,50 @@
+div.slideshow {
+    height: 210px;
+    width: 100%;
+}
+
+.slide { 
+    border: 1px solid #B53E04;
+    height: 200px;
+    margin: 5px;
+    padding: 0px;
+}
+
+.slide h1 { 
+    background-color: #B53E04;
+    color: white;
+    margin: 0;
+    padding: 5px;
+}
+
+.slide p.content {
+    margin-left: 20px;
+}
+
+.slide p {
+    margin: 0;
+    padding: 0;
+}
+
+.slide ol {
+    font-style: italic;
+    font-weight: bold;
+    color: #547C01;
+    margin: 0;
+}
+
+.slide ol p {
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    color: #323232;
+    font-weight: normal;
+}
+
+.slide img {
+    margin: 5px;
+    padding: 0;
+    float: right;
+    display: inline;
+}
+
