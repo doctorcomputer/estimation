@@ -4,10 +4,10 @@ div.slideshow {
 }
 
 .slide { 
-    border: 1px solid #B53E04;
+    border: 0;
     height: 200px;
-    margin: 5px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .slide h1 { 
@@ -17,7 +17,8 @@ div.slideshow {
     padding: 5px;
 }
 
-.slide p.content {
+.slide .content {
+    height: 200px;
     margin-left: 20px;
 }
 
